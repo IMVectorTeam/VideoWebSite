@@ -34,7 +34,7 @@ const mutations = {
 
 const actions = {
 
-  async getVideoList({ commit, state }) {
+  async getVideoUserList({ commit, state }) {
     await videoUserOp.list(state.videoUserListQuery).then((res) => {
       res = res.data
       commit('setVideoUserList', {

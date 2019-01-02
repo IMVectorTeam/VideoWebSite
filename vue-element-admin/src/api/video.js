@@ -13,7 +13,7 @@ const baseApi = function(url) {
 const VIDEO_URI = 'VideoWebSite/video/list'
 
 // 用户
-const VIDEO_USER_URI = 'VIdeoWebSite/user/list'
+const VIDEO_USER_URI = 'VideoWebSite/user/list'
 
 export const videoUserOp = baseApi(VIDEO_USER_URI)
 

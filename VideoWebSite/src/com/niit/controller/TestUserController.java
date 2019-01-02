@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.niit.entity.User;
 import com.niit.service.UserService;
@@ -33,9 +34,9 @@ public class TestUserController {
 		testService.insertUser(user2);		
 	}
 	
-	@RequestMapping("/getUserList")
+	@RequestMapping("/user/list")
+	@ResponseBody
 	public List<User> getUserList(){			
-		System.out.println(testService.getUserList());
 		return testService.getUserList();		
 	}
 	
