@@ -4,9 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.niit.entity.User;
 import com.niit.service.UserService;
 
@@ -36,8 +41,16 @@ public class TestUserController {
 	
 	@RequestMapping("/user/list")
 	@ResponseBody
-	public List<User> getUserList(){			
-		return testService.getUserList();		
+	public PageInfo getUserList(int limit,int _page){	
+		System.out.println( limit+"    "+ _page);
+		PageHelper.startPage(1, 1);
+		List<User> uList=testService.getUserList();
+//		ModelMap m= new ModelMap();
+//		m.addAttribute("data", uList);
+		PageInfo pageInfo=new PageInfo(uList);
+//		m.addAttribute("pageInfo", pageInfo);
+//		return m;
+		return pageInfo;
 	}
 	
 	@RequestMapping("/updateUser")

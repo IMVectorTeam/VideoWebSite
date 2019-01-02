@@ -1,17 +1,14 @@
 <template>
   <div class="app-container">
 
-    <!--<el-table-->
-    <!--:data="videoUserList"-->
-    <!--style="width: 100%">-->
-    <!--<el-table-column-->
-    <!--prop="name"-->
-    <!--label="日期"-->
-    <!--width="180"/>-->
-    <!--<el-table-column-->
-    <!--prop="address"-->
-    <!--label="地址"/>-->
-    <!--</el-table>-->
+    <el-table
+      :data="videoUserList"
+      style="width: 100%">
+      <el-table-column
+        prop="id"
+        label="姓名"
+        width="180"/>
+    </el-table>
 
   </div>
 </template>
@@ -27,7 +24,9 @@ export default {
     }
   },
   created() {
-    this.getVideoUserList()
+    this.getVideoUserList().then(res => {
+      console.log(res)
+    })
     console.log(this.videoUserList)
   }
 }

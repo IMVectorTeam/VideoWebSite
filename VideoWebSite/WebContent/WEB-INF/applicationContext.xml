@@ -15,13 +15,12 @@
 		base-package="com.niit.mapper" />
 	<context:component-scan
 		base-package="com.niit.service" />
-	
+
 
 	<!-- 定时任务 -->
-<!-- 	<task:executor id="executor" pool-size="5" />
-	<task:scheduler id="scheduler" pool-size="10" />
-	<task:annotation-driven executor="executor"
-		scheduler="scheduler" /> -->
+	<!-- <task:executor id="executor" pool-size="5" /> <task:scheduler id="scheduler" 
+		pool-size="10" /> <task:annotation-driven executor="executor" scheduler="scheduler" 
+		/> -->
 
 	<!-- 配置文件 -->
 	<context:property-placeholder
@@ -48,6 +47,19 @@
 			value="classpath:com/niit/mapper/*.xml"></property>
 		<!-- 配置加载mybatis.xml -->
 		<property name="configLocation" value="WEB-INF/mybatis.xml"></property>
+		<!-- 注意其他配置 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<!--使用下面的方式配置参数，一行配置一个 -->
+						<value>
+							helperDialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 	</bean>
 
 
@@ -60,15 +72,17 @@
 		<property name="sqlSessionFactoryBeanName"
 			value="sqlSessionFactory" />
 	</bean>
-	
-	
-      <!-- 配置事务管理器(数据源的事务管理器) -->
-      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-      		<property name="dataSource" ref="dataSource"/>
-      </bean>
-	  
-	 <!-- 开启annotation注解事务 -->
-	 <tx:annotation-driven transaction-manager="transactionManager"/>    
-	 
+
+
+	<!-- 配置事务管理器(数据源的事务管理器) -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 开启annotation注解事务 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
 
 </beans>

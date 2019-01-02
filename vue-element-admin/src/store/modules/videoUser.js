@@ -3,10 +3,10 @@ const state = {
   videoUserList: [],
   videoUserItem: {},
   videoUserListQuery: {
-    // limit: 20,
+    limit: 20, // 每一页的条数
     // offset: 0,
     // _total: 0,
-    // _page: 0
+    _page: 0
   },
   videoUserForm: {}
 }
@@ -36,14 +36,10 @@ const actions = {
 
   async getVideoUserList({ commit, state }) {
     await videoUserOp.list(state.videoUserListQuery).then((res) => {
-      res = res.data
-      commit('setVideoUserList', {
-        list: res.results,
-        total: res.count,
-        limit: res.limit,
-        offset: res.offset,
-        needPagination: true
-      })
+      // res = res.data
+      console.log(res)
+      console.log(res.data)
+      commit('setVideoUserList', res.data)
     })
   }
 }
