@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.niit.mapper.UserMapper">
+
+  	<resultMap type="com.niit.entity.User"  id="userMap">
+		<id property="id" column="UID" />
+		<result property="name" column="UName" />
+		<result property="password" column="UPwd" />
+		<result property="sex" column="USex" />
+		<result property="email" column="UEmail" />
+	</resultMap>
+	
+<!-- 查询单个用户信息 -->
+	<select id="getUser" parameterType="java.lang.String" resultMap="userMap"
+		resultType="com.niit.entity.User">
+		SELECT *
+		FROM users
+		WHERE UID = #{id}
+	</select>
+
+<!-- 插入单个用户信息 -->	
+    <insert id="insertUser" parameterType="com.niit.entity.User">
+		INSERT INTO users(UID,
+		UName, UPwd, USex, UEmail)
+		VALUES(#{id}, #{name}, #{password}, #{sex}, #{email})
+	</insert>
+
+<!-- 查询所有用户信息 -->
+	<select id="getUserList" resultType="com.niit.entity.User" resultMap="userMap">
+		SELECT * FROM users
+	</select>
+	
+<!-- 更新用户信息 -->
+	<update id="updateUser" parameterType="com.niit.entity.User">
+		UPDATE users
+		SET
+		UName = #{name},
+		UPwd = #{password},
+		USex = #{sex},
+		UEmail = #{email}
+		WHERE UID = #{id}
+	</update>
+
+<!-- 删除用户信息 -->
+    <delete id="deleteUser" parameterType="java.lang.String">
+		DELETE FROM users WHERE UID = #{id}
+	</delete>
+	
+</mapper>

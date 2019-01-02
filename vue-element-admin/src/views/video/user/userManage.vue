@@ -2,10 +2,10 @@
   <div class="app-container">
 
     <el-table
-      :data="[{ date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄' }, { date: '2016-05-04', name: '王小虎', address: '上海市普陀区金沙江路 1517 弄' }]"
+      :data="videoUserList"
       style="width: 100%">
       <el-table-column
-        prop="date"
+        prop="name"
         label="日期"
         width="180"/>
       <el-table-column
@@ -21,8 +21,19 @@
 </template>
 
 <script>
+import Data from '@/views/video/user/mixin/Data'
 export default {
-  name: 'UserManage'
+  name: 'UserManage',
+  mixins: [Data],
+  data() {
+    return {
+
+    }
+  },
+  created() {
+    this.getVideoUserList()
+    console.log(this.videoUserList)
+  }
 }
 </script>
 

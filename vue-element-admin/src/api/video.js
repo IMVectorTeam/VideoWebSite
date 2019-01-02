@@ -9,7 +9,12 @@ const baseApi = function(url) {
     retrieve: (uuid, config = {}) => request({ url: `${url}${uuid}/`, method: 'get', params: config })
   }
 }
-// 供应商
+// 视频
 const VIDEO_URI = 'VideoWebSite/video/list'
+
+// 用户
+const VIDEO_USER_URI = 'VIdeoWebSite/user/list'
+
+export const videoUserOp = baseApi(VIDEO_USER_URI)
 
 export const videoOp = baseApi(VIDEO_URI)

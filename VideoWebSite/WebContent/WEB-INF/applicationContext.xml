@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<context:component-scan
+		base-package="com.niit.mapper" />
+	<context:component-scan
+		base-package="com.niit.service" />
+	
+
+	<!-- 定时任务 -->
+<!-- 	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:annotation-driven executor="executor"
+		scheduler="scheduler" /> -->
+
+	<!-- 配置文件 -->
+	<context:property-placeholder
+		location="classpath:properties/jdbc.properties" />
+
+	<!-- 配置数据源(dataSource) -->
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" p:driverClass="${c3p0.driverClass}"
+		p:jdbcUrl="${c3p0.jdbcUrl}" p:user="${c3p0.user}"
+		p:password="${c3p0.password}" p:minPoolSize="${c3p0.minPoolSize}"
+		p:maxPoolSize="${c3p0.maxPoolSize}"
+		p:initialPoolSize="${c3p0.initialPoolSize}" />
+
+	<!-- 配置SqlSessionFactory -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置数据源 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置类型别名采用包扫描 -->
+		<property name="typeAliasesPackage" value="com.niit.entity" />
+		<!-- 配置SQL语句映射文件 -->
+		<property name="mapperLocations"
+			value="classpath:com/niit/mapper/*.xml"></property>
+		<!-- 配置加载mybatis.xml -->
+		<property name="configLocation" value="WEB-INF/mybatis.xml"></property>
+	</bean>
+
+
+	<!-- 配置数据访问接口代理对象 (批量配置) 采用包扫描的方式：到基础包下扫描所有的数据访问接口，创建代理对象，交由Spring容器管理 bean的id 
+		默认是类名 首字母小写 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 设置包名 -->
+		<property name="basePackage" value="com.niit.mapper" />
+		<!-- 设置SqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName"
+			value="sqlSessionFactory" />
+	</bean>
+	
+	
+      <!-- 配置事务管理器(数据源的事务管理器) -->
+      <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      		<property name="dataSource" ref="dataSource"/>
+      </bean>
+	  
+	 <!-- 开启annotation注解事务 -->
+	 <tx:annotation-driven transaction-manager="transactionManager"/>    
+	 
+
+</beans>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.niit.mapper.VideoMapper">
+
+  	<resultMap type="com.niit.entity.Video"  id="videoMap">
+		<id property="id" column="VID" />
+		<result property="name" column="VName" />
+		<result property="image" column="VImage" />
+		<result property="address" column="VAddress" />
+		<result property="time" column="VTime" />
+		<result property="category" column="VCategory"/>
+		<result property="state" column="VState" />
+	</resultMap>
+	
+<!-- 查询单个视频信息 -->
+	<select id="getVideo" parameterType="java.lang.String" resultMap="videoMap"
+		resultType="com.niit.entity.Video">
+		SELECT *
+		FROM videos 
+		WHERE VID = #{id}
+	</select>
+	
+<!-- 查询所有视频 -->
+	<select id="getVideoList" resultType="com.niit.entity.Video" resultMap="videoMap">
+		SELECT * FROM videos
+	</select>
+	
+<!-- 插入单个视频 -->
+    <insert id="insertVideo" parameterType="com.niit.entity.Video">
+		INSERT INTO videos(VID, VName, VImage, VAddress, VTime, VCategory, VState)
+		VALUES(#{id}, #{name}, #{image}, #{address}, #{time}, #{category},#{state})
+	</insert>
+	
+	
+<!-- 按视频类别查询视频 -->
+    <select id="getVideoListByCategory" parameterType="java.lang.String" 
+    resultType="com.niit.entity.Video" resultMap="videoMap">
+		SELECT * FROM videos 
+		WHERE VCategory = #{category}
+	</select>
+
+
+	
+	
+<!-- 更新用户信息 -->
+	<update id="updateVideo" parameterType="com.niit.entity.Video">
+		UPDATE videos
+		SET
+		VName = #{name},
+		VImage = #{image},
+		VAddress = #{address},
+		VTime = #{time},
+		VCategory = #{category},
+		VState = #{state}
+		WHERE VID = #{id}
+	</update>
+
+<!-- 删除用户信息 -->
+    <delete id="deleteVideo" parameterType="java.lang.String">
+		DELETE FROM videos WHERE VID = #{id}
+	</delete>
+	
+<!-- 得到某类别视频总数目 -->
+	<select id="getVideoListNumber" parameterType="java.lang.String" resultType="Integer" >
+		SELECT COUNT(*) FROM videos 
+		WHERE VCategory = #{id}
+	</select>
+
+	
+</mapper>

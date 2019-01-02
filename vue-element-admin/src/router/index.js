@@ -145,25 +145,45 @@ export const asyncRouterMap = [
     path: '/admin',
     component: Layout,
     redirect: 'index',
-    meta: { title: '管理中心', icon: 'manage', roles: ['admin', 'editor'] },
+    meta: { title: '资源管理', icon: 'manage', roles: ['admin', 'editor'] },
     children: [
       {
         path: 'index',
         component: () => import('@/views/video/adminIndex'),
-        name: 'admin',
+        name: 'adminIndex',
+        meta: { title: '管理主页', icon: 'manage', noCache: true }
+      },
+      {
+        path: 'video-manage',
+        component: () => import('@/views/video/user/userManage'),
+        name: 'userManage',
         meta: { title: '用户管理', icon: 'manage', noCache: true }
       },
       {
-        path: 'index',
-        component: () => import('@/views/video/adminIndex'),
-        name: 'admin',
+        path: 'video-manage',
+        component: () => import('@/views/video/video/videoManage'),
+        name: 'videoManage',
         meta: { title: '视频管理', icon: 'manage', noCache: true }
       },
       {
+        path: 'comment-manage',
+        component: () => import('@/views/video/comment/commentManage'),
+        name: 'commentManage',
+        meta: { title: '评论管理', icon: 'manage', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/admin-role-manage',
+    component: Layout,
+    redirect: 'index',
+    meta: { title: '权限管理', icon: 'manage', roles: ['admin', 'editor'] },
+    children: [
+      {
         path: 'index',
         component: () => import('@/views/video/adminIndex'),
-        name: 'admin',
-        meta: { title: '评论管理', icon: 'manage', noCache: true }
+        name: 'roleManage',
+        meta: { title: '用户管理', icon: 'manage', noCache: true }
       }
     ]
   },

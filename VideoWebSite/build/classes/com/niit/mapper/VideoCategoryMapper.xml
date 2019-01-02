@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.niit.mapper.VideoCategoryMapper">
+
+  	<resultMap type="com.niit.entity.VideoCategory"  id="videoCategoryMap">
+		<id property="id" column="CID" />
+		<result property="name" column="CName" />
+		<result property="remark" column="CRemark" />
+	</resultMap>
+	
+<!-- 查询单个视频类型信息 -->
+	<select id="getVideoCategory" parameterType="java.lang.String" resultMap="videoCategoryMap"
+		resultType="com.niit.entity.VideoCategory">
+		SELECT *
+		FROM videocategory
+		WHERE CID = #{id}
+	</select>
+	
+<!-- 插入视频类别 -->	
+    <insert id="insertVideoCategory" parameterType="com.niit.entity.VideoCategory">
+		INSERT INTO videocategory(CID, CName, CRemark)
+		VALUES(#{id}, #{name}, #{remark})
+	</insert>
+
+<!-- 查询所有是视频类别信息 -->
+	<select id="getVideoCategoryList" resultType="com.niit.entity.VideoCategory" resultMap="videoCategoryMap">
+		SELECT * FROM videocategory
+	</select>
+	
+<!-- 更新视频类别信息 -->
+	<update id="updateVideoCategory" parameterType="com.niit.entity.VideoCategory">
+		UPDATE videocategory
+		SET
+		CName = #{name},
+		CRemark = #{remark}
+		WHERE CID = #{id}
+	</update>
+	
+</mapper>
