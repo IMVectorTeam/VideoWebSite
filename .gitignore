@@ -6,8 +6,12 @@ yarn-debug.log*
 
 test/unit/coverage
 test/e2e/reports
+<<<<<<< .merge_file_KHISJA
 <<<<<<< HEAD
 selenium-debug.log
 =======
 selenium-debug.log
 >>>>>>> 307b2d2d176dfa34ce919b6c63be832c47347c06
+=======
+selenium-debug.log
+>>>>>>> .merge_file_0N1RLd
