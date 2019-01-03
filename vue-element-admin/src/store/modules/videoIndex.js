@@ -45,38 +45,6 @@ const actions = {
         needPagination: true
       })
     })
-  },
-  open({ commit, state }, param) {
-    console.log(param)
-    return new Promise((resolve, reject) => {
-      const config = typeof param === 'object' ? { ...param } : { type: param }
-      const clean = () => commit('setStack', state.stack.filter(otherConfig => otherConfig !== config))
-      config.resolve = (result) => {
-        clean()
-        if (config.onResolve) {
-          // Call onResolve immediately (mostly to prevent browsers from blocking popup windows)
-          config.onResolve(result)
-            .then(res => resolve(res))
-        } else {
-          resolve(result)
-        }
-      }
-      config.reject = (error) => {
-        clean()
-        reject(error)
-      }
-      commit('setStack', [config, ...state.stack])
-    })
-  },
-  hideUntil({ commit, state }, promise) {
-    commit('setHidden', true)
-    return promise.then((res) => {
-      commit('setHidden', false)
-      return res
-    }, (err) => {
-      commit('setHidden', false)
-      throw err
-    })
   }
 }
 

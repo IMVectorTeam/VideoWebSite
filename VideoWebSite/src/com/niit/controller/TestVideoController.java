@@ -1,12 +1,18 @@
 package com.niit.controller;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.niit.entity.User;
@@ -17,6 +23,7 @@ import com.niit.mapper.VideoMapper;
 import com.niit.service.UserService;
 import com.niit.service.VideoCategoryService;
 import com.niit.service.VideoService;
+import com.niit.utils.UploadUtils;
 
 @Controller
 public class TestVideoController {
@@ -35,17 +42,37 @@ public class TestVideoController {
 		return videoService.getVideoList();		
 	}
 	
-	@RequestMapping("/insertVideo")
-	public void insertVideo(Video video) {
-		Video video2 = new Video();
-		video2.setId("1010");
-		video2.setName("迪迦奥特曼大电影");
-		video2.setImage("/static/videolook/videolookimg/6130489-1-hd.png");
-		video2.setAddress("/videolookimg");
-		video2.setTime("35");	
-		video2.setCategory("1");
-		video2.setState("");
-		videoService.insertVideo(video2);	
+	@RequestMapping(value="/video/upload",method=RequestMethod.POST)
+	@ResponseBody
+	public ModelMap uploadVideo(HttpServletRequest request) {
+//		Video video2 = new Video();
+//		videoService.insertVideo();
+		String url=null;
+		try {
+			url=UploadUtils.uploadVideo(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ModelMap map=new ModelMap();
+		map.addAttribute("url", url);
+		map.addAttribute("flag", true);
+		return map;
+	}
+	@RequestMapping(value="/image/upload",method=RequestMethod.POST)
+	@ResponseBody
+	public ModelMap uploadImage(HttpServletRequest request) {
+//		Video video2 = new Video();
+//		videoService.insertVideo();
+		String url=null;
+		try {
+			url=UploadUtils.uploadImage(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ModelMap map=new ModelMap();
+		map.addAttribute("url", url);
+		map.addAttribute("flag", true);
+		return map;
 	}
 	
 	@RequestMapping("/updateVideo")
