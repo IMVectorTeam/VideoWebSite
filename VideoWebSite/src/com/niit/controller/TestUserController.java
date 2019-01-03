@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
@@ -41,13 +42,12 @@ public class TestUserController {
 	
 	@RequestMapping("/user/list")
 	@ResponseBody
-	public PageInfo getUserList(int limit,int _page){	
-		System.out.println( limit+"    "+ _page);
-		PageHelper.startPage(1, 1);
+	public PageInfo getUserList(int limit,int page){	
+		PageHelper.startPage(page, limit);//第一个参数是第几页，第二个参数是每一页的数量
 		List<User> uList=testService.getUserList();
+		PageInfo pageInfo=new PageInfo(uList);
 //		ModelMap m= new ModelMap();
 //		m.addAttribute("data", uList);
-		PageInfo pageInfo=new PageInfo(uList);
 //		m.addAttribute("pageInfo", pageInfo);
 //		return m;
 		return pageInfo;
@@ -64,9 +64,18 @@ public class TestUserController {
 		testService.updateUser(user2);	
 	}
 	
-	@RequestMapping("/deleteUser")
-	public void deleteUser(String id) {
-		testService.deleteUser(id);
+	@RequestMapping(value="/user/list",method=RequestMethod.DELETE)
+	@ResponseBody
+	public boolean deleteUser(String id) {
+		boolean flag=false;
+		try {
+			testService.deleteUser(id);
+			flag=true;
+		}catch (Exception e) {
+			flag=false;
+		}
+		return flag;
+		
 	}
 
 }

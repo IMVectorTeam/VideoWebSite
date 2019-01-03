@@ -5,7 +5,7 @@ const baseApi = function(url) {
     list: (query) => request({ url: url, method: 'get', params: query }),
     update: (data, uuid) => request({ url: `${url}${uuid}/`, method: 'patch', data }),
     create: (data) => request({ url: url, method: 'post', data }),
-    delete: (uuid) => request({ url: `${url}${uuid}/`, method: 'delete' }),
+    delete: (uuid) => request({ url: `${url}`, params: uuid, method: 'delete' }),
     retrieve: (uuid, config = {}) => request({ url: `${url}${uuid}/`, method: 'get', params: config })
   }
 }
