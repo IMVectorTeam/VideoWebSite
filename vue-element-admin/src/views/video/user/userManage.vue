@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-
     <el-table
       :data="videoUserList"
       style="width: 100%">
