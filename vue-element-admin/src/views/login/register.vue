@@ -19,9 +19,9 @@
           <svg-icon icon-class="user"/>
         </span>
         <el-input
-          v-model="registerForm.username"
-          :placeholder="$t('login.username')"
-          name="username"
+          v-model="registerForm.email"
+          placeholder="请输入邮箱"
+          name="email"
           type="text"
           auto-complete="on"
         />
@@ -58,49 +58,46 @@
           <svg-icon icon-class="eye"/>
         </span>
       </el-form-item>
+      <el-form-item>
+        <el-input v-model="registerForm.name" placeholder="请输入用户名"/>
+      </el-form-item>
+      <el-form-item>
+        <el-select v-model="registerForm.sex" value="" style="width: 116%" placeholder="请选择性别">
+          <el-option value="男"/>
+          <el-option value="女"/>
+          <el-option value="保密"/>
+        </el-select>
+      </el-form-item>
       <el-button
         :loading="loading"
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleRegister">注册
       </el-button>
-
-      <!--<div class="tips">-->
-      <!--<span>{{ $t('login.username') }} : admin</span>-->
-      <!--<span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>-->
-      <!--</div>-->
-      <!--<div class="tips">-->
-      <!--<span style="margin-right:18px;">{{ $t('login.username') }} : editor</span>-->
-      <!--<span>{{ $t('login.password') }} : {{ $t('login.any') }}</span>-->
-      <!--</div>-->
-
-      <!--<el-button class="thirdparty-button" type="primary" @click="showDialog=true">{{ $t('login.thirdparty') }}-->
-      <!--</el-button>-->
     </el-form>
-
-    <!--<el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog" append-to-body>-->
-    <!--{{ $t('login.thirdpartyTips') }}-->
-    <!--<br>-->
-    <!--<br>-->
-    <!--<br>-->
-    <!--<social-sign/>-->
-    <!--</el-dialog>-->
 
   </div>
 </template>
 <script>
-import { isvalidUsername } from '@/utils/validate'
+// import { isvalidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './socialsignin'
-
+import Data from '@/views/video/user/mixin/Data'
 export default {
   name: 'Register',
   components: { LangSelect, SocialSign },
+  mixins: [Data],
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('请输入正确的邮箱'))
+    const validateEmail = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请正确填写邮箱'))
       } else {
+        if (value !== '') {
+          var reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+          if (!reg.test(value)) {
+            callback(new Error('请输入有效的邮箱'))
+          }
+        }
         callback()
       }
     }
@@ -123,29 +120,24 @@ export default {
     }
     return {
       registerForm: {
-        username: 'admin',
-        password: '1111111',
-        passwordRepeat: ''
+        email: '',
+        password: '',
+        passwordRepeat: '',
+        sex: '',
+        name: ''
       },
       registerRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        email: [{ required: true, trigger: 'blur', validator: validateEmail }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }],
-        passwordRepeat: [{ required: true, trigger: 'blur', validator: validatePasswordRepeat }]
+        passwordRepeat: [{ required: true, trigger: 'blur', validator: validatePasswordRepeat }],
+        sex: [{ required: true, trigger: 'blur', message: '性别' }],
+        name: [{ required: true, trigger: 'blur', message: '用户名不能为空' }]
       },
       passwordType: 'password',
       loading: false,
       showDialog: false,
       redirect: undefined
     }
-  },
-  watch: {
-    // $route: {
-    //   handler: function(route) {
-    //     this.redirect = route.query && route.query.redirect
-    //   },
-    //   immediate: true
-    // }
-
   },
   created() {
     // window.addEventListener('hashchange', this.afterQRScan)
@@ -165,7 +157,18 @@ export default {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true
-          // this.$store.dispatch('LoginByUsername', this.registerForm).then(() => {
+          this['setVideoUserForm']({ usingKey: true, k: 'email', v: this.registerForm.email })
+          this['setVideoUserForm']({ usingKey: true, k: 'password', v: this.registerForm.password })
+          this['setVideoUserForm']({ usingKey: true, k: 'sex', v: this.registerForm.sex })
+          this['setVideoUserForm']({ usingKey: true, k: 'name', v: this.registerForm.name })
+
+          this.createUser().then(res => {
+            this.loading = false
+            this.$router.push({ path: '/login' })
+          }).catch(() => {
+            this.loading = false
+          })
+          // this.$store.dispatch('LoginByemail', this.registerForm).then(() => {
           //   this.loading = false
           //   this.$router.push({ path: this.redirect || '/' })
           // }).catch(() => {
@@ -176,24 +179,6 @@ export default {
           return false
         }
       })
-    },
-    afterQRScan() {
-      // const hash = window.location.hash.slice(1)
-      // const hashObj = getQueryObject(hash)
-      // const originUrl = window.location.origin
-      // history.replaceState({}, '', originUrl)
-      // const codeMap = {
-      //   wechat: 'code',
-      //   tencent: 'code'
-      // }
-      // const codeName = hashObj[codeMap[this.auth_type]]
-      // if (!codeName) {
-      //   alert('第三方登录失败')
-      // } else {
-      //   this.$store.dispatch('LoginByThirdparty', codeName).then(() => {
-      //     this.$router.push({ path: '/' })
-      //   })
-      // }
     }
   }
 

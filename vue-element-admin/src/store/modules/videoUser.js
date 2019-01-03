@@ -1,6 +1,14 @@
 import { videoUserOp } from '@/api/video'
-import { Message } from 'element-ui'
+import { Message, Notification } from 'element-ui'
 import Vue from 'vue'
+
+export const defaultVideoUserForm = {
+  email: '',
+  password: '',
+  name: '',
+  sex: '',
+  id: ''// 这一个加上与不加后台只要在参数列表中使用 @requestBody就可以封装成一个对象
+}
 const state = {
   videoUserList: [],
   videoUserItem: {},
@@ -10,7 +18,7 @@ const state = {
     // offset: 0,
     // _total: 0,
   },
-  videoUserForm: {}
+  videoUserForm: JSON.parse(JSON.stringify(defaultVideoUserForm))
 }
 
 const getters = {
@@ -40,8 +48,16 @@ const mutations = {
   setVideoUserListQuery: (state, value) => {
     state.videoUserListQuery = value
   },
-  setVideoUserForm: (state, value) => {
-    state.videoFrom = value
+  setVideoUserForm: (state, { k, v, usingKey = false, pF, reset = false }) => {
+    if (reset) {
+      state.videoUserForm = JSON.parse(JSON.stringify(defaultVideoUserForm))
+      return
+    }
+    if (usingKey) {
+      Vue.set(state.videoUserForm, k, v)
+    } else {
+      state.videoUserForm = pF
+    }
   }
 }
 
@@ -64,6 +80,24 @@ const actions = {
       message: '用户删除成功',
       type: 'success'
 
+    })
+  },
+  createUser({ commit, dispatch, state, rootState }) {
+    return videoUserOp.create(state.videoUserForm).then(res => {
+      if (res.data === true) {
+        Notification({
+          title: '成功',
+          message: '注册成功',
+          type: 'success'
+        })
+        commit('setVideoUserForm', { reset: true })
+      } else {
+        Notification({
+          title: '失败',
+          message: '供应商创建失败',
+          type: 'warning'
+        })
+      }
     })
   }
 }
