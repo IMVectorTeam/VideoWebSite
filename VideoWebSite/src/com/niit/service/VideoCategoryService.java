@@ -32,5 +32,7 @@ public class VideoCategoryService {
 		videoCategoryDao.updateVideoCategory(videoCategory);
 	}
 	
-
+	public void deleteVideoCategory(String id) {
+		videoCategoryDao.deleteVideoCategory(id);
+	}
 }

@@ -6,8 +6,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getVideoUserList: 'video/getVideoList',
-      deleteUserList: 'video/deleteList'
+      getVideoList: 'video/getVideoList',
+      deleteVideo: 'video/deleteVideo'
     }),
     ...mapMutations('video', ['setVideoList'])
   }

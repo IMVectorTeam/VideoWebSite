@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="loading">
+  <div v-loading="pageLoading">
     <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
@@ -27,18 +27,19 @@
     <el-row :gutter="30">
       <el-col :span="7" :offset="4">
         <div style="border: 0.5px #E4E7ED solid;padding: 20px;">
-          <el-form ref="form" :model="videoForm" label-width="80px" enctype="multipart/form-data">
-            <el-form-item label="视频名字">
-              <el-input placeholder="请输入视频名称"/>
+          <el-form ref="form" :model="form" :rules="rules" label-width="80px" enctype="multipart/form-data">
+            <el-form-item label="视频名字" prop="name">
+              <el-input v-model="form.name" placeholder="请输入视频名称"/>
             </el-form-item>
-            <el-form-item label="视频类别">
-              <el-select style="width: 100%" value="" placeholder="请选择视频类别">
+            <el-form-item label="视频类别" prop="category">
+              <el-select v-model="form.category" style="width: 100%" value="" placeholder="请选择视频类别">
                 <el-option v-for="item in videoTypeList" :key="item.id" :label="item.name" :value="item.id"/>
                 <el-option value="其他类别"/>
               </el-select>
             </el-form-item>
-            <el-form-item label="图像上传">
+            <el-form-item label="图像上传" prop="image">
               <el-upload
+                :on-success="handleImageSuccess"
                 drag
                 action="/api/VideoWebSite/image/upload"
                 style="text-align: center;width: 100%;position: relative;overflow:hidden"
@@ -49,9 +50,10 @@
               </el-upload>
             </el-form-item>
 
-            <el-form-item label="视频上传" prop="Video">
+            <el-form-item label="视频上传" prop="videoURL">
               <!-- action必选参数, 上传的地址 -->
               <el-upload
+                v-model="form.videoURL"
                 :show-file-list="false"
                 :on-success="handleVideoSuccess"
                 :before-upload="beforeUploadVideo"
@@ -60,12 +62,12 @@
                 style="border: 1px dashed #409EFF;border-radius: 6px;cursor: pointer;position: relative;overflow: hidden; text-align: center"
                 class="avatar-uploader el-upload--text">
                 <video
-                  v-if="videoForm.Video !='' && videoFlag == false"
-                  :src="videoForm.Video"
+                  v-if="form.videoURL !='' && videoFlag == false"
+                  :src="form.videoURL"
                   class="avatar"
                   style="max-width: 400px"
                   controls="controls">您的浏览器不支持视频播放</video>
-                <i v-else-if="videoForm.Video =='' && videoFlag == false" class="el-icon-plus avatar-uploader-icon"/>
+                <i v-else-if="form.videoURL =='' && videoFlag == false" class="el-icon-plus avatar-uploader-icon"/>
                 <el-progress
                   v-if="videoFlag == true"
                   :percentage="videoUploadPercent"
@@ -75,7 +77,7 @@
               <P class="text">请保证视频格式正确，且不超过10M</P>
             </el-form-item>
             <el-form-item>
-              <el-button style="width: 100%" type="primary">提交</el-button>
+              <el-button style="width: 100%" type="primary" @click="handleSubmit()">提交</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -132,19 +134,29 @@
 
 <script>
 import Data from '@/views/video/mixin/Data'
+import store from '@/store'
+import { mapMutations } from 'vuex'
 export default {
   name: 'UploadVideo',
   mixins: [Data],
   data() {
     return {
-      loading: false,
-      // videoForm: {
-      //   Video: ''
-      // },
+      form: {
+        videoURL: '',
+        name: '',
+        image: '',
+        category: ''
+      },
       uploadUrl: '',
       videoUploadPercent: 0,
       videoFlag: false,
-
+      rules: {
+        videoURL: [{ required: true, trigger: 'blur', message: '请上传视频' }],
+        category: [{ required: true, trigger: 'blur', message: '请选择视频类别' }],
+        image: [{ required: true, trigger: 'blur', message: '视频封面不能为空' }],
+        name: [{ required: true, trigger: 'blur', message: '视频名称不能为空' }]
+      },
+      pageLoading: false,
       activeIndex: '1',
       tableData5: [{
         id: '12987122',
@@ -188,13 +200,47 @@ export default {
     })
   },
   methods: {
+    ...mapMutations('video', ['setVideoForm']),
+    handleSubmit() {
+      this.$refs['form'].validate(valid => {
+        if (valid === true) {
+          this.pageLoading = true
+          this.setVideoForm({ k: 'name', v: this.form.name })
+          this.setVideoForm({ k: 'image', v: this.form.image })
+          this.setVideoForm({ k: 'address', v: this.form.videoURL })
+          this.setVideoForm({ k: 'category', v: this.form.category })
+          this.setVideoForm({ k: 'userId', v: store.getters.id })
+          console.log(this.videoForm)
+          this.createVideo().then(() => {
+            this.pageLoading = false
+          })
+          // id: '',
+          //   name: '',
+          //   image: '',
+          //   address: '',
+          //   time: '',
+          //   category: '',
+          //   state: '',
+          //   userId: '',
+          //   date: ''
+        }
+      })
+    },
+    handleImageSuccess(res, file) {
+      console.log(res)
+      if (res.flag === true) {
+        this.form.image = res.url
+      } else {
+        this.$message.error('图片上传失败，请重新上传！')
+      }
+    },
     handleVideoSuccess(res, file) { // 获取上传图片地址
       this.videoFlag = false
       this.videoUploadPercent = 0
-      this.videoForm.Video = res
+      this.form.videoURL = res
       console.log(res)
       if (res.flag === true) {
-        this.videoForm.Video = res.url
+        this.form.videoURL = res.url
       } else {
         this.$message.error('视频上传失败，请重新上传！')
       }

@@ -1,8 +1,8 @@
 <template>
-  <div class="app-container">
+  <div v-loading="pageLoading" class="app-container">
 
     <el-table
-      :data="commentList"
+      :data="videoCommentList"
       style="width: 100%">
       <el-table-column
         prop="MID"
@@ -44,15 +44,18 @@ export default {
   mixins: [Data],
   data() {
     return {
-
+      pageLoading: false
     }
   },
   created() {
-    this.getcommentList()
+    this.pageLoading = true
+    this.getVideoCommentList().then(() => {
+      this.pageLoading = false
+    })
   },
   methods: {
     handleDelete(row, index) {
-      this.deletecommentList(row.id).then(() => {
+      this.deleteVideoComment(row.id).then(() => {
         this.commentList.splice(index, 1)
       })
     }

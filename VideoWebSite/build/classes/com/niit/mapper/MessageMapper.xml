@@ -4,31 +4,35 @@
 
 <mapper namespace="com.niit.mapper.MessageMapper">
 
-  	<resultMap type="com.niit.entity.Message"  id="messageMap">
+	<resultMap type="com.niit.entity.Message" id="messageMap">
 		<id property="id" column="MID" />
 		<result property="videoId" column="MVideoID" />
 		<result property="userId" column="MUserID" />
 		<result property="content" column="MContent" />
 		<result property="date" column="Mdate" />
 	</resultMap>
-	
-<!-- 根据视频查询评论信息 -->
-	<select id="getMessageByVideoId" parameterType="java.lang.String" resultMap="messageMap"
+
+	<!-- 根据视频查询评论信息 -->
+	<select id="getMessageByVideoId"
+		parameterType="java.lang.String" resultMap="messageMap"
 		resultType="com.niit.entity.Message">
 		SELECT *
 		FROM messages
 		WHERE MVideoID = #{id}
 	</select>
 
-<!-- 插入评论 -->	
-    <insert id="insertMessage" parameterType="com.niit.entity.Message">
-		INSERT INTO messages(MID,MVideoID, MUserID, MContent, Mdate)
+	<!-- 插入评论 -->
+	<insert id="insertMessage"
+		parameterType="com.niit.entity.Message">
+		INSERT INTO messages(MID,MVideoID, MUserID, MContent,
+		Mdate)
 		VALUES(#{id}, #{videoId}, #{userId}, #{content}, #{date})
 	</insert>
 
-<!-- 删除评论 -->
-    <delete id="deleteMessage" parameterType="java.lang.String">
-		DELETE FROM messages WHERE MID = #{id}
+	<!-- 删除评论 -->
+	<delete id="deleteMessage" parameterType="java.lang.String">
+		DELETE FROM messages
+		WHERE MID = #{id}
 	</delete>
-	
+
 </mapper>

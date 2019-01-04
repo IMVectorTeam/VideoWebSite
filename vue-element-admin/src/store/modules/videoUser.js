@@ -74,7 +74,7 @@ const actions = {
       })
     })
   },
-  async deleteUserList({ commit, dispatch, state, rootState }, uuid) {
+  async deleteUser({ commit, dispatch, state, rootState }, uuid) {
     await videoUserOp.delete({ id: uuid })
     Message({
       message: '用户删除成功',

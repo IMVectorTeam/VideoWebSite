@@ -4,69 +4,95 @@
 
 <mapper namespace="com.niit.mapper.VideoMapper">
 
-  	<resultMap type="com.niit.entity.Video"  id="videoMap">
+	<resultMap type="com.niit.entity.Video" id="videoMap">
 		<id property="id" column="VID" />
 		<result property="name" column="VName" />
 		<result property="image" column="VImage" />
 		<result property="address" column="VAddress" />
 		<result property="time" column="VTime" />
-		<result property="category" column="VCategory"/>
+		<result property="category" column="VCategory" />
 		<result property="state" column="VState" />
+		<result property="userId" column="VUserID" />
+		<result property="date" column="VDate" />
 	</resultMap>
-	
-<!-- 查询单个视频信息 -->
-	<select id="getVideo" parameterType="java.lang.String" resultMap="videoMap"
-		resultType="com.niit.entity.Video">
+
+	<!-- 查询单个视频信息 -->
+	<select id="getVideo" parameterType="java.lang.String"
+		resultMap="videoMap" resultType="com.niit.entity.Video">
 		SELECT *
-		FROM videos 
+		FROM videos
 		WHERE VID = #{id}
 	</select>
-	
-<!-- 查询所有视频 -->
-	<select id="getVideoList" resultType="com.niit.entity.Video" resultMap="videoMap">
+
+	<!-- 查询所有视频 -->
+	<select id="getVideoList" resultType="com.niit.entity.Video"
+		resultMap="videoMap">
 		SELECT * FROM videos
 	</select>
-	
-<!-- 插入单个视频 -->
-    <insert id="insertVideo" parameterType="com.niit.entity.Video">
-		INSERT INTO videos(VID, VName, VImage, VAddress, VTime, VCategory, VState)
-		VALUES(#{id}, #{name}, #{image}, #{address}, #{time}, #{category},#{state})
+
+	<!-- 插入单个视频 -->
+	<insert id="insertVideo" parameterType="com.niit.entity.Video">
+		INSERT INTO videos(VID,
+		VName, VImage, VAddress, VTime, VCategory, VState)
+		VALUES(#{id},
+		#{name}, #{image}, #{address}, #{time},
+		#{category},#{state},#{userId},#{date})
 	</insert>
-	
-	
-<!-- 按视频类别查询视频 -->
-    <select id="getVideoListByCategory" parameterType="java.lang.String" 
-    resultType="com.niit.entity.Video" resultMap="videoMap">
-		SELECT * FROM videos 
+
+
+	<!-- 按视频类别id查询视频 -->
+	<select id="getVideoListByCategory"
+		parameterType="java.lang.String" resultType="com.niit.entity.Video"
+		resultMap="videoMap">
+		SELECT * FROM videos
 		WHERE VCategory = #{category}
 	</select>
 
 
-	
-	
-<!-- 更新用户信息 -->
+
+
+	<!-- 更新用户信息 -->
 	<update id="updateVideo" parameterType="com.niit.entity.Video">
 		UPDATE videos
 		SET
-		VName = #{name},
+		VName =
+		#{name},
 		VImage = #{image},
 		VAddress = #{address},
 		VTime = #{time},
 		VCategory = #{category},
-		VState = #{state}
+		VState = #{state},
+		VUserID = #{userId},
+		VDate =
+		#{date}
 		WHERE VID = #{id}
 	</update>
 
-<!-- 删除用户信息 -->
-    <delete id="deleteVideo" parameterType="java.lang.String">
-		DELETE FROM videos WHERE VID = #{id}
+	<!-- 删除视频信息 -->
+	<delete id="deleteVideo" parameterType="java.lang.String">
+		DELETE FROM videos WHERE
+		VID = #{id}
 	</delete>
-	
-<!-- 得到某类别视频总数目 -->
-	<select id="getVideoListNumber" parameterType="java.lang.String" resultType="Integer" >
-		SELECT COUNT(*) FROM videos 
+
+	<!-- 得到某类别视频总数目 -->
+	<select id="getVideoListNumber" parameterType="java.lang.String"
+		resultType="Integer">
+		SELECT COUNT(*) FROM videos
 		WHERE VCategory = #{id}
 	</select>
 
-	
+
+	<!-- pky根据用户id查询该用户的发布的所有的视频 -->
+	<select id="getVideoListByUserId"
+		resultType="com.niit.entity.Video" resultMap="videoMap">
+		SELECT * FROM videos
+		where VUserID=#{id}
+	</select>
+	<!-- pky根据视频id查询该视频的所有信息 -->
+	<select id="getUserIdByVideoId"
+		resultType="com.niit.entity.Video" resultMap="videoMap">
+		SELECT * FROM videos
+		where VID=#{id}
+	</select>
+
 </mapper>

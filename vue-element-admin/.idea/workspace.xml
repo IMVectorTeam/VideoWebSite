@@ -2,27 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf08df97-5d5f-474a-8fef-eb2aca42e431" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/modules/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/WebContent/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/WebContent/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestAdministratorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestAdministratorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestMessageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestMessageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestUserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestVideoCategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestVideoCategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestVideoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/TestVideoController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/utils/UploadUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/utils/UploadUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/entity/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/entity/Video.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/AdministratorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/AdministratorMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/MessageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/MessageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoCategoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoCategoryMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoCategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoCategoryMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/mapper/VideoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/service/VideoCategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/service/VideoCategoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/service/VideoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/build/classes/com/niit/service/VideoService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestAdministratorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestAdministratorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestMessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestVideoCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestVideoCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestVideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/TestVideoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/utils/UploadUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/utils/UploadUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/entity/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/entity/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/AdministratorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/AdministratorMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/MessageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/MessageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoCategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoCategoryMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoCategoryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoCategoryMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/mapper/VideoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/service/VideoCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/service/VideoCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VideoWebSite/src/com/niit/service/VideoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/getters.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/modules/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/videoIndex.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/videoIndex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/videoUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/videoUser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/video/comment/commentManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/comment/commentManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/video/comment/mixin/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/comment/mixin/Data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/video/components/uploadVideo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/components/uploadVideo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/video/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/video/mixin/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/mixin/Data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/video/user/mixin/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/user/mixin/Data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/video/user/userManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/user/userManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/video/video/mixin/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/video/mixin/Data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/video/video/videoManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/video/videoManage.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/video/components/uploadVideo.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1060">
-              <caret line="99" column="44" lean-forward="true" selection-start-line="99" selection-start-column="44" selection-end-line="99" selection-end-column="44" />
+            <state relative-caret-position="252">
+              <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -52,73 +85,28 @@
                 <element signature="n#style#0;n#video#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-progress#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#el-button#0;n#el-form-item#4;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" />
                 <element signature="n#style#0;n#el-table#0;n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#5420#5463#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/login/index.vue">
+        <entry file="file://$PROJECT_DIR$/src/views/video/mixin/Data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="115" column="64" selection-start-line="115" selection-start-column="55" selection-end-line="115" selection-end-column="64" />
-              <folding>
-                <element signature="n#style#0;n#el-button#0;n#el-form-item#2;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#0;n#el-form-item#3;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#1536#1586#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="171">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/store/modules/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="62" column="11" lean-forward="true" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#66#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/store/modules/videoUser.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" column="54" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="9" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/video.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/modules/video.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="96" selection-start-line="96" selection-end-line="99" selection-end-column="6" />
+            <state relative-caret-position="362">
+              <caret line="191" column="25" lean-forward="true" selection-start-line="191" selection-start-column="25" selection-end-line="191" selection-end-column="25" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -127,9 +115,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/video.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/views/login/register.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="832">
+              <caret line="133" column="71" lean-forward="true" selection-start-line="129" selection-start-column="4" selection-end-line="133" selection-end-column="71" />
+              <folding>
+                <element signature="n#style#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#el-button#0;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/video/components/videoShow.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
+            <state relative-caret-position="526">
               <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
               <folding>
                 <element signature="n#style#0;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -148,19 +167,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/video/components/personalCenter.vue">
+        <entry file="file://$PROJECT_DIR$/src/store/modules/videoUser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="19">
+              <caret line="1" column="30" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/modules/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
               <folding>
-                <element signature="n#style#0;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#el-menu#0;n#div#0;n#template#0;n#!!top" />
-                <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#el-button#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#0#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -178,21 +199,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$route</find>
-      <find>login</find>
-      <find>handler</find>
-      <find>loginForm</find>
-      <find>loginRules</find>
-      <find>logout</find>
-      <find>afterQRScan</find>
-      <find>select</find>
-      <find>LangSelect</find>
-      <find>videoUserList</find>
-      <find>getVideoUserList</find>
-      <find>setVideoUserList</find>
-      <find>in</find>
-      <find>videoUserForm</find>
-      <find>activeIndex</find>
       <find>handleSelect</find>
       <find>beforeUploadVideo</find>
       <find>avatar-uploader</find>
@@ -200,14 +206,29 @@
       <find>avatar-uploader-icon</find>
       <find>el-icon-upload</find>
       <find>upload-demo</find>
-      <find>avatar</find>
       <find>validateEmail</find>
       <find>registerForm</find>
       <find>email</find>
       <find>uploadVideoProcess</find>
-      <find>videoForm</find>
       <find>videoTypeList</find>
       <find>LoginByUsername</find>
+      <find>deleteUserList</find>
+      <find>videoList</find>
+      <find>GetUserInfo</find>
+      <find>...mapMutations</find>
+      <find>$refs</find>
+      <find>setVideoForm</find>
+      <find>token</find>
+      <find>avatar</find>
+      <find>roles</find>
+      <find>store.getters</find>
+      <find>create</find>
+      <find>'</find>
+      <find>getVideoList</find>
+      <find>videoForm</find>
+      <find>videoOp</find>
+      <find>pageLoading</find>
+      <find>Notification</find>
     </findStrings>
     <replaceStrings>
       <replace>VideoWebSite</replace>
@@ -221,6 +242,7 @@
       <replace>videoUserForm</replace>
       <replace>videoUser</replace>
       <replace>email</replace>
+      <replace>form</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/utils</dir>
@@ -233,7 +255,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/table/treeTable/TestTable.vue" />
         <option value="$PROJECT_DIR$/src/views/table/TestTable.vue" />
         <option value="$PROJECT_DIR$/src/router/modules/table.js" />
         <option value="$PROJECT_DIR$/src/views/layout/components/AppMain.vue" />
@@ -262,32 +283,34 @@
         <option value="$PROJECT_DIR$/config/dev.env.js" />
         <option value="$PROJECT_DIR$/src/permission.js" />
         <option value="$PROJECT_DIR$/src/views/video/components/userManage.vue" />
-        <option value="$PROJECT_DIR$/src/views/video/video/videoManage.vue" />
         <option value="$PROJECT_DIR$/src/views/video/comment/commenManage.vue" />
-        <option value="$PROJECT_DIR$/src/router/index.js" />
-        <option value="$PROJECT_DIR$/src/views/video/user/userManage.vue" />
-        <option value="$PROJECT_DIR$/src/views/video/user/mixin/Data.js" />
-        <option value="$PROJECT_DIR$/src/store/modules/videoUser.js" />
-        <option value="$PROJECT_DIR$/src/store/modules/videoIndex.js" />
         <option value="$PROJECT_DIR$/src/views/video/components/personalCenter.vue" />
-        <option value="$PROJECT_DIR$/src/views/video/comment/commentManage.vue" />
         <option value="$PROJECT_DIR$/src/views/video/index.vue" />
         <option value="$PROJECT_DIR$/src/views/login/register.vue" />
         <option value="$PROJECT_DIR$/src/store/modules/comment.js" />
-        <option value="$PROJECT_DIR$/src/api/video.js" />
-        <option value="$PROJECT_DIR$/src/views/video/mixin/Data.js" />
         <option value="$PROJECT_DIR$/src/store/index.js" />
-        <option value="$PROJECT_DIR$/src/views/video/components/uploadVideo.vue" />
         <option value="$PROJECT_DIR$/src/views/login/index.vue" />
-        <option value="$PROJECT_DIR$/src/store/modules/video.js" />
         <option value="$PROJECT_DIR$/src/api/login.js" />
+        <option value="$PROJECT_DIR$/src/views/video/video/mixin/Data.js" />
+        <option value="$PROJECT_DIR$/src/views/video/user/mixin/Data.js" />
+        <option value="$PROJECT_DIR$/src/views/video/user/userManage.vue" />
+        <option value="$PROJECT_DIR$/src/router/index.js" />
+        <option value="$PROJECT_DIR$/src/views/video/video/videoManage.vue" />
+        <option value="$PROJECT_DIR$/src/views/video/comment/mixin/Data.js" />
+        <option value="$PROJECT_DIR$/src/views/video/comment/commentManage.vue" />
+        <option value="$PROJECT_DIR$/src/store/modules/videoUser.js" />
+        <option value="$PROJECT_DIR$/src/store/getters.js" />
+        <option value="$PROJECT_DIR$/src/store/modules/videoIndex.js" />
         <option value="$PROJECT_DIR$/src/store/modules/user.js" />
+        <option value="$PROJECT_DIR$/src/views/video/mixin/Data.js" />
+        <option value="$PROJECT_DIR$/src/views/video/components/uploadVideo.vue" />
+        <option value="$PROJECT_DIR$/src/api/video.js" />
+        <option value="$PROJECT_DIR$/src/store/modules/video.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-135" />
-    <option name="y" value="236" />
+    <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="979" />
   </component>
@@ -313,6 +336,18 @@
               <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
               <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="router" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -321,6 +356,42 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="store" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vue-element-admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="video" type="462c0819:PsiDirectoryNode" />
+              <item name="mixin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vue-element-admin" type="b2602c69:ProjectViewProjectNode" />
@@ -348,7 +419,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -425,24 +496,25 @@
       <workItem from="1546477662970" duration="10069000" />
       <workItem from="1546506288853" duration="4960000" />
       <workItem from="1546524497362" duration="8176000" />
-      <workItem from="1546576977785" duration="2787000" />
+      <workItem from="1546576977785" duration="8847000" />
+      <workItem from="1546610379140" duration="4860000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112025000" />
+    <option name="totallyTimeSpent" value="122945000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="990" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="979" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2317009" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2317009" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2260579" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22547914" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -477,33 +549,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/layout/components/Sidebar/SidebarItem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="95" column="28" lean-forward="true" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
-          <folding>
-            <element signature="e#1465#1488#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/layout/components/Sidebar/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/sit.env.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/webpack.dev.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-875">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/dashboard/admin/components/TodoList/index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="788">
@@ -659,9 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/adminIndex.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/video/user/userManage.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -672,77 +714,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/user/mixin/Data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="163" column="64" selection-start-line="163" selection-start-column="53" selection-end-line="163" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/video/videoManage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="13" lean-forward="true" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/comment/commentManage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
-          <folding>
-            <element signature="n#el-menu#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/comment/mixin/Data.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/modules/comment.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/components/videoShow.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-          <folding>
-            <element signature="n#style#0;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#el-col#0;n#el-row#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-rate#0;n#el-col#0;n#el-row#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#2;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#4;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#6;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/video/components/personalCenter.vue">
       <provider selected="true" editor-type-id="text-editor">
@@ -761,24 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/login/register.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
-          <caret line="90" column="23" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/modules/videoIndex.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Pagination/index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -786,17 +741,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/index.js">
+    <entry file="file://$PROJECT_DIR$/src/utils/scrollTo.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/auth.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/adminIndex.vue">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state relative-caret-position="475">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+          <folding>
+            <element signature="n#el-menu#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/mixin/Data.js">
+    <entry file="file://$PROJECT_DIR$/src/mock/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="95">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/video/videoManage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="60" column="21" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/video/mixin/Data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="156" column="19" selection-start-line="156" selection-start-column="19" selection-end-line="156" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/user/mixin/Data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="46" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/comment/mixin/Data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="51" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -812,10 +827,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/comment/commentManage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#el-table#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/dashboard/admin/components/BoxCard.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-279">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/modules/videoIndex.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/getters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/components/videoShow.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding>
+            <element signature="n#style#0;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#el-col#0;n#el-row#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-rate#0;n#el-col#0;n#el-row#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#2;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#4;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#6;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/mixin/Data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/login/register.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="832">
+          <caret line="133" column="71" lean-forward="true" selection-start-line="129" selection-start-column="4" selection-end-line="133" selection-end-column="71" />
+          <folding>
+            <element signature="n#style#0;n#el-select#0;n#el-form-item#4;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#0;n#el-form#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/video/components/uploadVideo.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1060">
-          <caret line="99" column="44" lean-forward="true" selection-start-line="99" selection-start-column="44" selection-end-line="99" selection-end-column="44" />
+        <state relative-caret-position="252">
+          <caret line="143" column="13" lean-forward="true" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -828,57 +918,43 @@
             <element signature="n#style#0;n#video#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-progress#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#el-button#0;n#el-form-item#4;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" />
             <element signature="n#style#0;n#el-table#0;n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#5420#5463#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/scrollTo.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/auth.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/modules/videoUser.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="54" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="9" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="19">
+          <caret line="1" column="30" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/video.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/modules/video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="96" selection-start-line="96" selection-end-line="99" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+        <state relative-caret-position="266">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/modules/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="62" column="11" lean-forward="true" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+        <state relative-caret-position="476">
+          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
           <folding>
             <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/modules/video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="191" column="25" lean-forward="true" selection-start-line="191" selection-start-column="25" selection-end-line="191" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

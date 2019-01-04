@@ -7,7 +7,7 @@ export default {
   methods: {
     ...mapActions({
       getVideoUserList: 'videoUser/getVideoUserList',
-      deleteUserList: 'videoUser/deleteUserList',
+      deleteUser: 'videoUser/deleteUser',
       createUser: 'videoUser/createUser'
     }),
     ...mapMutations('videoUser', ['setVideoUserList', 'setVideoUserForm'])

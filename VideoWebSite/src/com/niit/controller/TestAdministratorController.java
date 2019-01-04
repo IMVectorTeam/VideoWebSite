@@ -43,6 +43,7 @@ public class TestAdministratorController {
 		return map;
 	}
 	@RequestMapping("/test6")
+	@ResponseBody
 	public void updateAdministrator(Administrator administrator) {
 		Administrator administrator2 = new Administrator();
 		administrator2.setId("0001");

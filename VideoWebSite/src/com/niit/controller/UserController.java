@@ -41,27 +41,14 @@ public class UserController {
 			map.addAttribute("data", "用户不存在");
 			map.addAttribute("flag", false);
 		}
+//		String token = UUID.randomUUID().toString().substring(0, 16);
+		String token ="admin";
+		map.addAttribute("token", token);
 		return map;
 	}
 
-	@RequestMapping(value = "/user/list", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean addUser(@RequestBody User user) {
-		System.out.println(user.getName() + " " + user.getEmail() + " " + user.getSex());
-		user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		user.setPassword(MD5Utils.md5(user.getPassword()));
-		boolean flag = false;
-		try {
-			service.insertUser(user);
-			flag = true;
-		} catch (Exception e) {
-			System.out.println(e);
-			flag = false;
-		}
-		return flag;
-	}
-
 	@RequestMapping("/getUser")
+	@ResponseBody
 	public String getUser(String id) {
 		System.out.println(service.getUser(id).getName());
 		return "homePage";
@@ -78,8 +65,24 @@ public class UserController {
 		user2.setEmail("ttt@163.com");
 		service.insertUser(user2);
 	}
-
-	@RequestMapping("/user/list")
+	
+	@RequestMapping(value = "/user/", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean addUser(@RequestBody User user) {
+		System.out.println(user.getName() + " " + user.getEmail() + " " + user.getSex());
+		user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		user.setPassword(MD5Utils.md5(user.getPassword()));
+		boolean flag = false;
+		try {
+			service.insertUser(user);
+			flag = true;
+		} catch (Exception e) {
+			System.out.println(e);
+			flag = false;
+		}
+		return flag;
+	}
+	@RequestMapping("/user/")
 	@ResponseBody
 	public PageInfo getUserList(int limit, int page) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
@@ -91,19 +94,7 @@ public class UserController {
 //		return m;
 		return pageInfo;
 	}
-
-	@RequestMapping("/updateUser")
-	public void updateUser(User user) {
-		User user2 = new User();
-		user2.setId("20154071");
-		user2.setName("老张3");
-		user2.setPassword("123456");
-		user2.setSex("男");
-		user2.setEmail("1234@qq.com");
-		service.updateUser(user2);
-	}
-
-	@RequestMapping(value = "/user/list", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
 	@ResponseBody
 	public boolean deleteUser(String id) {
 		boolean flag = false;
@@ -114,6 +105,19 @@ public class UserController {
 			flag = false;
 		}
 		return flag;
-
 	}
+	
+	@RequestMapping("/updateUser")
+	@ResponseBody
+	public void updateUser(User user) {
+		User user2 = new User();
+		user2.setId("20154071");
+		user2.setName("老张3");
+		user2.setPassword("123456");
+		user2.setSex("男");
+		user2.setEmail("1234@qq.com");
+		service.updateUser(user2);
+	}
+
+
 }

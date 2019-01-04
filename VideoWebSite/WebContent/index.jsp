@@ -3,7 +3,8 @@
 <html>
 <body>
 <h4>User</h4>
-<a href="getUser?id=20154070">得到用户信息</a>
+<a href="getUser?id=20154070">查询用户信息</a>
+<a href="getUserByEmail?email=tajkun@163.com">通过邮箱查询用户信息</a>
 <a href="insertUser">插入用户</a>
 <a href="getUserList">得到用户list</a>
 <a href="updateUser">更新用户信息</a>
@@ -18,6 +19,8 @@
 <a href="insertVideoCategory">添加视频类别</a>
 <a href="getVideoCategoryList">得到视频类别list</a>
 <a href="updateCategory">更新视频类别信息</a>
+<a href="deleteCategory?id=3">删除视频类别</a>
+
 
 <h4>Video</h4>
 <a href="getVideo?id=1001">得到单个视频信息</a>
@@ -27,6 +30,9 @@
 <a href="deleteVideo?id=1010">删除视频</a>
 <a href="getVideoListByCategory?id=1">得到分类视频</a>
 <a href="getVideoListNumber?id=1">得到某类视频数目</a>
+<a href="getVideoListByUserId?id=20154070">根据用户id查询该用户的所有的上传的视频</a>
+<a href="getUserByVideoId?id=1001">根据videoId查询该上传用户的信息</a>
+
 
 <h4>Message</h4>
 <a href="getMessageByVideoId?id=1002">按视频查询评论</a>

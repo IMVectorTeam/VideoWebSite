@@ -17,4 +17,6 @@ public interface VideoCategoryMapper {
     
     public void insertVideoCategory(VideoCategory videoCategory);
     
+    public void deleteVideoCategory(String id);
+    
 }

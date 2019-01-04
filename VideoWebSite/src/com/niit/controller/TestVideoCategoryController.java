@@ -21,13 +21,14 @@ public class TestVideoCategoryController {
 	private VideoCategoryService videoCategoryService;
 	
 	@RequestMapping("/getVideoCategory")
+	@ResponseBody
 	public String getVideoCategory(String id) {
 		System.out.println(videoCategoryService.getVideoCategory(id).getName());
 		return "homePage";
-		
 	}
 	
 	@RequestMapping("/insertVideoCategory")
+	@ResponseBody
 	public void insertVideoCategory(VideoCategory videoCategory){
 		VideoCategory videoCategory2 = new VideoCategory();
 		videoCategory2.setId("2");
@@ -39,17 +40,30 @@ public class TestVideoCategoryController {
 	@RequestMapping(value="/videoType",method=RequestMethod.GET)
 	@ResponseBody
 	public List<VideoCategory> getVideoCategoryList(){	
-		
 		return videoCategoryService.getVideoCategoryList();		
 	}
 	
 	@RequestMapping("/updateCategory")
+	@ResponseBody
 	public void updateCategory(VideoCategory videoCategory){	
 		VideoCategory videoCategory2 = new VideoCategory();
 		videoCategory2.setId("1");
 		videoCategory2.setName("大型演唱会");
 		videoCategory2.setRemark("亚洲");
 		videoCategoryService.updateVideoCategory(videoCategory2);
+	}
+	
+	@RequestMapping("/deleteCategory")
+	@ResponseBody
+	public boolean deleteVideoCategory(String id) {
+		boolean flag=false;
+		try {
+			videoCategoryService.deleteVideoCategory(id);
+			flag=true;
+		}catch (Exception e) {
+			flag=false;
+		}
+		return flag;
 	}
 	
 }

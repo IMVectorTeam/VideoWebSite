@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.niit.entity.Message;
 import com.niit.entity.User;
@@ -18,12 +19,14 @@ public class TestMessageController {
 	private MessageService messageService;
 	
 	@RequestMapping("/getMessageByVideoId")
+	@ResponseBody
 	public List<Message> getMessageByVideoId(String id){			
 		System.out.println(messageService.getMessageByVideoId(id).get(0).getContent());
 		return 	messageService.getMessageByVideoId(id);
 	}
 	
 	@RequestMapping("/insertMessage")
+	@ResponseBody
 	public void insertMessage(Message message){
 		Message message2 = new Message();
 		message2.setId("2003");
@@ -35,6 +38,7 @@ public class TestMessageController {
 	}
 	
 	@RequestMapping("/deleteMessage")
+	@ResponseBody
 	public void deleteMessage(String id) {
 		messageService.deleteMessage(id);
 	}
