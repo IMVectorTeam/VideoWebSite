@@ -42,8 +42,15 @@ public class TestAdministratorController {
 		}
 		return map;
 	}
-	@RequestMapping("/test6")
-	@ResponseBody
+
+	@RequestMapping("/getAdministrator")
+	public String getAdministrator(String id) {
+		System.out.println(administratorService.getAdministrator(id).getName());
+		return "homePage";
+		
+	}
+	
+	@RequestMapping("/updateAdministrator")
 	public void updateAdministrator(Administrator administrator) {
 		Administrator administrator2 = new Administrator();
 		administrator2.setId("0001");
@@ -51,7 +58,13 @@ public class TestAdministratorController {
 		administrator2.setPassword("123456");
 		administrator2.setSex("女");
 		administrator2.setEmail("zhuzhu@163.com");
+		administrator2.setImage("/cc/cc");
 		administratorService.updateAdministrator(administrator2);
 	}
 	
+	@RequestMapping("/getAdministratorByEmail")
+	public String getAdministratorByEmail(String email) {
+		System.out.println(administratorService.getAdministratorByEmail(email).getName());
+		return "homePage";	
+	}
 }

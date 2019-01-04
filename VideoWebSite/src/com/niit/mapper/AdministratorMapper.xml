@@ -11,6 +11,7 @@
 		<result property="password" column="APwd" />
 		<result property="sex" column="ASex" />
 		<result property="email" column="AEmail" />
+		<result property="image" column="AImage" />
 	</resultMap>
 
 	<!-- 查看个人信息 -->
@@ -20,6 +21,14 @@
 		SELECT *
 		FROM administrators
 		WHERE AID = #{id}
+	</select>
+	
+<!-- 通过邮箱查看个人信息 -->
+    <select id="getAdministratorByEmail" parameterType="java.lang.String" resultMap="administratorMap"
+		resultType="com.niit.entity.Administrator">
+		SELECT *
+		FROM administrators
+		WHERE AEmail = #{email}
 	</select>
 
 	<!-- 更新用户信息 -->
@@ -31,7 +40,8 @@
 		APwd =
 		#{password},
 		ASex = #{sex},
-		AEmail = #{email}
+		AEmail = #{email},
+		AImage = #{image}
 		WHERE AID = #{id}
 	</update>
 

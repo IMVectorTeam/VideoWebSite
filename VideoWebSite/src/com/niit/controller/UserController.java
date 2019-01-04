@@ -46,7 +46,11 @@ public class UserController {
 		map.addAttribute("token", token);
 		return map;
 	}
-
+	@RequestMapping("/getUserByEmail")
+	public String getUserByEmail(String email) {
+		System.out.println(service.getUserByEmail(email).getName());
+		return "homePage";
+	}
 	@RequestMapping("/getUser")
 	@ResponseBody
 	public String getUser(String id) {

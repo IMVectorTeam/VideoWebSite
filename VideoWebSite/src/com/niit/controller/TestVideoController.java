@@ -21,6 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.niit.entity.User;
 import com.niit.entity.Video;
+import com.niit.entity.VideoC;
 import com.niit.entity.VideoCategory;
 import com.niit.mapper.VideoCategoryMapper;
 import com.niit.mapper.VideoMapper;
@@ -42,11 +43,11 @@ public class TestVideoController {
 		return "homePage";
 	}
 
-	@RequestMapping(value="/video/",method=RequestMethod.GET)
+	@RequestMapping(value = "/video/", method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo getVideoList(int page,int limit) {
+	public PageInfo getVideoList(int page, int limit) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
-		List<Video> videoList = videoService.getVideoList();
+		List<VideoC> videoList = videoService.getVideoList();
 		PageInfo pageInfo = new PageInfo(videoList);
 		return pageInfo;
 	}
@@ -68,6 +69,18 @@ public class TestVideoController {
 		return map;
 	}
 
+	@RequestMapping("/getVideoList")
+	public List<VideoC> getVideoList() {
+		System.out.println(videoService.getVideoList().get(0).getVideoCategory().getName());// 打印的视频的视频类别名称
+		return videoService.getVideoList();
+	}
+
+	@RequestMapping("/getVideoListByLikeName")
+	public List<VideoC> getVideoListByLikeName(String name) {
+		System.out.println(videoService.getVideoListByLikeName(name).get(0).getVideo().getName());// 打印查询到的视频名称
+		return videoService.getVideoListByLikeName(name);
+	}
+
 	@RequestMapping(value = "/image/upload", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap uploadImage(HttpServletRequest request) {
@@ -85,20 +98,20 @@ public class TestVideoController {
 		return map;
 	}
 
-	@RequestMapping(value="/video/",method=RequestMethod.POST)
+	@RequestMapping(value = "/video/", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap insertVideo(@RequestBody Video video) {
 		video.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		video.setDate(new Date());
-	
-		ModelMap map=new ModelMap();
-		boolean flag=false;
+
+		ModelMap map = new ModelMap();
+		boolean flag = false;
 		try {
 			videoService.insertVideo(video);
-			flag=true;
+			flag = true;
 		} catch (Exception e) {
-			flag=false;
+			flag = false;
 			System.out.println(e);
 		}
 		map.addAttribute("flag", flag);
@@ -128,7 +141,7 @@ public class TestVideoController {
 
 	@RequestMapping("/getVideoListByCategory")
 	@ResponseBody
-	public List<Video> getVideoListByCategory(String id) {
+	public List<VideoC> getVideoListByCategory(String id) {
 		System.out.println(videoService.getVideoListByCategory(id));
 		return videoService.getVideoListByCategory(id);
 	}
@@ -141,21 +154,25 @@ public class TestVideoController {
 //		return number;	
 	}
 
+	// 根据视频类别名称查询视频
+	@RequestMapping("/getVideoListByCategoryName")
+	public List<VideoC> getVideoListByCategoryName(String name) {
+		System.out.println(videoService.getVideoListByCategoryName(name).get(0).getVideo().getName());
+		return videoService.getVideoListByCategoryName(name);
+	}
+
 	// pky
 	// 根据用户id查询该用户的所有的上传的视频
-	@RequestMapping("getVideoListByUserId")
-	@ResponseBody
-	public List<Video> getVideoListByUserId(String id) {
-		List<Video> videoList = videoService.getVideoListByUserId(id);
-		for (int i = 0; i < videoList.size(); i++) {
-			System.out.println(videoList.get(i));
-		}
-		return videoList;
+	// 根据用户id查询该用户的所有的上传的视频
+	@RequestMapping("/getVideoListByUserId")
+	public List<VideoC> getVideoListByUserId(String id) {
+		System.out.println(videoService.getVideoListByUserId(id).get(1).getVideo().getName());
+		return videoService.getVideoListByUserId(id);
+
 	}
 
 	// 根据videoId查询该上传用户的信息
-	@RequestMapping("getUserByVideoId")
-	@ResponseBody
+	@RequestMapping("/getUserByVideoId")
 	public User getUserByVideoId(String id) {
 		User user = videoService.getUserByVideoId(id);
 		System.out.println(user);

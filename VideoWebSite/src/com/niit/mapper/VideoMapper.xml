@@ -16,9 +16,44 @@
 		<result property="date" column="VDate" />
 	</resultMap>
 
+	<resultMap type="com.niit.entity.Video" id="videoMap1">
+		<id property="id" column="VID" />
+		<result property="name" column="VName" />
+		<result property="image" column="VImage" />
+		<result property="address" column="VAddress" />
+		<result property="time" column="VTime" />
+		<result property="category" column="VCategory" />
+		<result property="state" column="VState" />
+		<result property="userId" column="VUserID" />
+		<result property="date" column="VDate" />
+		<association property="videoCategory"
+			javaType="com.niit.entity.VideoCategory">
+			<id property="id" column="CID" />
+			<result property="name" column="CName" />
+			<result property="remark" column="CRemark" />
+		</association>
+	</resultMap>
+
+
 	<!-- 查询单个视频信息 -->
 	<select id="getVideo" parameterType="java.lang.String"
 		resultMap="videoMap" resultType="com.niit.entity.Video">
+		SELECT *
+		FROM videos
+		WHERE VID = #{id}
+	</select>
+
+	<!-- 插入单个视频 -->
+	<insert id="insertVideo" parameterType="com.niit.entity.Video">
+		INSERT INTO videos(VID, VName, VImage, VAddress, VTime, VCategory, VState)
+		VALUES(#{id}, #{name}, #{image}, #{address}, #{time},
+		#{category},#{state},#{userId},#{date})
+	</insert>
+
+	<!-- 根据视频类别名称查询视频 -->
+	<select id="getVideoByCategoryName"
+		parameterType="java.lang.String" resultMap="videoMap"
+		resultType="com.niit.entity.Video">
 		SELECT *
 		FROM videos
 		WHERE VID = #{id}
@@ -30,14 +65,12 @@
 		SELECT * FROM videos
 	</select>
 
-	<!-- 插入单个视频 -->
-	<insert id="insertVideo" parameterType="com.niit.entity.Video">
-		INSERT INTO videos(VID,
-		VName, VImage, VAddress, VTime, VCategory, VState)
-		VALUES(#{id},
-		#{name}, #{image}, #{address}, #{time},
-		#{category},#{state},#{userId},#{date})
-	</insert>
+	<!-- 模糊查询视频 -->
+	<select id="getVideoListByLikeName"
+		parameterType="java.lang.String" resultType="com.niit.entity.Video"
+		resultMap="videoMap">
+		SELECT * FROM videos WHERE VName LIKE "%"#{name}"%"
+	</select>
 
 
 	<!-- 按视频类别id查询视频 -->
@@ -48,10 +81,7 @@
 		WHERE VCategory = #{category}
 	</select>
 
-
-
-
-	<!-- 更新用户信息 -->
+	<!-- 更新视频信息 -->
 	<update id="updateVideo" parameterType="com.niit.entity.Video">
 		UPDATE videos
 		SET
@@ -68,10 +98,9 @@
 		WHERE VID = #{id}
 	</update>
 
-	<!-- 删除视频信息 -->
+	<!-- 删除视频 -->
 	<delete id="deleteVideo" parameterType="java.lang.String">
-		DELETE FROM videos WHERE
-		VID = #{id}
+		DELETE FROM videos WHERE VID = #{id}
 	</delete>
 
 	<!-- 得到某类别视频总数目 -->
@@ -80,7 +109,6 @@
 		SELECT COUNT(*) FROM videos
 		WHERE VCategory = #{id}
 	</select>
-
 
 	<!-- pky根据用户id查询该用户的发布的所有的视频 -->
 	<select id="getVideoListByUserId"

@@ -13,6 +13,9 @@ public interface VideoCategoryMapper {
 
     public VideoCategory getVideoCategory(String id);
     
+    //通过视频类别名称查视频类别ID
+    public String getVideoCategoryIdByName(String name);
+    
     public List<VideoCategory> getVideoCategoryList();
     
     public void insertVideoCategory(VideoCategory videoCategory);

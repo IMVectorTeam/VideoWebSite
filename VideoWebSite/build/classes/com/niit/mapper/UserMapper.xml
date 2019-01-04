@@ -10,6 +10,7 @@
 		<result property="password" column="UPwd" />
 		<result property="sex" column="USex" />
 		<result property="email" column="UEmail" />
+		<result property="image" column="UImage" />
 	</resultMap>
 
 	<!-- 查询单个用户信息 -->
@@ -32,9 +33,9 @@
 	<!-- 插入单个用户信息 -->
 	<insert id="insertUser" parameterType="com.niit.entity.User">
 		INSERT INTO users(UID,
-		UName, UPwd, USex, UEmail)
-		VALUES(#{id}, #{name}, #{password}, #{sex},
-		#{email})
+		UName, UPwd, USex, UEmail, UImage)
+		VALUES(#{id}, #{name}, #{password},
+		#{sex}, #{email},#{image})
 	</insert>
 
 	<!-- 查询所有用户信息 -->
@@ -51,9 +52,10 @@
 		#{name},
 		UPwd = #{password},
 		USex = #{sex},
-		UEmail = #{email}
-		WHERE UID =
-		#{id}
+		UEmail = #{email},
+		UImage =
+		#{image}
+		WHERE UID = #{id}
 	</update>
 
 	<!-- 删除用户信息 -->
