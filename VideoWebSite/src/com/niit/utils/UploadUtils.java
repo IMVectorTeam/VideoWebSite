@@ -43,10 +43,10 @@ public class UploadUtils {
                 String oriFileName = mf.getOriginalFilename();
                 String suffix = oriFileName.substring(oriFileName.lastIndexOf("."));
                 // 上传图片到本地 
-                String realPath = req.getServletContext().getRealPath("") + "resources/image/" + fileName + suffix;
+                String realPath = req.getServletContext().getRealPath("") + "resources/images/" + fileName + suffix;
                 mf.transferTo(new File(realPath));
 
-                showPath = "http://"+req.getServerName()+":"+request.getServerPort() +req.getContextPath()+ "/resources/image/" + fileName + suffix;//回显路径
+                showPath ="http://"+req.getServerName()+":"+request.getServerPort() +req.getContextPath()+ "/resources/images/" + fileName + suffix;//回显路径
             }
         }
         return showPath;

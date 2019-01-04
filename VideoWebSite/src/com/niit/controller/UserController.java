@@ -1,5 +1,6 @@
 package com.niit.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,52 +11,109 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.niit.entity.User;
 import com.niit.service.UserService;
 import com.niit.utils.MD5Utils;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	UserService service;
-	
-	@RequestMapping(value="/user/list", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/user/valid", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelMap getUserByemail(@RequestBody User user) {
+		System.out.println(user.getName() + " " + user.getEmail() + " " + user.getSex());
+		ModelMap map = new ModelMap();
+		User userLocal = service.getUser(user.getEmail());
+		if (null != userLocal) {
+			if (MD5Utils.md5(user.getPassword()).equals(userLocal.getPassword())) {
+				map.addAttribute("data", userLocal);
+				map.addAttribute("flag", true);
+			} else {
+				map.addAttribute("data", "密码不正确");
+				map.addAttribute("flag", false);
+			}
+		} else {
+			map.addAttribute("data", "用户不存在");
+			map.addAttribute("flag", false);
+		}
+		return map;
+	}
+
+	@RequestMapping(value = "/user/list", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean addUser(@RequestBody User user) {
-		System.out.println(user.getName()+" " +user.getEmail()+" "+user.getSex());
-		user.setId(UUID.randomUUID().toString().replaceAll("-",""));
+		System.out.println(user.getName() + " " + user.getEmail() + " " + user.getSex());
+		user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 		user.setPassword(MD5Utils.md5(user.getPassword()));
-		boolean flag=false;
+		boolean flag = false;
 		try {
 			service.insertUser(user);
-			flag=true;
+			flag = true;
 		} catch (Exception e) {
 			System.out.println(e);
-			flag=false;
+			flag = false;
 		}
 		return flag;
 	}
-	
-	@RequestMapping(value="/user/valid", method=RequestMethod.POST)
+
+	@RequestMapping("/getUser")
+	public String getUser(String id) {
+		System.out.println(service.getUser(id).getName());
+		return "homePage";
+
+	}
+
+	@RequestMapping("/insertUser")
+	public void insertUser(User user) throws Exception {
+		User user2 = new User();
+		user2.setId("20154072");
+		user2.setName("小陈");
+		user2.setPassword("123456");
+		user2.setSex("男");
+		user2.setEmail("ttt@163.com");
+		service.insertUser(user2);
+	}
+
+	@RequestMapping("/user/list")
 	@ResponseBody
-	public ModelMap getUserByemail(@RequestBody User user) {
-		//		System.out.println(user.getName()+" " +user.getEmail()+" "+user.getSex());
-		//		user.setId(UUID.randomUUID().toString().replaceAll("-",""));
-		ModelMap map=new ModelMap();
-		User userLocal=service.getUser(user.getId());
-		if(null!= userLocal) {
-			if(MD5Utils.md5(user.getPassword()).equals(userLocal.getPassword())) {
-				map.addAttribute("data" , userLocal);
-				map.addAttribute("flag", true);
-			}else {
-				map.addAttribute("data" , "密码不正确");
-				map.addAttribute("flag", false);
-			}
-		}else {
-			map.addAttribute("data", "用户不存在");
-			map.addAttribute("flag",false);
+	public PageInfo getUserList(int limit, int page) {
+		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
+		List<User> uList = service.getUserList();
+		PageInfo pageInfo = new PageInfo(uList);
+//		ModelMap m= new ModelMap();
+//		m.addAttribute("data", uList);
+//		m.addAttribute("pageInfo", pageInfo);
+//		return m;
+		return pageInfo;
+	}
+
+	@RequestMapping("/updateUser")
+	public void updateUser(User user) {
+		User user2 = new User();
+		user2.setId("20154071");
+		user2.setName("老张3");
+		user2.setPassword("123456");
+		user2.setSex("男");
+		user2.setEmail("1234@qq.com");
+		service.updateUser(user2);
+	}
+
+	@RequestMapping(value = "/user/list", method = RequestMethod.DELETE)
+	@ResponseBody
+	public boolean deleteUser(String id) {
+		boolean flag = false;
+		try {
+			service.deleteUser(id);
+			flag = true;
+		} catch (Exception e) {
+			flag = false;
 		}
-		return map;
+		return flag;
+
 	}
 }

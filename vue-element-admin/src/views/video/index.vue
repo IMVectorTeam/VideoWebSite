@@ -1,6 +1,6 @@
 <template>
-  <div class="app-container">
-    <el-menu :default-active="activeIndex" style="margin-top: -20px;" mode="horizontal" @select="handleSelect">
+  <div>
+    <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
@@ -22,42 +22,43 @@
         <el-menu-item index="5-2" @click="logout">退出登录</el-menu-item>
       </el-submenu>
     </el-menu>
-    <br>
-    <br>
-    <el-button type="primary" @click="handleTest">跳转测试</el-button>
-    <el-button type="primary" @click="handleTest1">跳转测试上传</el-button>
-    <el-carousel indicator-position="outside" height="500px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3>{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
-    <el-card>
-      <video-list :title="'今日焦点'" :icon="'el-icon-star-off'" :more-path="'hotSpot'"/>
-    </el-card>
-    <el-card>
-      <video-list :title="'综艺娱乐'" :icon="'el-icon-picture-outline'" :more-path="'entertainment'"/>
-    </el-card>
-    <el-card>
-      <video-list :title="'电视剧'" :icon="'el-icon-news'" :more-path="'TVSeries'"/>
-    </el-card>
-    <el-card>
-      <video-list :title="'电影'" :icon="'el-icon-menu'" :more-path="'movies'"/>
-    </el-card>
-    <el-table
-      :data="datalist"
-      style="width: 100%">
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180"/>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180"/>
-      <el-table-column
-        prop="address"
-        label="地址"/>
-    </el-table>
+    <div class="app-container">
+      <el-button type="primary" @click="handleTest">跳转测试</el-button>
+      <el-button type="primary" @click="handleTest1">跳转测试上传</el-button>
+      <el-carousel indicator-position="outside" height="500px">
+        <el-carousel-item v-for="item in 4" :key="item">
+          <h3>{{ item }}</h3>
+        </el-carousel-item>
+      </el-carousel>
+      <el-card>
+        <video-list :title="'今日焦点'" :icon="'el-icon-star-off'" :more-path="'hotSpot'"/>
+      </el-card>
+      <el-card>
+        <video-list :title="'综艺娱乐'" :icon="'el-icon-picture-outline'" :more-path="'entertainment'"/>
+      </el-card>
+      <el-card>
+        <video-list :title="'电视剧'" :icon="'el-icon-news'" :more-path="'TVSeries'"/>
+      </el-card>
+      <el-card>
+        <video-list :title="'电影'" :icon="'el-icon-menu'" :more-path="'movies'"/>
+      </el-card>
+      <!--<el-table-->
+      <!--:data="datalist"-->
+      <!--style="width: 100%">-->
+      <!--<el-table-column-->
+      <!--prop="date"-->
+      <!--label="日期"-->
+      <!--width="180"/>-->
+      <!--<el-table-column-->
+      <!--prop="name"-->
+      <!--label="姓名"-->
+      <!--width="180"/>-->
+      <!--<el-table-column-->
+      <!--prop="address"-->
+      <!--label="地址"/>-->
+      <!--</el-table>-->
+    </div>
+
   </div>
 
 </template>

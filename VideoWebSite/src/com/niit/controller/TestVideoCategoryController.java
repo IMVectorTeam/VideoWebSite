@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.niit.entity.User;
 import com.niit.entity.VideoCategory;
@@ -34,9 +36,10 @@ public class TestVideoCategoryController {
 		videoCategoryService.insertVideoCategory(videoCategory2);		
 	}
 	
-	@RequestMapping("/getVideoCategoryList")
-	public List<VideoCategory> getVideoCategoryList(){			
-		System.out.println(videoCategoryService.getVideoCategoryList());
+	@RequestMapping(value="/videoType",method=RequestMethod.GET)
+	@ResponseBody
+	public List<VideoCategory> getVideoCategoryList(){	
+		
 		return videoCategoryService.getVideoCategoryList();		
 	}
 	

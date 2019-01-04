@@ -1,6 +1,6 @@
 import { loginByUsername, logout, getUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-
+import { Message } from 'element-ui'
 const user = {
   state: {
     user: '',
@@ -49,10 +49,19 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
-          const data = response.data
-          commit('SET_TOKEN', data.token)
-          setToken(response.data.token)
-          resolve()
+          const map = response.data
+          if (map.flag === true) {
+            // commit('SET_TOKEN', data.token)
+            // setToken(response.data.token)
+            resolve()
+          } else {
+            Message({
+              message: map.data,
+              type: 'warning'
+            })
+            // reject(map.data)
+          }
+          resolve() // 这一句在写完后要删除
         }).catch(error => {
           reject(error)
         })

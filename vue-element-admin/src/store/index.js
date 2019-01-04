@@ -8,6 +8,7 @@ import user from './modules/user'
 import getters from './getters'
 import videoIndex from './modules/videoIndex'
 import videoUser from './modules/videoUser'
+import video from './modules/video'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ const store = new Vuex.Store({
     tagsView,
     user,
     videoIndex,
-    videoUser
+    videoUser,
+    video
   },
   getters
 })

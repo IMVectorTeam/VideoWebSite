@@ -2,7 +2,7 @@
   <div class="login-container">
 
     <el-form
-      ref="registerForm"
+      ref="userRegisterForm"
       :model="registerForm"
       :rules="registerRules"
       class="login-form"
@@ -14,7 +14,7 @@
         <!--<lang-select class="set-language"/>-->
       </div>
 
-      <el-form-item prop="username">
+      <el-form-item prop="email">
         <span class="svg-container">
           <svg-icon icon-class="user"/>
         </span>
@@ -43,13 +43,13 @@
         </span>
       </el-form-item>
 
-      <el-form-item prop="password">
+      <el-form-item prop="passwordRepeat">
         <span class="svg-container">
           <svg-icon icon-class="password"/>
         </span>
         <el-input
           :type="passwordType"
-          v-model="registerForm.password"
+          v-model="registerForm.passwordRepeat"
           :placeholder="$t('login.password')"
           name="password"
           auto-complete="on"
@@ -58,10 +58,10 @@
           <svg-icon icon-class="eye"/>
         </span>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="name">
         <el-input v-model="registerForm.name" placeholder="请输入用户名"/>
       </el-form-item>
-      <el-form-item>
+      <el-form-item prop="sex">
         <el-select v-model="registerForm.sex" value="" style="width: 116%" placeholder="请选择性别">
           <el-option value="男"/>
           <el-option value="女"/>
@@ -154,7 +154,7 @@ export default {
       }
     },
     handleRegister() {
-      this.$refs.registerForm.validate(valid => {
+      this.$refs.userRegisterForm.validate(valid => {
         if (valid) {
           this.loading = true
           this['setVideoUserForm']({ usingKey: true, k: 'email', v: this.registerForm.email })
