@@ -1,5 +1,7 @@
 package com.niit.entity;
 
+import java.util.Date;
+
 public class Video {
 
 	private String id;
@@ -9,6 +11,8 @@ public class Video {
 	private String time;
 	private String category;
 	private String state;
+	private String userId;
+	private Date   date;
 	
 	public String getId() {
 		return id;
@@ -52,6 +56,18 @@ public class Video {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

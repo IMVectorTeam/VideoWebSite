@@ -24,5 +24,11 @@ public interface VideoMapper  {
     public int getVideoListNumber(String id);
     
     public List<Video> getVideoListByCategoryPagination(String id,int offset,int pageNumber);
+    
+    //逄锟艺
+    public List<Video> getVideoListByUserId(String id);
+    
+    public Video getUserIdByVideoId(String id); 
+
 }
 

@@ -26,7 +26,13 @@ public class TestUserController {
 	public String getUser(String id) {
 		System.out.println(testService.getUser(id).getName());
 		return "homePage";
-		
+	}
+	
+
+	@RequestMapping("/getUserByEmail")
+	public String getUserByEmail(String email) {
+		System.out.println(testService.getUserByEmail(email).getName());
+		return "homePage";
 	}
 	
 	@RequestMapping("/insertUser")
@@ -75,7 +81,6 @@ public class TestUserController {
 			flag=false;
 		}
 		return flag;
-		
 	}
-
+	
 }

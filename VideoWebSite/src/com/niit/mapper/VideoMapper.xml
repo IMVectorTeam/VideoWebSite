@@ -12,6 +12,8 @@
 		<result property="time" column="VTime" />
 		<result property="category" column="VCategory"/>
 		<result property="state" column="VState" />
+		<result property="userId" column="VUserID"/>
+		<result property="date" column="VDate"/>
 	</resultMap>
 	
 <!-- 查询单个视频信息 -->
@@ -30,7 +32,7 @@
 <!-- 插入单个视频 -->
     <insert id="insertVideo" parameterType="com.niit.entity.Video">
 		INSERT INTO videos(VID, VName, VImage, VAddress, VTime, VCategory, VState)
-		VALUES(#{id}, #{name}, #{image}, #{address}, #{time}, #{category},#{state})
+		VALUES(#{id}, #{name}, #{image}, #{address}, #{time}, #{category},#{state},#{userId},#{date})
 	</insert>
 	
 	
@@ -53,7 +55,9 @@
 		VAddress = #{address},
 		VTime = #{time},
 		VCategory = #{category},
-		VState = #{state}
+		VState = #{state},
+		VUserID = #{userId},
+		VDate = #{date}
 		WHERE VID = #{id}
 	</update>
 
@@ -67,6 +71,15 @@
 		SELECT COUNT(*) FROM videos 
 		WHERE VCategory = #{id}
 	</select>
-
 	
+
+<!-- pky根据用户id查询该用户的发布的所有的视频 -->
+	<select id="getVideoListByUserId" resultType="com.niit.entity.Video" resultMap="videoMap">
+		SELECT * FROM videos where VUserID=#{id}
+	</select>
+<!-- pky根据视频id查询该视频的所有信息 -->
+	<select id="getUserIdByVideoId" resultType="com.niit.entity.Video" resultMap="videoMap">
+		SELECT * FROM videos where VID=#{id}
+	</select>
+
 </mapper>

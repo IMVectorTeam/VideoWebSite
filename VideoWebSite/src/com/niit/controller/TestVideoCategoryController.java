@@ -49,4 +49,16 @@ public class TestVideoCategoryController {
 		videoCategoryService.updateVideoCategory(videoCategory2);
 	}
 	
+	@RequestMapping("/deleteCategory")
+	public boolean deleteVideoCategory(String id) {
+		boolean flag=false;
+		try {
+			videoCategoryService.deleteVideoCategory(id);
+			flag=true;
+		}catch (Exception e) {
+			flag=false;
+		}
+		return flag;
+	}
+	
 }

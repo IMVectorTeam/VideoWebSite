@@ -38,4 +38,9 @@
 		WHERE CID = #{id}
 	</update>
 	
+<!-- 删除视频类别信息 -->
+	<delete id="deleteVideoCategory" parameterType="java.lang.String">
+		DELETE FROM videocategory WHERE CID = #{id}
+	</delete>
+	
 </mapper>

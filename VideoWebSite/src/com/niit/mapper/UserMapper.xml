@@ -19,6 +19,14 @@
 		FROM users
 		WHERE UID = #{id}
 	</select>
+	
+<!-- 通过邮箱查询用户 -->
+	<select id="getUserByEmail" parameterType="java.lang.String" resultMap="userMap"
+		resultType="com.niit.entity.User">
+		SELECT *
+		FROM users
+		WHERE UEmail = #{email}
+	</select>
 
 <!-- 插入单个用户信息 -->	
     <insert id="insertUser" parameterType="com.niit.entity.User">
@@ -47,5 +55,7 @@
     <delete id="deleteUser" parameterType="java.lang.String">
 		DELETE FROM users WHERE UID = #{id}
 	</delete>
+	
+
 	
 </mapper>

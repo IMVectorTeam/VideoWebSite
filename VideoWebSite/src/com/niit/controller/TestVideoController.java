@@ -1,5 +1,6 @@
 package com.niit.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
@@ -45,6 +46,8 @@ public class TestVideoController {
 		video2.setTime("35");	
 		video2.setCategory("1");
 		video2.setState("");
+		video2.setUserId("1");
+		video2.setDate(new Date());
 		videoService.insertVideo(video2);	
 	}
 	
@@ -79,4 +82,23 @@ public class TestVideoController {
 //		System.out.println(number);
 //		return number;	
 	}
+	
+	//pky
+	//根据用户id查询该用户的所有的上传的视频
+		@RequestMapping("getVideoListByUserId")
+		public List<Video> getVideoListByUserId(String id){
+			List<Video> videoList=videoService.getVideoListByUserId(id);
+			for(int i=0;i<videoList.size();i++){
+				System.out.println(videoList.get(i));
+			}
+			return videoList;
+		}
+		//根据videoId查询该上传用户的信息
+		@RequestMapping("getUserByVideoId")
+		public User getUserByVideoId(String id){
+			User user=videoService.getUserByVideoId(id);
+			System.out.println(user);
+			return user;
+		}
+
 }
