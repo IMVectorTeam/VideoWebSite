@@ -25,6 +25,9 @@ public interface VideoMapper  {
     
     public List<Video> getVideoListByCategoryPagination(String id,int offset,int pageNumber);
     
+    //模糊查询视频
+    public List<Video> getVideoListByLikeName(String name);
+    
     //逄锟艺
     public List<Video> getVideoListByUserId(String id);
     

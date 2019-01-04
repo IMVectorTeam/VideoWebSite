@@ -41,18 +41,23 @@
 		WHERE VID = #{id}
 	</select>
 	
-<!-- 根据视频类别名称查询视频
+<!-- 根据视频类别名称查询视频  -->
 	<select id="getVideoByCategoryName" parameterType="java.lang.String" resultMap="videoMap"
 		resultType="com.niit.entity.Video">
 		SELECT *
 		FROM videos 
 		WHERE VID = #{id}
 	</select>
-	 -->
-	
+		
 <!-- 查询所有视频 -->
 	<select id="getVideoList" resultType="com.niit.entity.Video" resultMap="videoMap">
 		SELECT * FROM videos
+	</select>
+	
+<!-- 模糊查询视频 -->
+    <select id="getVideoListByLikeName" parameterType="java.lang.String"  resultType="com.niit.entity.Video" 
+    resultMap="videoMap">
+		SELECT * FROM videos WHERE VName LIKE "%"#{name}"%"
 	</select>
 	
 <!-- 插入单个视频 -->
@@ -69,7 +74,7 @@
 		WHERE VCategory = #{category}
 	</select>
 	
-<!-- 更新用户信息 -->
+<!-- 更新视频信息 -->
 	<update id="updateVideo" parameterType="com.niit.entity.Video">
 		UPDATE videos
 		SET
@@ -84,7 +89,7 @@
 		WHERE VID = #{id}
 	</update>
 
-<!-- 删除用户信息 -->
+<!-- 删除视频 -->
     <delete id="deleteVideo" parameterType="java.lang.String">
 		DELETE FROM videos WHERE VID = #{id}
 	</delete>

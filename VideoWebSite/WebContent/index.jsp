@@ -34,6 +34,7 @@
 <a href="getVideoListByCategoryName?name=大型演唱会">通过视频类别名称查视频list</a>
 <a href="getVideoListByUserId?id=20154070">根据用户id查询该用户的所有的上传的视频</a>
 <a href="getUserByVideoId?id=1001">根据videoId查询该上传用户的信息</a>
+<a href="getVideoListByLikeName?name=未">模糊查询</a>
 
 
 <h4>Message</h4>
