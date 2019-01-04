@@ -24,6 +24,9 @@ public class AdministratorService {
 		 administratorDao.updateAdministrator(administrator);
 	}
 	
+	public Administrator getAdministratorByEmail(String email) {		
+		return administratorDao.getAdministratorByEmail(email);
+	}
 }
 
 

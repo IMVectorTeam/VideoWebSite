@@ -13,4 +13,7 @@ public interface AdministratorMapper {
     public Administrator getAdministrator(String id);
     
     public void updateAdministrator(Administrator administrator);
+    
+    public Administrator getAdministratorByEmail(String email);
+    
 }

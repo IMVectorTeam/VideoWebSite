@@ -28,7 +28,6 @@ public class TestUserController {
 		return "homePage";
 	}
 	
-
 	@RequestMapping("/getUserByEmail")
 	public String getUserByEmail(String email) {
 		System.out.println(testService.getUserByEmail(email).getName());
@@ -38,11 +37,12 @@ public class TestUserController {
 	@RequestMapping("/insertUser")
 	public void insertUser(User user) throws Exception{
 		User user2 = new User();
-		user2.setId("20154072");
-		user2.setName("小陈");
+		user2.setId("20154076");
+		user2.setName("小文");
 		user2.setPassword("123456");
 		user2.setSex("男");
-		user2.setEmail("ttt@163.com");
+		user2.setEmail("www@163.com");
+		user2.setImage("/hhh/vv");
 		testService.insertUser(user2);		
 	}
 	
@@ -63,10 +63,11 @@ public class TestUserController {
 	public void updateUser(User user){	
 		User user2 = new User();
 		user2.setId("20154071");
-		user2.setName("老张3");
+		user2.setName("老张5");
 		user2.setPassword("123456");
 		user2.setSex("男");
-		user2.setEmail("1234@qq.com");
+		user2.setEmail("1237@qq.com");
+		user2.setImage("/st/v");
 		testService.updateUser(user2);	
 	}
 	

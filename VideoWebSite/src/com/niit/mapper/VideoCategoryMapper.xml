@@ -43,4 +43,11 @@
 		DELETE FROM videocategory WHERE CID = #{id}
 	</delete>
 	
+<!-- 通过视频类别名称查视频类别ID --> 
+	<select id="getVideoCategoryIdByName" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT CID
+		FROM videocategory
+		WHERE CName = #{name}
+	</select>
+
 </mapper>

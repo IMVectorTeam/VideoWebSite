@@ -16,6 +16,23 @@
 		<result property="date" column="VDate"/>
 	</resultMap>
 	
+	<resultMap type="com.niit.entity.Video"  id="videoMap1">
+		<id property="id" column="VID" />
+		<result property="name" column="VName" />
+		<result property="image" column="VImage" />
+		<result property="address" column="VAddress" />
+		<result property="time" column="VTime" />
+		<result property="category" column="VCategory"/>
+		<result property="state" column="VState" />
+		<result property="userId" column="VUserID"/>
+		<result property="date" column="VDate"/>
+		<association property="videoCategory" javaType="com.niit.entity.VideoCategory">
+			<id property="id" column="CID" />
+			<result property="name" column="CName" />
+			<result property="remark" column="CRemark" />
+		</association>
+	</resultMap>
+	
 <!-- 查询单个视频信息 -->
 	<select id="getVideo" parameterType="java.lang.String" resultMap="videoMap"
 		resultType="com.niit.entity.Video">
@@ -23,6 +40,15 @@
 		FROM videos 
 		WHERE VID = #{id}
 	</select>
+	
+<!-- 根据视频类别名称查询视频
+	<select id="getVideoByCategoryName" parameterType="java.lang.String" resultMap="videoMap"
+		resultType="com.niit.entity.Video">
+		SELECT *
+		FROM videos 
+		WHERE VID = #{id}
+	</select>
+	 -->
 	
 <!-- 查询所有视频 -->
 	<select id="getVideoList" resultType="com.niit.entity.Video" resultMap="videoMap">
@@ -42,9 +68,6 @@
 		SELECT * FROM videos 
 		WHERE VCategory = #{category}
 	</select>
-
-
-	
 	
 <!-- 更新用户信息 -->
 	<update id="updateVideo" parameterType="com.niit.entity.Video">

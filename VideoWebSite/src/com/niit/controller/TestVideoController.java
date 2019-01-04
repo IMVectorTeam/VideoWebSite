@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.niit.entity.User;
 import com.niit.entity.Video;
+import com.niit.entity.VideoC;
 import com.niit.entity.VideoCategory;
 import com.niit.mapper.VideoCategoryMapper;
 import com.niit.mapper.VideoMapper;
@@ -27,12 +28,12 @@ public class TestVideoController {
 	
 	@RequestMapping("/getVideo")
 	public String getVideo(String id) {
-		System.out.println(videoService.getVideo(id).getName());
+		System.out.println(videoService.getVideo(id).getVideoCategory().getName());//打印的视频的视频类别名称
 		return "homePage";		
 	}
 	@RequestMapping("/getVideoList")
-	public List<Video> getVideoList(){			
-		System.out.println(videoService.getVideoList());
+	public List<VideoC> getVideoList(){			
+		System.out.println(videoService.getVideoList().get(0).getVideoCategory().getName());//打印的视频的视频类别名称
 		return videoService.getVideoList();		
 	}
 	
@@ -83,9 +84,16 @@ public class TestVideoController {
 //		return number;	
 	}
 	
+	//根据视频类别名称查询视频
+	@RequestMapping("/getVideoListByCategoryName")
+	public List<Video> getVideoListByCategoryName(String name){
+		System.out.println(videoService.getVideoListByCategoryName(name));
+		return videoService.getVideoListByCategoryName(name);
+	}
+	
 	//pky
 	//根据用户id查询该用户的所有的上传的视频
-		@RequestMapping("getVideoListByUserId")
+		@RequestMapping("/getVideoListByUserId")
 		public List<Video> getVideoListByUserId(String id){
 			List<Video> videoList=videoService.getVideoListByUserId(id);
 			for(int i=0;i<videoList.size();i++){
@@ -94,7 +102,7 @@ public class TestVideoController {
 			return videoList;
 		}
 		//根据videoId查询该上传用户的信息
-		@RequestMapping("getUserByVideoId")
+		@RequestMapping("/getUserByVideoId")
 		public User getUserByVideoId(String id){
 			User user=videoService.getUserByVideoId(id);
 			System.out.println(user);

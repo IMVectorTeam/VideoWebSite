@@ -7,6 +7,7 @@ public class Administrator {
 	private String password;
 	private String sex;
 	private String email;
+	private String image;
 	
 	public String getId() {
 		return id;
@@ -38,5 +39,12 @@ public class Administrator {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	
 }
