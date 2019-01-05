@@ -11,6 +11,7 @@ const baseApi = function(url) {
 }
 // 视频
 const VIDEO_URI = 'VideoWebSite/video/'
+const VIDEO_URI_TYPE = 'VideoWebSite/video/type/'
 
 // 用户
 const VIDEO_USER_URI = 'VideoWebSite/user/'
@@ -24,4 +25,5 @@ const VIDEO_COMMENT = 'VideoWebSite/videoCOmment/'
 export const videoUserOp = baseApi(VIDEO_USER_URI)
 export const videoTypeOp = baseApi(VIDEO_TYPE)
 export const videoOp = baseApi(VIDEO_URI)
+export const videoByTypeOp = baseApi(VIDEO_URI_TYPE)
 export const videoCommentOp = baseApi(VIDEO_COMMENT)

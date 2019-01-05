@@ -155,10 +155,11 @@ public class TestVideoController {
 	}
 
 	// 根据视频类别名称查询视频
-	@RequestMapping("/getVideoListByCategoryName")
-	public List<VideoC> getVideoListByCategoryName(String name) {
-		System.out.println(videoService.getVideoListByCategoryName(name).get(0).getVideo().getName());
-		return videoService.getVideoListByCategoryName(name);
+	@RequestMapping(value="/video/type/", method=RequestMethod.GET)
+	@ResponseBody
+	public List<VideoC> getVideoListByCategoryName(String videoType) {
+		System.out.println(videoType);
+		return videoService.getVideoListByCategoryName(videoType);
 	}
 
 	// pky

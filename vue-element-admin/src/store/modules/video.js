@@ -1,5 +1,5 @@
 import { Message, Notification } from 'element-ui'
-import { videoOp, videoTypeOp, videoCommentOp } from '@/api/video'
+import { videoOp, videoTypeOp, videoCommentOp, videoByTypeOp } from '@/api/video'
 import Vue from 'vue'
 
 export const defaultVideoForm = {
@@ -200,6 +200,20 @@ const actions = {
       }
 
       commit('setVideoForm', { reset: true })
+    })
+  },
+  async getVideoListByType({ commit, state }, videoType) {
+    Vue.set(state.videoListQuery, 'page', 1)
+    Vue.set(state.videoListQuery, 'limit', 6)
+    Vue.set(state.videoListQuery, 'videoType', videoType)
+    await videoByTypeOp.list(state.videoListQuery).then((res) => {
+      console.log(res)
+      res = res.data
+      commit('setVideoList', {
+        list: res.list,
+        page: res.pageNum,
+        limit: res.pageSize
+      })
     })
   }
 }

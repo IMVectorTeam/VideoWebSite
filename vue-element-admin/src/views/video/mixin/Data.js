@@ -8,7 +8,8 @@ export default {
     ...mapActions({
       getVideoList: 'video/getVideoList',
       createVideo: 'video/createVideo',
-      getVideoTypeList: 'video/getVideoTypeList'
+      getVideoTypeList: 'video/getVideoTypeList',
+      getVideoListByType: 'video/getVideoListByType'
     }),
     ...mapMutations('videoIndex', ['setVideoList'])
   }

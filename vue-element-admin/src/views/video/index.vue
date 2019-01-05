@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="pageLoading">
     <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
@@ -74,14 +74,31 @@ export default {
   mixins: [Data],
   data() {
     return {
+      pageLoading: false,
       hello: 'hello world!',
       datalist: [],
+      hotSpotList: [],
+      entertainmentList: [],
+      TVSeriesList: [],
+      moviesList: [],
       activeIndex: '1'
     }
   },
   created() {
-    this.getVideoList()
+    this.pageLoading = true
 
+    Promise.all([this.getVideoListByType('今日焦点').then(() => {
+      this.hotSpotList = JSON.parse(JSON.stringify(this.videoList))
+      console.log(this.hotSpotList)
+    }),
+    this.getVideoListByType('综艺娱乐'),
+    this.getVideoListByType('电视剧'),
+    this.getVideoListByType('电影')]).then(() => {
+      this.pageLoading = false
+    })
+    // this.getVideoList().then(() => {
+    //   this.pageLoading = false
+    // })
     // axios({
     //   method: 'get',
     //   url: '/api/VideoWebSite/test11',
