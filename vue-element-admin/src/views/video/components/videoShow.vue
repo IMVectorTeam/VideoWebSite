@@ -36,7 +36,7 @@
             <el-col :span="20">
               <!--<video class="video" src="http://www.w3school.com.cn/i/movie.ogg" controlslist="nodownload" controls="controls" preload="auto"/>-->
               <!--<video class="video" src="@/assets/video/test.mp4" controls="controls" preload="auto"/>-->
-              <video class="video" src="http://localhost:8080/VideoWebSite/resources/video/20181230220720707.mp4" controls="controls" preload="auto"/>
+              <video :src="videoItem.address" class="video" controls="controls" preload="auto"/>
               <!--<video style="width:100%; height:100%; object-fit: fill" src="@/assets/video/test.mp4" controls="controls" preload="auto"/>-->
             </el-col>
             <el-col :span="4">
@@ -207,6 +207,7 @@
 
 <script>
 import Data from '@/views/video/mixin/Data'
+import store from '@/store'
 export default {
   name: 'VideoShow',
   mixins: [Data],
@@ -215,15 +216,26 @@ export default {
       value: 3.7,
       currentPage4: 4,
       activeIndex: '4',
-      pageLoading: false
+      pageLoading: false,
+      listQuery: {
+        videoId: '',
+        page: 1,
+        limit: 5
+      }
     }
   },
-  async create() {
+  async created() {
+    console.log(store.getters.userInfo)
     this.pageLoading = true
-    await this.getVideoItem(this.$route.params.id).then(() => {
-      console.log('++++++++++++')
+    await this.getVideoItem({ uuid: this.$route.params.id }).then(() => {
+      console.log(this.videoItem)
+      this['setVideoCommentListQuery']({ usingKey: true, k: 'page', v: 1 })
+      this['setVideoCommentListQuery']({ usingKey: true, k: 'limit', v: 10 })
+      this['setVideoCommentListQuery']({ usingKey: true, k: 'videoId', v: this.videoItem.id })
+      this.getVideoCommentList()
       this.pageLoading = false
     })
+    // this['setVideoCommentListQuery']({ config: this.listQuery })
   },
   methods: {
     handleSelect() {},

@@ -49,17 +49,17 @@
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
+// import { isvalidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './socialsignin'
-
+import store from '@/store'
 export default {
   name: 'Login',
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      if (value.trim() === '') {
+        callback(new Error('请输入邮箱！'))
       } else {
         callback()
       }
@@ -73,8 +73,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '1111111'
+        username: 'tajkun@163.com',
+        password: '123456'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -96,6 +96,7 @@ export default {
   //
   // },
   created() {
+    console.log(store.getters.userInfo)
     // window.addEventListener('hashchange', this.afterQRScan)
   },
   destroyed() {

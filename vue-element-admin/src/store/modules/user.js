@@ -1,6 +1,16 @@
 import { loginByUsername, logout, getUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { Message } from 'element-ui'
+const userForm = {
+  id: '',
+  name: '',
+  password: '',
+  sex: '',
+  email: '',
+  image: '',
+  introduce: ''
+}
+
 const user = {
   state: {
     id: '',
@@ -15,7 +25,8 @@ const user = {
     roles: [],
     setting: {
       articlePlatform: []
-    }
+    },
+    userInfo: JSON.parse(JSON.stringify(userForm))
   },
 
   mutations: {
@@ -48,6 +59,9 @@ const user = {
     },
     SET_ID: (state, id) => {
       state.id = id
+    },
+    SET_USER_INFO: (state, userInfo) => {
+      state.userInfo = userInfo
     }
   },
 
@@ -58,25 +72,25 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
           const map = response.data
+          console.log('++++++++++++++++++用户信息+++++++++++++++++')
+          console.log(map)
+          console.log('++++++++++++++++++用户信息+++++++++++++++++')
           if (map.flag === true) {
             commit('SET_TOKEN', map.token)
             setToken(response.data.token)
-
+            commit('SET_ID', map.data.id)
             commit('SET_NAME', map.data.name)
             commit('SET_AVATAR', map.data.image)
             commit('SET_INTRODUCTION', map.data.introduction)
+            commit('SET_USER_INFO', JSON.parse(JSON.stringify(map.data)))
             resolve()
           } else {
             Message({
               message: map.data,
               type: 'warning'
             })
-            // reject(map.data)
+            reject(map.data)
           }
-          commit('SET_ID', '12345646')
-          commit('SET_TOKEN', map.token)// 这一句在写完后要删除
-          setToken(response.data.token)// 这一句在写完后要删除
-          resolve() // 这一句在写完后要删除
         }).catch(error => {
           reject(error)
         })

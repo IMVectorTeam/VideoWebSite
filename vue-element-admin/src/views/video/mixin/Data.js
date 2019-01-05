@@ -2,7 +2,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('video', ['videoList', 'videoItem', 'videoListQuery', 'videoForm', 'videoTypeList'])
+    ...mapGetters('video', ['videoList', 'videoItem', 'videoListQuery', 'videoForm', 'videoTypeList', 'videoCommentListQuery'])
   },
   methods: {
     ...mapActions({
@@ -10,8 +10,9 @@ export default {
       createVideo: 'video/createVideo',
       getVideoItem: 'video/getVideoItem',
       getVideoTypeList: 'video/getVideoTypeList',
-      getVideoListByType: 'video/getVideoListByType'
+      getVideoListByType: 'video/getVideoListByType',
+      getVideoCommentList: 'video/getVideoCommentList'
     }),
-    ...mapMutations('videoIndex', ['setVideoList'])
+    ...mapMutations('video', ['setVideoList', 'setVideoListQuery', 'setVideoCommentListQuery'])
   }
 }

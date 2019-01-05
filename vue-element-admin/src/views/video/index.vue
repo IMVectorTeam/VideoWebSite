@@ -68,6 +68,7 @@
 import videoList from './components/videoList'
 import Data from '@/views/video/mixin/Data'
 // import axios from 'axios'
+import store from '@/store'
 export default {
   name: 'Index',
   components: { videoList },
@@ -85,6 +86,7 @@ export default {
     }
   },
   created() {
+    console.log(store.getters.userInfo)
     // this.pageLoading = true
     // this.pageLoading = false
     this.getVideoListByType({ page: 1, limit: 6, videoType: '今日焦点' }).then(() => {

@@ -133,8 +133,13 @@ const mutations = {
   setVideoCommentItem: (state, value) => {
     state.videoCommentItem = value
   },
-  setVideoCommentListQuery: (state, value) => {
-    state.videoCommentListQuery = value
+  setVideoCommentListQuery(state, { config, usingKey = false, k, v }) {
+    console.log(config)
+    if (!usingKey) {
+      state.videoCommentListQuery = { ...state.videoCommentListQuery, ...config }
+    } else {
+      state.videoCommentListQuery[k] = v
+    }
   },
   setVideoCommentForm: (state, value) => {
     state.videoCommentFrom = value
@@ -229,11 +234,12 @@ const actions = {
     })
   },
   getVideoItem({ commit, state }, { uuid, config }) {
+    console.log(uuid)
     return videoOp.retrieve(uuid, config).then(res => {
       res = res.data
       res.is_valid = true
       console.log(res)
-      commit('setVideoItem', { item: res })
+      commit('setVideoItem', res)
     })
   }
 }

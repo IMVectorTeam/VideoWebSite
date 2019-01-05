@@ -28,7 +28,7 @@ public class UserController {
 	public ModelMap getUserByemail(@RequestBody User user) {
 		System.out.println(user.getName() + " " + user.getEmail() + " " + user.getSex());
 		ModelMap map = new ModelMap();
-		User userLocal = service.getUser(user.getEmail());
+		User userLocal = service.getUserByEmail(user.getEmail());
 		if (null != userLocal) {
 			if (MD5Utils.md5(user.getPassword()).equals(userLocal.getPassword())) {
 				map.addAttribute("data", userLocal);
