@@ -1,8 +1,10 @@
 import { loginByUsername, logout, getUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-
+import { Message } from 'element-ui'
 const user = {
   state: {
+    id: '',
+    email: '',
     user: '',
     status: '',
     code: '',
@@ -40,6 +42,12 @@ const user = {
     },
     SET_ROLES: (state, roles) => {
       state.roles = roles
+    },
+    SET_EMAIL: (state, email) => {
+      state.email = email
+    },
+    SET_ID: (state, id) => {
+      state.id = id
     }
   },
 
@@ -49,10 +57,26 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
-          const data = response.data
-          commit('SET_TOKEN', data.token)
-          setToken(response.data.token)
-          resolve()
+          const map = response.data
+          if (map.flag === true) {
+            commit('SET_TOKEN', map.token)
+            setToken(response.data.token)
+
+            commit('SET_NAME', map.data.name)
+            commit('SET_AVATAR', map.data.image)
+            commit('SET_INTRODUCTION', map.data.introduction)
+            resolve()
+          } else {
+            Message({
+              message: map.data,
+              type: 'warning'
+            })
+            // reject(map.data)
+          }
+          commit('SET_ID', '12345646')
+          commit('SET_TOKEN', map.token)// 这一句在写完后要删除
+          setToken(response.data.token)// 这一句在写完后要删除
+          resolve() // 这一句在写完后要删除
         }).catch(error => {
           reject(error)
         })
@@ -74,7 +98,6 @@ const user = {
           } else {
             reject('getInfo: roles must be a non-null array !')
           }
-
           commit('SET_NAME', data.name)
           commit('SET_AVATAR', data.avatar)
           commit('SET_INTRODUCTION', data.introduction)

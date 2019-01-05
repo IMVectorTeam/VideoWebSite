@@ -4,7 +4,8 @@
 
 <mapper namespace="com.niit.mapper.AdministratorMapper">
 
-  	<resultMap type="com.niit.entity.Administrator"  id="administratorMap">
+	<resultMap type="com.niit.entity.Administrator"
+		id="administratorMap">
 		<id property="id" column="AID" />
 		<result property="name" column="AName" />
 		<result property="password" column="APwd" />
@@ -12,9 +13,10 @@
 		<result property="email" column="AEmail" />
 		<result property="image" column="AImage" />
 	</resultMap>
-	
-<!-- 查看个人信息 -->
-    <select id="getAdministrator" parameterType="java.lang.String" resultMap="administratorMap"
+
+	<!-- 查看个人信息 -->
+	<select id="getAdministrator" parameterType="java.lang.String"
+		resultMap="administratorMap"
 		resultType="com.niit.entity.Administrator">
 		SELECT *
 		FROM administrators
@@ -29,8 +31,9 @@
 		WHERE AEmail = #{email}
 	</select>
 
-<!-- 更新用户信息 -->
-	<update id="updateAdministrator" parameterType="com.niit.entity.Administrator">
+	<!-- 更新用户信息 -->
+	<update id="updateAdministrator"
+		parameterType="com.niit.entity.Administrator">
 		UPDATE Administrators
 		SET
 		AName = #{name},
@@ -40,5 +43,5 @@
 		AImage = #{image}
 		WHERE AID = #{id}
 	</update>
- 
+
 </mapper>

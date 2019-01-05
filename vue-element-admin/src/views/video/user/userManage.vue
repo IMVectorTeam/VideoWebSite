@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handleDelete(row, index) {
-      this.deleteUserList(row.id).then(() => {
+      this.deleteUser(row.id).then(() => {
         this.videoUserList.splice(index, 1)
       })
     }

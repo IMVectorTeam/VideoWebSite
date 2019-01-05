@@ -28,8 +28,9 @@
 
     <div style="height: 160px;width: 100%;background: url('src/assets/videoImage/head.png') no-repeat;background-size: 100% 100%;"/>
     <!--<img src="src/assets/videoImage/head.png" style="margin: 0;" alt="">-->
-
-    <el-row :gutter="10" style="margin-top: 20px">
+    <br>
+    <br>
+    <el-row :gutter="10">
       <el-col :span="4" :offset="4">
 
         <img src="src/assets/videoImage/hamburger.png" style="border-radius: 10%" alt="">

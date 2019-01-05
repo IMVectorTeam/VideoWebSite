@@ -154,7 +154,7 @@ export const asyncRouterMap = [
         meta: { title: '管理主页', icon: 'manage', noCache: true }
       },
       {
-        path: 'video-manage',
+        path: 'user-manage',
         component: () => import('@/views/video/user/userManage'),
         name: 'userManage',
         meta: { title: '用户管理', icon: 'manage', noCache: true }
@@ -183,7 +183,7 @@ export const asyncRouterMap = [
         path: 'index',
         component: () => import('@/views/video/adminIndex'),
         name: 'roleManage',
-        meta: { title: '用户管理', icon: 'manage', noCache: true }
+        meta: { title: '权限管理', icon: 'manage', noCache: true }
       }
     ]
   },
