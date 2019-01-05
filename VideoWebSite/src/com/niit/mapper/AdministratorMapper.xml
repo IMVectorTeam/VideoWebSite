@@ -37,8 +37,7 @@
 		UPDATE Administrators
 		SET
 		AName = #{name},
-		APwd =
-		#{password},
+		APwd = #{password},
 		ASex = #{sex},
 		AEmail = #{email},
 		AImage = #{image}

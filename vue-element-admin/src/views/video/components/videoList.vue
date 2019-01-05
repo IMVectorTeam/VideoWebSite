@@ -12,14 +12,14 @@
     </el-row>
     <br>
     <el-row :gutter="10">
-      <el-col v-for="item in videoData" :span="4" :key="item.video.id">
+      <el-col v-for="item in videoData" :span="4" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="item.video.image" class="image">
+          <img :src="item.image" class="image">
           <div style="padding: 14px;">
             <span>好吃的汉堡</span>
             <div class="bottom clearfix">
-              <time class="time">{{ currentDate }}</time>
-              <el-button type="text" class="button">操作按钮</el-button>
+              <!--<time class="time">{{ item. }}</time>-->
+              <!--<el-button type="text" class="button">操作按钮</el-button>-->
             </div>
           </div>
         </el-card>

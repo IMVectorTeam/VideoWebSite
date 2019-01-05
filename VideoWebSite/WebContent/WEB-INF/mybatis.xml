@@ -10,6 +10,7 @@
 		<setting name="lazyLoadingEnabled" value="true"/>
 		<!-- 积极的延迟加载 (按需加载) -->
 		<setting name="aggressiveLazyLoading" value="false"/>
+		<setting name="logImpl" value="STDOUT_LOGGING" />
 	</settings>
 
 </configuration>

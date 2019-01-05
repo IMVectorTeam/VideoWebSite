@@ -130,6 +130,8 @@ public class TestVideoController {
 		video2.setTime("35");
 		video2.setCategory("1");
 		video2.setState("");
+		video2.setUserId("1");
+		video2.setDate(new Date());
 		videoService.updateVideo(video2);
 	}
 
@@ -159,7 +161,7 @@ public class TestVideoController {
 	@ResponseBody
 	public PageInfo getVideoListByCategoryName(int page,int limit, String videoType) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
-		List<VideoC> list=videoService.getVideoListByCategoryName(videoType);
+		List<Video> list=videoService.getVideoListByCategoryName(videoType);
 		PageInfo pageInfo = new PageInfo(list);
 		System.out.println(videoType+" " +page+" "+ limit);
 		return pageInfo;

@@ -90,16 +90,9 @@ public class VideoService {
 	}
 	
 	//通过视频类别名称查视频
-	public List<VideoC> getVideoListByCategoryName(String name){
-		List<Video> list =videoDao.getVideoListByCategory(videoCategoryDao.getVideoCategoryIdByName(name)); 
-		List<VideoC> listC = new ArrayList<VideoC>();
-		for (int i = 0; i < list.size(); i++) {
-			VideoC videoC = new VideoC();
-			videoC.setVideo(list.get(i));
-			videoC.setVideoCategory(videoCategoryDao.getVideoCategory(list.get(i).getCategory()));
-			listC.add(videoC);
-		}		
-		return listC;			
+	public List<Video> getVideoListByCategoryName(String name){
+		List<Video> list =videoDao.getVideoByCategoryName(name); 
+		return list;			
 	}
 	
 	//根据用户id查询该用户的所有的上传的视频
