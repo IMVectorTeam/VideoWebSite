@@ -20,6 +20,15 @@ public class MessageService {
 		return messageDao.getMessageByVideoId(id);	
 	}
 	
+	//根据关键字模糊查询所有评论内容
+	public List<Message> getMessageByLikeContent(String content){
+		return messageDao.getMessageByLikeContent(content);
+	}
+	
+	public List<Message> getAllMessage(){
+		return messageDao.getAllMessage();
+	}
+	
 	public void insertMessage(Message message) {		
 		 messageDao.insertMessage(message);
 	}

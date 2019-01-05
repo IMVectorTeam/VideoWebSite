@@ -22,6 +22,14 @@
 		WHERE UID = #{id}
 	</select>
 
+	<!-- 根据用户名模糊查询用户 -->
+	<select id="getUserByLikeName" parameterType="java.lang.String"
+		resultMap="userMap" resultType="com.niit.entity.User">
+		SELECT *
+		FROM users
+		WHERE UName LIKE "%"#{name}"%"
+	</select>
+
 	<!-- 通过邮箱查询用户 -->
 	<select id="getUserByEmail" parameterType="java.lang.String"
 		resultMap="userMap" resultType="com.niit.entity.User">

@@ -77,10 +77,9 @@ public class TestVideoController {
 		return videoService.getVideoList();
 	}
 
-	//模糊查询视频
+	//根据视频名模糊查询视频
 	@RequestMapping("/getVideoListByLikeName")
 	public List<Video> getVideoListByLikeName(String name) {
-		System.out.println(videoService.getVideoListByLikeName(name).get(0).getCategory());// 打印查询到的视频类别名称
 		return (List<Video>) videoService.getVideoListByLikeName(name);
 	}
 
@@ -159,7 +158,7 @@ public class TestVideoController {
 //		return number;	
 	}
 
-	// 根据视频类别名称查询视频
+	// 根据视频类别名称模糊查询视频
 	@RequestMapping(value="/video/type/", method=RequestMethod.GET)
 	@ResponseBody
 	public PageInfo getVideoListByCategoryName(int page,int limit, String videoType) {
@@ -170,8 +169,7 @@ public class TestVideoController {
 		return pageInfo;
 	}
 
-	// pky
-	// 根据用户id查询该用户的所有的上传的视频
+	//pky根据用户id查询该用户的所有的上传的视频
 	@RequestMapping("/getVideoListByUserId")
 	public List<Video> getVideoListByUserId(String id) {
 		return videoService.getVideoListByUserId(id);

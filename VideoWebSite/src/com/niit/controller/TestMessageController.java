@@ -31,6 +31,20 @@ public class TestMessageController {
 		return pageInfo;
 	}
 	
+	//根据关键字模糊查询所有评论内容
+	@RequestMapping("/getMessageByLikeContent")
+	@ResponseBody
+	public List<Message> getMessageByLikeContent(String content){
+		System.out.println("aaa");
+		return messageService.getMessageByLikeContent(content);
+	}
+	
+	@RequestMapping("/getAllMessage")
+	@ResponseBody
+	public List<Message> getAllMessage(){
+		return messageService.getAllMessage();
+	}
+	
 	@RequestMapping("/insertMessage")
 	@ResponseBody
 	public void insertMessage(Message message){

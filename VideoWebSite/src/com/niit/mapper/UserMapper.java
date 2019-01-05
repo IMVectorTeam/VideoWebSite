@@ -18,6 +18,9 @@ public interface UserMapper {
 
     public User getUser(String id);
     
+    //根据用户名模糊查询用户
+    public List<User> getUserByLikeName(String name);
+    
     public User getUserByEmail(String email);
     
     //根据videoId查询该上传用户的信息

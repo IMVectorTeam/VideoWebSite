@@ -46,11 +46,15 @@ public class UserController {
 		map.addAttribute("token", token);
 		return map;
 	}
+	
+	//通过邮箱查询用户
 	@RequestMapping("/getUserByEmail")
 	public String getUserByEmail(String email) {
 		System.out.println(service.getUserByEmail(email).getName());
 		return "homePage";
 	}
+	
+	//通过用户ID查询用户
 	@RequestMapping("/getUser")
 	@ResponseBody
 	public String getUser(String id) {
@@ -58,6 +62,15 @@ public class UserController {
 		return "homePage";
 
 	}
+	
+	//根据用户名模糊查询用户
+	@RequestMapping("/getUserByLikeName")
+	@ResponseBody
+	public List<User> getUserByLikeName(String name){
+		System.out.println(service.getUserByLikeName(name).get(0).getName());
+		return service.getUserByLikeName(name);
+	}
+	
 
 	@RequestMapping("/insertUser")
 	public void insertUser(User user) throws Exception {
