@@ -18,22 +18,21 @@ public interface VideoMapper {
 
 	public void deleteVideo(String id);
 
-	public Video getVideo(String id);
+	public Video getVideo(String id); 
 
 	public List<Video> getVideoListByCategory(String id);
 
-	public List<Video> getVideoByCategoryName(String name);
+	public List<Video> getVideoByCategoryName(String name); 
 
 	public int getVideoListNumber(String id);
 
-	public List<Video> getVideoListByCategoryPagination(String id, int offset, int pageNumber);
-
+//	public List<Video> getVideoListByCategoryPagination(String id, int offset, int pageNumber);
+	
 	// 模糊查询视频
 	public List<Video> getVideoListByLikeName(String name);
 
 	// 逄锟艺
 	public List<Video> getVideoListByUserId(String id);
 
-	public Video getUserIdByVideoId(String id);
 
 }

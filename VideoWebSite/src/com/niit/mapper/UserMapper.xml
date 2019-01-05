@@ -11,6 +11,7 @@
 		<result property="sex" column="USex" />
 		<result property="email" column="UEmail" />
 		<result property="image" column="UImage" />
+		<result property="introduce" column="UIntroduce" />
 	</resultMap>
 
 	<!-- 查询单个用户信息 -->
@@ -33,9 +34,8 @@
 	<!-- 插入单个用户信息 -->
 	<insert id="insertUser" parameterType="com.niit.entity.User">
 		INSERT INTO users(UID,
-		UName, UPwd, USex, UEmail, UImage)
-		VALUES(#{id}, #{name}, #{password},
-		#{sex}, #{email},#{image})
+		UName, UPwd, USex, UEmail, UImage, UIntroduce)
+		VALUES(#{id}, #{name}, #{password}, #{sex}, #{email}, #{image}, #{introduce})
 	</insert>
 
 	<!-- 查询所有用户信息 -->
@@ -53,8 +53,8 @@
 		UPwd = #{password},
 		USex = #{sex},
 		UEmail = #{email},
-		UImage =
-		#{image}
+		UImage = #{image},
+		UIntroduce = #{introduce}
 		WHERE UID = #{id}
 	</update>
 
@@ -64,6 +64,13 @@
 		UID = #{id}
 	</delete>
 
+    <!-- 根据videoId查询该上传用户的信息 -->
+	<select id="getUserByVideoId" parameterType="java.lang.String" resultType="com.niit.entity.User"
+		resultMap="userMap">
+		SELECT u.*
+		FROM users u,videos v,videocategory c
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND v.VID = #{id}
+	</select>
 
 
 </mapper>

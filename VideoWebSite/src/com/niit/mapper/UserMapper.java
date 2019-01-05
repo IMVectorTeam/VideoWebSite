@@ -19,4 +19,7 @@ public interface UserMapper {
     public User getUser(String id);
     
     public User getUserByEmail(String email);
+    
+    //根据videoId查询该上传用户的信息
+    public User getUserByVideoId(String id);
 }

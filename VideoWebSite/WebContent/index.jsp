@@ -5,6 +5,7 @@
 <h4>User</h4>
 <a href="getUser?id=20154070">查询用户信息</a>
 <a href="getUserByEmail?email=tajkun@163.com">通过邮箱查询用户信息</a>
+<a href="getUserByVideoId?id=1003">根据videoId查询该上传用户的信息</a>
 <a href="insertUser">插入用户</a>
 <a href="getUserList">得到用户list</a>
 <a href="updateUser">更新用户信息</a>
@@ -29,11 +30,10 @@
 <a href="insertVideo">插入单个视频</a>
 <a href="updateVideo">更新视频信息</a>
 <a href="deleteVideo?id=1010">删除视频</a>
-<a href="getVideoListByCategory?id=1">得到分类视频</a>
+<a href="getVideoListByCategory?id=4">得到分类视频</a>
 <a href="getVideoListNumber?id=1">得到某类视频数目</a>
 <a href="getVideoListByCategoryName?name=大型演唱会">通过视频类别名称查视频list</a>
 <a href="getVideoListByUserId?id=20154070">根据用户id查询该用户的所有的上传的视频</a>
-<a href="getUserByVideoId?id=1001">根据videoId查询该上传用户的信息</a>
 <a href="getVideoListByLikeName?name=未">模糊查询</a>
 
 

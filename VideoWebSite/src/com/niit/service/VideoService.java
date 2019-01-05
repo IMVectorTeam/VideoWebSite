@@ -17,46 +17,21 @@ public class VideoService {
 
 	@Autowired
 	private VideoMapper videoDao;
-	
-	@Autowired
-	private UserMapper userDao;
-	
-	@Autowired
-	private VideoCategoryMapper videoCategoryDao;
 
 	
-	public VideoC getVideo(String id) {		
-//		videoDao.getVideo(id).setVideoCategory(videoCategoryDao.getVideoCategory(videoDao.getVideo(id).getCategory()));  
-		VideoC videoC = new VideoC();
-		videoC.setVideo(videoDao.getVideo(id));
-		videoC.setVideoCategory(videoCategoryDao.getVideoCategory(videoDao.getVideo(id).getCategory()));
-		
-		return videoC;	
+	public Video getVideo(String id) {		
+		return videoDao.getVideo(id);	
 	}
 	
-	public List<VideoC> getVideoList(){		
-		List<Video> list = videoDao.getVideoList();
-		List<VideoC> listC = new ArrayList<VideoC>();
-		for (int i = 0; i < list.size(); i++) {
-			VideoC videoC = new VideoC();
-			videoC.setVideo(list.get(i));
-			videoC.setVideoCategory(videoCategoryDao.getVideoCategory(list.get(i).getCategory()));
-			listC.add(videoC);
-		}		
-		return listC;	
+	//查询所有视频
+	public List<Video> getVideoList(){		
+		return videoDao.getVideoList();
 	}	
 	
 	//模糊查询
-	public List<VideoC> getVideoListByLikeName(String name){
-		List<Video> list = videoDao.getVideoListByLikeName(name);
-		List<VideoC> listC = new ArrayList<VideoC>();
-		for (int i = 0; i < list.size(); i++) {
-			VideoC videoC = new VideoC();
-			videoC.setVideo(list.get(i));
-			videoC.setVideoCategory(videoCategoryDao.getVideoCategory(list.get(i).getCategory()));
-			listC.add(videoC);
-		}		
-		return listC;	
+	public List<Video> getVideoListByLikeName(String name){
+		System.out.println(videoDao.getVideoListByLikeName(name).get(0).getCategory());
+		return videoDao.getVideoListByLikeName(name);
 	}
 	
 	public void insertVideo(Video video){		
@@ -73,16 +48,8 @@ public class VideoService {
 	}
 	
 	//通过视频类别ID得到分类视频list
-	public List<VideoC> getVideoListByCategory(String id){	
-		List<Video> list = videoDao.getVideoListByCategory(id);
-		List<VideoC> listC = new ArrayList<VideoC>();
-		for (int i = 0; i < list.size(); i++) {
-			VideoC videoC = new VideoC();
-			videoC.setVideo(list.get(i));
-			videoC.setVideoCategory(videoCategoryDao.getVideoCategory(list.get(i).getCategory()));
-			listC.add(videoC);
-		}		
-		return listC;	
+	public List<Video> getVideoListByCategory(String id){	
+		return videoDao.getVideoListByCategory(id);
 	}
 	
 	public Integer getVideoListNumber(String id) {
@@ -96,22 +63,9 @@ public class VideoService {
 	}
 	
 	//根据用户id查询该用户的所有的上传的视频
-	public List<VideoC> getVideoListByUserId(String id){
-		List<Video> list = videoDao.getVideoListByUserId(id);
-		List<VideoC> listC = new ArrayList<VideoC>();
-		for (int i = 0; i < list.size(); i++) {
-			VideoC videoC = new VideoC();
-			videoC.setVideo(list.get(i));
-			videoC.setVideoCategory(videoCategoryDao.getVideoCategory(list.get(i).getCategory()));
-			listC.add(videoC);
-		}		
-		return listC;	
+	public List<Video> getVideoListByUserId(String id){
+		return videoDao.getVideoListByUserId(id);
 	}
 	
-	public User getUserByVideoId(String id){
-		Video video=videoDao.getUserIdByVideoId(id);
-		User user = userDao.getUser(video.getUserId());
-		return user;
-	}	
 
 }

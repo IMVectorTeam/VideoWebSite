@@ -16,9 +16,9 @@
 	<select id="getMessageByVideoId"
 		parameterType="java.lang.String" resultMap="messageMap"
 		resultType="com.niit.entity.Message">
-		SELECT *
-		FROM messages
-		WHERE MVideoID = #{id}
+		SELECT MID,VName as MVideoID,UName as MUserID, MContent,Mdate
+		FROM messages m,videos v,users u
+		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID AND m.MVideoID = #{id}
 	</select>
 
 	<!-- 插入评论 -->

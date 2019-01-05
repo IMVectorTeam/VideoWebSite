@@ -35,11 +35,12 @@ public class TestVideoController {
 
 	@Autowired
 	private VideoService videoService;
+	
 
 	@RequestMapping("/getVideo")
 	@ResponseBody
 	public String getVideo(String id) {
-//		System.out.println(videoService.getVideo(id).getName());
+		System.out.println(videoService.getVideo(id).getCategory());
 		return "homePage";
 	}
 
@@ -47,7 +48,7 @@ public class TestVideoController {
 	@ResponseBody
 	public PageInfo getVideoList(int page, int limit) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
-		List<VideoC> videoList = videoService.getVideoList();
+		List<Video> videoList = videoService.getVideoList();
 		PageInfo pageInfo = new PageInfo(videoList);
 		return pageInfo;
 	}
@@ -70,15 +71,16 @@ public class TestVideoController {
 	}
 
 	@RequestMapping("/getVideoList")
-	public List<VideoC> getVideoList() {
-		System.out.println(videoService.getVideoList().get(0).getVideoCategory().getName());// 打印的视频的视频类别名称
+	public List<Video> getVideoList() {
+		System.out.println(videoService.getVideoList().get(0).getName());// 打印的视频的视频类别名称
 		return videoService.getVideoList();
 	}
 
+	//模糊查询视频
 	@RequestMapping("/getVideoListByLikeName")
-	public List<VideoC> getVideoListByLikeName(String name) {
-		System.out.println(videoService.getVideoListByLikeName(name).get(0).getVideo().getName());// 打印查询到的视频名称
-		return videoService.getVideoListByLikeName(name);
+	public List<Video> getVideoListByLikeName(String name) {
+		System.out.println(videoService.getVideoListByLikeName(name).get(0).getCategory());// 打印查询到的视频类别名称
+		return (List<Video>) videoService.getVideoListByLikeName(name);
 	}
 
 	@RequestMapping(value = "/image/upload", method = RequestMethod.POST)
@@ -143,8 +145,8 @@ public class TestVideoController {
 
 	@RequestMapping("/getVideoListByCategory")
 	@ResponseBody
-	public List<VideoC> getVideoListByCategory(String id) {
-		System.out.println(videoService.getVideoListByCategory(id));
+	public List<Video> getVideoListByCategory(String id) {
+		System.out.println(videoService.getVideoListByCategory(id).get(0).getName());
 		return videoService.getVideoListByCategory(id);
 	}
 
@@ -169,20 +171,10 @@ public class TestVideoController {
 
 	// pky
 	// 根据用户id查询该用户的所有的上传的视频
-	// 根据用户id查询该用户的所有的上传的视频
 	@RequestMapping("/getVideoListByUserId")
-	public List<VideoC> getVideoListByUserId(String id) {
-		System.out.println(videoService.getVideoListByUserId(id).get(1).getVideo().getName());
+	public List<Video> getVideoListByUserId(String id) {
 		return videoService.getVideoListByUserId(id);
-
 	}
 
-	// 根据videoId查询该上传用户的信息
-	@RequestMapping("/getUserByVideoId")
-	public User getUserByVideoId(String id) {
-		User user = videoService.getUserByVideoId(id);
-		System.out.println(user);
-		return user;
-	}
 
 }

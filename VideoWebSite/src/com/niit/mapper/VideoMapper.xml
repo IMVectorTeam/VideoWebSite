@@ -17,31 +17,13 @@
 		<result property="date" column="VDate" />
 	</resultMap>
 
-	<resultMap type="com.niit.entity.Video" id="videoMap1">
-		<id property="id" column="VID" />
-		<result property="name" column="VName" />
-		<result property="image" column="VImage" />
-		<result property="address" column="VAddress" />
-		<result property="time" column="VTime" />
-		<result property="category" column="VCategory" />
-		<result property="state" column="VState" />
-		<result property="userId" column="VUserID" />
-		<result property="date" column="VDate" />
-		<association property="videoCategory"
-			javaType="com.niit.entity.VideoCategory">
-			<id property="id" column="CID" />
-			<result property="name" column="CName" />
-			<result property="remark" column="CRemark" />
-		</association>
-	</resultMap>
-
 
 	<!-- 查询单个视频信息 -->
 	<select id="getVideo" parameterType="java.lang.String"
 		resultMap="videoMap" resultType="com.niit.entity.Video">
-		SELECT *
-		FROM videos
-		WHERE VID = #{id}
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
+		FROM videos v,videocategory c,users u
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND v.VID = #{id}
 	</select>
 
 	<!-- 插入单个视频 -->
@@ -55,20 +37,26 @@
 	<select id="getVideoByCategoryName"
 		parameterType="java.lang.String" resultMap="videoMap"
 		resultType="com.niit.entity.Video">
-		SELECT VID,VName,VImage,Vaddress, Vtime,CName as VCategory,Vstate,VUserID,VDate FROM videos JOIN videocategory WHERE videos.VCategory = videocategory.CID AND videocategory.CName = #{ name }
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
+		FROM videos v,videocategory c,users u
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND c.CName = #{name}
 	</select>
 
 	<!-- 查询所有视频 -->
 	<select id="getVideoList" resultType="com.niit.entity.Video"
 		resultMap="videoMap">
-		SELECT * FROM videos
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
+		FROM videos v,videocategory c,users u
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID
 	</select>
 
 	<!-- 模糊查询视频 -->
 	<select id="getVideoListByLikeName"
 		parameterType="java.lang.String" resultType="com.niit.entity.Video"
 		resultMap="videoMap">
-		SELECT * FROM videos WHERE VName LIKE "%"#{name}"%"
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
+		FROM videos v,videocategory c,users u
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND v.VName LIKE "%"#{name}"%"
 	</select>
 
 
@@ -76,8 +64,9 @@
 	<select id="getVideoListByCategory"
 		parameterType="java.lang.String" resultType="com.niit.entity.Video"
 		resultMap="videoMap">
-		SELECT * FROM videos
-		WHERE VCategory = #{category}
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
+		FROM videos v,videocategory c,users u
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND v.VCategory = #{category}
 	</select>
 
 	<!-- 更新视频信息 -->
@@ -92,8 +81,7 @@
 		VCategory = #{category},
 		VState = #{state},
 		VUserID = #{userId},
-		VDate =
-		#{date}
+		VDate = #{date}
 		WHERE VID = #{id}
 	</update>
 
@@ -112,14 +100,10 @@
 	<!-- pky根据用户id查询该用户的发布的所有的视频 -->
 	<select id="getVideoListByUserId"
 		resultType="com.niit.entity.Video" resultMap="videoMap">
-		SELECT * FROM videos
-		where VUserID=#{id}
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
+		FROM videos v,videocategory c,users u
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND v.VUserID=#{id}
 	</select>
-	<!-- pky根据视频id查询该视频的所有信息 -->
-	<select id="getUserIdByVideoId"
-		resultType="com.niit.entity.Video" resultMap="videoMap">
-		SELECT * FROM videos
-		where VID=#{id}
-	</select>
+	
 
 </mapper>

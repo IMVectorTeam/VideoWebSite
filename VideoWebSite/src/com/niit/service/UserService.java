@@ -40,4 +40,8 @@ public class UserService {
 	public User getUserByEmail(String email) {		
 		return userDao.getUserByEmail(email);
 	}
+	
+	public User getUserByVideoId(String id) {
+		return userDao.getUserByVideoId(id);
+	}
 }

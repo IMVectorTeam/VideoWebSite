@@ -67,6 +67,8 @@ public class UserController {
 		user2.setPassword("123456");
 		user2.setSex("男");
 		user2.setEmail("ttt@163.com");
+		user2.setImage("");
+		user2.setIntroduce("aaa");
 		service.insertUser(user2);
 	}
 	
@@ -115,13 +117,21 @@ public class UserController {
 	@ResponseBody
 	public void updateUser(User user) {
 		User user2 = new User();
-		user2.setId("20154071");
-		user2.setName("老张3");
+		user2.setId("20154076");
+		user2.setName("老张32");
 		user2.setPassword("123456");
 		user2.setSex("男");
 		user2.setEmail("1234@qq.com");
+		user2.setImage("");
+		user2.setIntroduce("bbb");
 		service.updateUser(user2);
 	}
 
+	@RequestMapping("/getUserByVideoId")
+	@ResponseBody
+	public User getUserByVideoId(String id) {
+		System.out.println(service.getUserByVideoId(id).getName());
+		return service.getUserByVideoId(id);
+	}
 
 }

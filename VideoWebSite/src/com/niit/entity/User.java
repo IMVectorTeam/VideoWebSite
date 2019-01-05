@@ -7,6 +7,7 @@ public class User {
     private String sex;
     private String email;
     private String image;
+    private String introduce;
     
 	public String getId() {
 		return id;
@@ -44,5 +45,12 @@ public class User {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	public String getIntroduce() {
+		return introduce;
+	}
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
 
+	
 }

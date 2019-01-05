@@ -14,17 +14,7 @@ public class Video {
 	private String userId;
 	private Date   date;
 	
-	private VideoCategory videoCategory;
-	
-	
-	
-	public VideoCategory getVideoCategory() {
-		return videoCategory;
-	}
-	public void setVideoCategory(VideoCategory videoCategory) {
-		this.videoCategory = videoCategory;
-	}
-	
+
 	public String getId() {
 		return id;
 	}
