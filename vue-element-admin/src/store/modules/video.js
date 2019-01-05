@@ -43,7 +43,13 @@ const state = {
     // offset: 0,
     // _total: 0,
   },
-  videoCommentForm: {}
+  videoCommentForm: {},
+  videoListByTypeQuery: {
+    limit: 20, // 每一页的条数
+    page: 0, // 当前页的页码
+    videoType: ''
+    // _total: 0,
+  }
 }
 
 const getters = {
@@ -203,17 +209,21 @@ const actions = {
     })
   },
   async getVideoListByType({ commit, state }, videoType) {
-    Vue.set(state.videoListQuery, 'page', 1)
-    Vue.set(state.videoListQuery, 'limit', 6)
-    Vue.set(state.videoListQuery, 'videoType', videoType)
-    await videoByTypeOp.list(state.videoListQuery).then((res) => {
-      console.log(res)
+    console.log(videoType)
+
+    Vue.set(state.videoListByTypeQuery, 'page', 1)
+    Vue.set(state.videoListByTypeQuery, 'limit', 6)
+    Vue.set(state.videoListByTypeQuery, 'videoType', videoType)
+    const query = JSON.parse(JSON.stringify(state.videoListByTypeQuery))
+
+    await videoByTypeOp.list(query).then((res) => {
       res = res.data
       commit('setVideoList', {
         list: res.list,
         page: res.pageNum,
         limit: res.pageSize
       })
+      console.log(state.videoList)
     })
   }
 }

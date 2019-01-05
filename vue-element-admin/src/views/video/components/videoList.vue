@@ -12,9 +12,9 @@
     </el-row>
     <br>
     <el-row :gutter="10">
-      <el-col v-for="o in 6" :span="4" :key="o">
+      <el-col v-for="item in videoData" :span="4" :key="item.video.id">
         <el-card :body-style="{ padding: '0px' }">
-          <img src="@/assets/videoImage/hamburger.png" class="image">
+          <img :src="item.video.image" class="image">
           <div style="padding: 14px;">
             <span>好吃的汉堡</span>
             <div class="bottom clearfix">
@@ -44,6 +44,12 @@ export default {
     morePath: {
       type: String,
       default: '/classified-video'
+    },
+    videoData: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   data() {
@@ -80,7 +86,11 @@ export default {
   }
 
   .image {
-    width: 100%;
+    /*width: 100%;*/
+    /*max-width: 300px;*/
+    /*max-height: 300px;*/
+    width: 300px;
+    height: 300px;
     display: block;
   }
 

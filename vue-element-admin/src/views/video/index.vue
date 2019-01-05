@@ -31,16 +31,16 @@
         </el-carousel-item>
       </el-carousel>
       <el-card>
-        <video-list :title="'今日焦点'" :icon="'el-icon-star-off'" :more-path="'hotSpot'"/>
+        <video-list :title="'今日焦点'" :icon="'el-icon-star-off'" :more-path="'hotSpot'" :video-data="hotSpotList"/>
       </el-card>
       <el-card>
-        <video-list :title="'综艺娱乐'" :icon="'el-icon-picture-outline'" :more-path="'entertainment'"/>
+        <video-list :title="'综艺娱乐'" :icon="'el-icon-picture-outline'" :more-path="'entertainment'" :video-data="entertainmentList"/>
       </el-card>
       <el-card>
-        <video-list :title="'电视剧'" :icon="'el-icon-news'" :more-path="'TVSeries'"/>
+        <video-list :title="'电视剧'" :icon="'el-icon-news'" :more-path="'TVSeries'" :video-data="TVSeriesList"/>
       </el-card>
       <el-card>
-        <video-list :title="'电影'" :icon="'el-icon-menu'" :more-path="'movies'"/>
+        <video-list :title="'电影'" :icon="'el-icon-menu'" :more-path="'movies'" :video-data="moviesList"/>
       </el-card>
       <!--<el-table-->
       <!--:data="datalist"-->
@@ -86,16 +86,30 @@ export default {
   },
   created() {
     this.pageLoading = true
-
-    Promise.all([this.getVideoListByType('今日焦点').then(() => {
-      this.hotSpotList = JSON.parse(JSON.stringify(this.videoList))
-      console.log(this.hotSpotList)
-    }),
-    this.getVideoListByType('综艺娱乐'),
-    this.getVideoListByType('电视剧'),
-    this.getVideoListByType('电影')]).then(() => {
-      this.pageLoading = false
+    this.pageLoading = false
+    this.getVideoListByType('今日焦点').then(() => {
+      console.log(this.videoList)
+      this.videoList.forEach(item => {
+        this.hotSpotList.push(item)
+      })
     })
+    this.getVideoListByType('综艺娱乐').then(() => {
+      this.videoList.forEach(item => {
+        this.entertainmentList.push(item)
+      })
+    })
+    this.getVideoListByType('电视剧').then(() => {
+      this.videoList.forEach(item => {
+        this.TVSeriesList.push(item)
+      })
+    })
+    this.getVideoListByType('电影').then(() => {
+      this.videoList.forEach(item => {
+        this.moviesList.push(item)
+      })
+    })
+    console.log(this.videoList)
+    // Promise.all([])
     // this.getVideoList().then(() => {
     //   this.pageLoading = false
     // })

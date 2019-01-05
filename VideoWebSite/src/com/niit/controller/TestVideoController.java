@@ -157,9 +157,12 @@ public class TestVideoController {
 	// 根据视频类别名称查询视频
 	@RequestMapping(value="/video/type/", method=RequestMethod.GET)
 	@ResponseBody
-	public List<VideoC> getVideoListByCategoryName(String videoType) {
-		System.out.println(videoType);
-		return videoService.getVideoListByCategoryName(videoType);
+	public PageInfo getVideoListByCategoryName(int page,int limit, String videoType) {
+		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
+		List<VideoC> list=videoService.getVideoListByCategoryName(videoType);
+		PageInfo pageInfo = new PageInfo(list);
+		System.out.println(videoType+" " +page+" "+ limit);
+		return pageInfo;
 	}
 
 	// pky
