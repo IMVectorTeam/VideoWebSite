@@ -214,10 +214,6 @@ const actions = {
     })
   },
   async getVideoListByType({ commit, state }, { page, limit, videoType }) {
-    console.log(page)
-    console.log(limit)
-    console.log(videoType)
-
     Vue.set(state.videoListByTypeQuery, 'page', page)
     Vue.set(state.videoListByTypeQuery, 'limit', limit)
     Vue.set(state.videoListByTypeQuery, 'videoType', videoType)

@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -101,7 +102,7 @@ public class UserController {
 		}
 		return flag;
 	}
-	@RequestMapping("/user/")
+	@RequestMapping(value="/user/",method=RequestMethod.GET)
 	@ResponseBody
 	public PageInfo getUserList(int limit, int page) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
@@ -140,11 +141,10 @@ public class UserController {
 		service.updateUser(user2);
 	}
 
-	@RequestMapping("/getUserByVideoId")
+	@RequestMapping(value="/user/videoId/{videoId}",method=RequestMethod.GET)
 	@ResponseBody
-	public User getUserByVideoId(String id) {
-		System.out.println(service.getUserByVideoId(id).getName());
-		return service.getUserByVideoId(id);
+	public User getUserByVideoId(@PathVariable String videoId) {
+		return service.getUserByVideoId(videoId);
 	}
 
 }

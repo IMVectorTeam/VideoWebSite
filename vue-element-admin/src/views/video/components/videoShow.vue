@@ -57,7 +57,7 @@
     </el-row>
     <el-row :gutter="10">
       <el-col :span="13" :offset="4">
-        <span style="font-size: 30px;font-weight: bold">这里是视频名称</span>
+        <span style="font-size: 30px;font-weight: bold">这里是视频名称{{ videoItem.name }}</span>
         <el-rate
           v-model="value"
           style="float: right"
@@ -74,15 +74,15 @@
         <hr style="border: solid 0.5px #EBEEF5">
         <el-row :gutter="20">
           <el-col :span="2">
-            <img class="headImage" src="@/assets/videoImage/hamburger.png" >
+            <img :src="videoUserItem.image" class="headImage" >
           </el-col>
           <el-col :span="22">
             <el-row :gutter="10">
-              <span>作者昵称</span>
+              <span>作者昵称:{{ videoUserItem.name }}</span>
             </el-row>
             <br>
             <el-row :gutter="10">
-              <span>自我介绍哦</span>
+              <span>自我介绍哦: {{ videoUserItem.introduce }}</span>
             </el-row>
           </el-col>
           <el-row :gutter="10"/>
@@ -164,7 +164,7 @@
       </el-col>
     </el-row>
 
-    <el-row v-for="i in 20" :key="i" :gutter="10">
+    <el-row v-for="(item, index) in videoCommentList" :key="index" :gutter="10">
       <el-col :span="16" :offset="4">
 
         <hr style="border: solid 0.5px #EBEEF5">
@@ -178,7 +178,12 @@
             </el-row>
             <br>
             <el-row :gutter="10">
-              <span>评论信息</span>
+              <!--private String id;-->
+              <!--private String videoId ;-->
+              <!--private String userId;-->
+              <!--private String content;-->
+              <!--private Date date;-->
+              <span>{{ item.content }}</span>
             </el-row>
           </el-col>
         </el-row>
@@ -228,7 +233,10 @@ export default {
     console.log(store.getters.userInfo)
     this.pageLoading = true
     await this.getVideoItem({ uuid: this.$route.params.id }).then(() => {
-      console.log(this.videoItem)
+      // 查询作者信息
+      this.getUserByVideoId({ videoId: this.videoItem.id })
+      // console.log(this.videoItem)
+      // 查询评论信息
       this['setVideoCommentListQuery']({ usingKey: true, k: 'page', v: 1 })
       this['setVideoCommentListQuery']({ usingKey: true, k: 'limit', v: 10 })
       this['setVideoCommentListQuery']({ usingKey: true, k: 'videoId', v: this.videoItem.id })

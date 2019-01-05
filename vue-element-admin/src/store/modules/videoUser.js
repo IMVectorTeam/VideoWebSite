@@ -1,4 +1,4 @@
-import { videoUserOp } from '@/api/video'
+import { videoUserOp, videoUserByVideoIdOp } from '@/api/video'
 import { Message, Notification } from 'element-ui'
 import Vue from 'vue'
 
@@ -99,7 +99,17 @@ const actions = {
         })
       }
     })
+  },
+  getUserByVideoId({ commit, state }, { videoId, config }) {
+    console.log(videoId)
+    return videoUserByVideoIdOp.retrieve(videoId, config).then(res => {
+      res = res.data
+      res.is_valid = true
+      console.log(res)
+      commit('setVideoUserItem', res)
+    })
   }
+
 }
 
 export default {
