@@ -33,13 +33,13 @@
 		#{category},#{state},#{userId},#{date})
 	</insert>
 
-	<!-- 根据视频类别名称查询视频 -->
+	<!-- 根据视频类别名称模糊查询视频 -->
 	<select id="getVideoByCategoryName"
 		parameterType="java.lang.String" resultMap="videoMap"
 		resultType="com.niit.entity.Video">
 		SELECT VID,VName,VImage,Vaddress,Vtime,CName as VCategory,Vstate,UName as VUserID,VDate 
 		FROM videos v,videocategory c,users u
-		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND c.CName = #{name}
+		WHERE c.CID = v.VCategory AND v.VUserID = u.UID AND c.CName LIKE "%"#{name}"%"
 	</select>
 
 	<!-- 查询所有视频 -->
@@ -50,7 +50,7 @@
 		WHERE c.CID = v.VCategory AND v.VUserID = u.UID
 	</select>
 
-	<!-- 模糊查询视频 -->
+	<!-- 根据视频名字模糊查询视频 -->
 	<select id="getVideoListByLikeName"
 		parameterType="java.lang.String" resultType="com.niit.entity.Video"
 		resultMap="videoMap">

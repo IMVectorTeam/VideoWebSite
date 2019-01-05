@@ -44,4 +44,9 @@ public class UserService {
 	public User getUserByVideoId(String id) {
 		return userDao.getUserByVideoId(id);
 	}
+	
+	//根据用户名模糊查询用户
+	public List<User> getUserByLikeName(String name){
+		return userDao.getUserByLikeName(name);
+	}
 }

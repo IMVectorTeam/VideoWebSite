@@ -28,7 +28,7 @@ public class VideoService {
 		return videoDao.getVideoList();
 	}	
 	
-	//模糊查询
+	//根据视频名模糊查询视频
 	public List<Video> getVideoListByLikeName(String name){
 		System.out.println(videoDao.getVideoListByLikeName(name).get(0).getCategory());
 		return videoDao.getVideoListByLikeName(name);
