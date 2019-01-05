@@ -208,11 +208,13 @@ const actions = {
       commit('setVideoForm', { reset: true })
     })
   },
-  async getVideoListByType({ commit, state }, videoType) {
+  async getVideoListByType({ commit, state }, { page, limit, videoType }) {
+    console.log(page)
+    console.log(limit)
     console.log(videoType)
 
-    Vue.set(state.videoListByTypeQuery, 'page', 1)
-    Vue.set(state.videoListByTypeQuery, 'limit', 6)
+    Vue.set(state.videoListByTypeQuery, 'page', page)
+    Vue.set(state.videoListByTypeQuery, 'limit', limit)
     Vue.set(state.videoListByTypeQuery, 'videoType', videoType)
     const query = JSON.parse(JSON.stringify(state.videoListByTypeQuery))
 
@@ -224,6 +226,14 @@ const actions = {
         limit: res.pageSize
       })
       console.log(state.videoList)
+    })
+  },
+  getVideoItem({ commit, state }, { uuid, config }) {
+    return videoOp.retrieve(uuid, config).then(res => {
+      res = res.data
+      res.is_valid = true
+      console.log(res)
+      commit('setVideoItem', { item: res })
     })
   }
 }

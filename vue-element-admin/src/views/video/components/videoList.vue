@@ -16,9 +16,19 @@
         <el-card :body-style="{ padding: '0px' }">
           <img :src="item.image" class="image">
           <div style="padding: 14px;">
-            <span>好吃的汉堡</span>
+            <span>{{ item.name }}</span>
             <div class="bottom clearfix">
-              <!--<time class="time">{{ item. }}</time>-->
+              <!--private String id;-->
+              <!--private String name;-->
+              <!--private String image;-->
+              <!--private String address;-->
+              <!--private String time;-->
+              <!--private String category;-->
+              <!--private String state;-->
+              <!--private String userId;-->
+              <!--private Date   date;-->
+              <time v-if="item.date" class="time">{{ item.date }}</time>
+              <time v-else class="time">上传时间记不清了~</time>
               <!--<el-button type="text" class="button">操作按钮</el-button>-->
             </div>
           </div>
@@ -59,7 +69,7 @@ export default {
   },
   methods: {
     handleMore() {
-      this.$router.push({ path: '/classified-video' })
+      this.$router.push({ path: `/classified-video/${this.title}` })
     }
   }
 }

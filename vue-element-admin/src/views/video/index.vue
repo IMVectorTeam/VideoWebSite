@@ -85,30 +85,30 @@ export default {
     }
   },
   created() {
-    this.pageLoading = true
-    this.pageLoading = false
-    this.getVideoListByType('今日焦点').then(() => {
+    // this.pageLoading = true
+    // this.pageLoading = false
+    this.getVideoListByType({ page: 1, limit: 6, videoType: '今日焦点' }).then(() => {
       console.log(this.videoList)
       this.videoList.forEach(item => {
         this.hotSpotList.push(item)
       })
     })
-    this.getVideoListByType('综艺娱乐').then(() => {
+    this.getVideoListByType({ page: 1, limit: 6, videoType: '综艺娱乐' }).then(() => {
       this.videoList.forEach(item => {
         this.entertainmentList.push(item)
       })
     })
-    this.getVideoListByType('电视剧').then(() => {
+    this.getVideoListByType({ page: 1, limit: 6, videoType: '电视剧' }).then(() => {
       this.videoList.forEach(item => {
         this.TVSeriesList.push(item)
       })
     })
-    this.getVideoListByType('电影').then(() => {
+    this.getVideoListByType({ page: 1, limit: 6, videoType: '电影' }).then(() => {
       this.videoList.forEach(item => {
         this.moviesList.push(item)
       })
     })
-    console.log(this.videoList)
+    // console.log(this.videoList)
     // Promise.all([])
     // this.getVideoList().then(() => {
     //   this.pageLoading = false

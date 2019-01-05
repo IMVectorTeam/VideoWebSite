@@ -1,5 +1,5 @@
 <template xmlns:el-col="http://www.w3.org/1999/html">
-  <div class="app-container">
+  <div v-loading="pageLoading" class="app-container">
     <el-menu :default-active="activeIndex" style="margin-top: -20px;" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
@@ -206,15 +206,27 @@
 </template>
 
 <script>
+import Data from '@/views/video/mixin/Data'
 export default {
   name: 'VideoShow',
+  mixins: [Data],
   data() {
     return {
       value: 3.7,
-      currentPage4: 4
+      currentPage4: 4,
+      activeIndex: '4',
+      pageLoading: false
     }
   },
+  async create() {
+    this.pageLoading = true
+    await this.getVideoItem(this.$route.params.id).then(() => {
+      console.log('++++++++++++')
+      this.pageLoading = false
+    })
+  },
   methods: {
+    handleSelect() {},
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`)
     },

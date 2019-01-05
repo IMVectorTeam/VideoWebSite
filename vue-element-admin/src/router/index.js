@@ -59,6 +59,20 @@ export const constantRouterMap = [
     meta: { title: '账户管理', icon: 'people', roles: ['admin', 'editor'] }
   },
   {
+    path: '/video-show/:id',
+    component: () => import('@/views/video/components/videoShow'),
+    name: 'videoShow',
+    meta: {
+      title: '视频播放', icon: 'videoShow', roles: ['admin', 'editor'] }
+  },
+  {
+    path: '/classified-video/:title',
+    component: () => import('@/views/video/components/classifiedVideo'),
+    name: 'classifiedVideo',
+    meta: {
+      title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'editor'] }
+  },
+  {
     path: '/auth-redirect',
     component: () => import('@/views/login/authredirect'),
     hidden: true
@@ -113,20 +127,20 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-  {
-    path: '/video-show',
-    component: () => import('@/views/video/components/videoShow'),
-    name: 'videoShow',
-    meta: {
-      title: '视频播放', icon: 'videoShow', roles: ['admin', 'editor'] }
-  },
-  {
-    path: '/classified-video',
-    component: () => import('@/views/video/components/classifiedVideo'),
-    name: 'classifiedVideo',
-    meta: {
-      title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'editor'] }
-  },
+  // {
+  //   path: '/video-show',
+  //   component: () => import('@/views/video/components/videoShow'),
+  //   name: 'videoShow',
+  //   meta: {
+  //     title: '视频播放', icon: 'videoShow', roles: ['admin', 'editor'] }
+  // },
+  // {
+  //   path: '/classified-video/:title',
+  //   component: () => import('@/views/video/components/classifiedVideo'),
+  //   name: 'classifiedVideo',
+  //   meta: {
+  //     title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'editor'] }
+  // },
   {
     path: '/video-upload',
     component: () => import('@/views/video/components/uploadVideo'),

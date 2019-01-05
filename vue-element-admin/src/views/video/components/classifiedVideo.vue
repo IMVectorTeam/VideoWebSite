@@ -50,29 +50,40 @@
     </el-row>
     <br>
     <el-row :gutter="10">
-      <el-col :span="16" offset="4">
+      <el-col :span="16" :offset="4">
         <el-row :gutter="10">
           <!-----------------------------------视频列表------------------------------------->
           <el-col :span="16">
-            <el-row v-for="i in 10" :key="i" :gutter="10">
-              <el-col v-for="i in 2" :key="i" :span="12">
+            <el-row v-for="(item, index) in list" :key="index" :gutter="10">
+              <el-col v-for="(children,cIndex) in item" :key="cIndex" :span="12">
 
                 <el-card :body-style="{ padding: '0px' }">
                   <el-row :gutter="10">
                     <el-col :span="8">
-                      <img src="@/assets/videoImage/hamburger.png" class="image">
+                      <img :src="children.image" class="image" @click="showVideo(children.id)">
                       <br>
                       <br>
                     </el-col>
                     <el-col :span="16">
                       <div style="padding: 14px;">
-                        <span>视频名称</span>
+                        <span @click="showVideo(children.id)">视频名称:{{ children.name }}</span>
                       </div>
                       <div style="padding: 14px;">
-                        <span>视频介绍</span>
+                        <span>视频介绍: {{ children.status }}</span>
                       </div>
                       <div style="padding: 14px;color: #909399;">
-                        <span>视频作者昵称</span>
+                        <span>视频作者昵称{{ children.userId }}</span>
+                        <span>视频作者昵称{{ index +'-'+ cIndex }}</span>
+                        <!--private String id;-->
+                        <!--private String name;-->
+                        <!--private String image;-->
+                        <!--private String address;-->
+                        <!--private String time;-->
+                        <!--private String category;-->
+                        <!--private String state;-->
+                        <!--private String userId;-->
+                        <!--private Date   date;-->
+
                       </div>
                     </el-col>
                   </el-row>
@@ -100,7 +111,7 @@
         <el-row :gutter="10">
           <el-col :span="16">
             <el-pagination
-              :current-page="currentPage4"
+              :current-page="4"
               :page-sizes="[100, 200, 300, 400]"
               :page-size="100"
               :total="400"
@@ -117,8 +128,46 @@
 </template>
 
 <script>
+import Data from '@/views/video/mixin/Data'
 export default {
-  name: 'ClassifiedVideo'
+  name: 'ClassifiedVideo',
+  mixins: [Data],
+  data() {
+    return {
+      activeIndex: '1',
+      list: [[]]
+
+    }
+  },
+  created() {
+    this.getVideoListByType({ page: 1, limit: 10, videoType: this.$route.params.title }).then(() => {
+      console.log(this.videoList)
+      var i = 0
+
+      this.videoList.forEach((item, index) => {
+        if (index % 2 === 0 && index !== 0) {
+          i++
+        }
+        if (this.list[i]) {
+          this.list[i].push(item)
+        } else {
+          this.list[i] = []
+          this.list[i].push(item)
+        }
+      })
+      console.log(this.list)
+    })
+  },
+  methods: {
+    showVideo(id) {
+      this.$router.push({ path: `/video-show/${id}` })
+    },
+    handleSelect() {
+
+    },
+    handleSizeChange() {},
+    handleCurrentChange() {}
+  }
 }
 </script>
 
@@ -143,7 +192,9 @@ export default {
   }
 
   .image {
-    width: 100%;
+    /*width: 100%;*/
+    width:120px;
+    height:120px;
     display: block;
     border-radius: 15%;
     padding: 10px;

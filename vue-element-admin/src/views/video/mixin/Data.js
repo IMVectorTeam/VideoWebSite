@@ -8,6 +8,7 @@ export default {
     ...mapActions({
       getVideoList: 'video/getVideoList',
       createVideo: 'video/createVideo',
+      getVideoItem: 'video/getVideoItem',
       getVideoTypeList: 'video/getVideoTypeList',
       getVideoListByType: 'video/getVideoListByType'
     }),
