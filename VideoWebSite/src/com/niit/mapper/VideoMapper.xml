@@ -62,7 +62,7 @@
 	
 <!-- 插入单个视频 -->
     <insert id="insertVideo" parameterType="com.niit.entity.Video">
-		INSERT INTO videos(VID, VName, VImage, VAddress, VTime, VCategory, VState)
+		INSERT INTO videos(VID, VName, VImage, VAddress, VTime, VCategory, VState, VUserID, VDate)
 		VALUES(#{id}, #{name}, #{image}, #{address}, #{time}, #{category},#{state},#{userId},#{date})
 	</insert>
 	

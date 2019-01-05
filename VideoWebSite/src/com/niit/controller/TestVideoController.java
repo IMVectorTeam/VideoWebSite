@@ -70,6 +70,8 @@ public class TestVideoController {
 		video2.setTime("35");		
 		video2.setCategory("1");
 		video2.setState("");
+		video2.setUserId("1");
+		video2.setDate(new Date());
 		videoService.updateVideo(video2);
 	}
 	
