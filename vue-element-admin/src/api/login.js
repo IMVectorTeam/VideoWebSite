@@ -24,7 +24,7 @@ export function logout() {
 
 export function getUserInfo(token) {
   return request({
-    url: '/user/info',
+    url: '/VideoWebSite/user/infomation',
     method: 'get',
     params: { token }
   })

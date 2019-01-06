@@ -159,7 +159,7 @@ export const asyncRouterMap = [
     path: '/admin',
     component: Layout,
     redirect: 'index',
-    meta: { title: '资源管理', icon: 'manage', roles: ['admin', 'user'] },
+    meta: { title: '资源管理', icon: 'manage', roles: ['admin'] },
     children: [
       {
         path: 'index',

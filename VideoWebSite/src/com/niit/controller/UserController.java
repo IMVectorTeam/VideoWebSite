@@ -1,5 +1,6 @@
 package com.niit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,14 +27,16 @@ public class UserController {
 
 	
 	
-	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/infomation", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelMap getUserById(@RequestBody String token) {
+	public ModelMap getUserById(String token) {
 		ModelMap map = new ModelMap();
 		User userLocal = service.getUser(token);
 		map.addAttribute("data", userLocal);
 		map.addAttribute("token", userLocal.getId());
-		map.addAttribute("roles", "user");
+		List<String> list=new ArrayList();
+		list.add("user");
+		map.addAttribute("roles", list);
 		return map;
 	}
 	
@@ -57,7 +60,9 @@ public class UserController {
 		}
 //		String token = UUID.randomUUID().toString().substring(0, 16);
 		map.addAttribute("token", userLocal.getId());
-		map.addAttribute("roles", "user");
+		List<String> list=new ArrayList();
+		list.add("user");
+		map.addAttribute("roles", list);
 		return map;
 	}
 	

@@ -1,4 +1,4 @@
-import { loginByUsername, logout, getUserInfo } from '@/api/login'
+import { loginByUsername, getUserInfo } from '@/api/login' // logout,
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { Message } from 'element-ui'
 const userForm = {
@@ -76,8 +76,8 @@ const user = {
           console.log(map)
           console.log('++++++++++++++++++用户信息+++++++++++++++++')
           if (map.flag === true) {
-            // commit('SET_TOKEN', map.token)
-            commit('SET_TOKEN', 'admin')
+            commit('SET_TOKEN', map.token)
+            // commit('SET_TOKEN', 'admin')
             setToken(response.data.token)
             commit('SET_ID', map.data.id)
             commit('SET_NAME', map.data.name)
@@ -140,14 +140,18 @@ const user = {
     // 登出
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
-          commit('SET_ROLES', [])
-          removeToken()
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        commit('SET_TOKEN', '')
+        commit('SET_ROLES', [])
+        removeToken()
+        resolve()
+        // logout(state.token).then(() => {
+        //   commit('SET_TOKEN', '')
+        //   commit('SET_ROLES', [])
+        //   removeToken()
+        //   resolve()
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 

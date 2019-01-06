@@ -48,6 +48,13 @@ export default {
   created() {
     console.log(store.getters.token)
     console.log(store.getters.userInfo)
+    if (this.avatar && this.userName) {
+      sessionStorage.setItem('avatar', store.getters.userInfo.image)
+      sessionStorage.setItem('userName', store.getters.userInfo.name)
+    }
+
+    this.avatar = sessionStorage.getItem('avatar')
+    this.userName = sessionStorage.getItem('userName')
     // this.pageLoading = true
     // this.pageLoading = false
     // console.log(this.videoList)
