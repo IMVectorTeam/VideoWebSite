@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf08df97-5d5f-474a-8fef-eb2aca42e431" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modules/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modules/videoUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/videoUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/video/components/videoShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/components/videoShow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/video/mixin/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/video/mixin/Data.js" afterDir="false" />
-    </list>
+    <list default="true" id="bf08df97-5d5f-474a-8fef-eb2aca42e431" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -23,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/modules/video.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
+            <state relative-caret-position="4351">
               <caret line="231" column="14" selection-start-line="231" selection-start-column="2" selection-end-line="231" selection-end-column="14" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
@@ -35,11 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/modules/videoUser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
+            <state relative-caret-position="1938">
               <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -47,7 +37,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/video.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
+            <state relative-caret-position="570">
               <caret line="30" column="33" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="33" />
             </state>
           </provider>
@@ -92,7 +82,6 @@
                 <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#4;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#hr#0;n#el-col#0;n#el-row#6;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#el-row#7;n#div#0;n#template#0;n#!!top" />
-                <element signature="e#7055#7098#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/video/components/uploadVideo.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
+            <state relative-caret-position="1786">
               <caret line="136" selection-start-line="136" selection-end-line="136" selection-end-column="27" />
               <folding>
                 <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -298,6 +287,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -373,7 +363,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -471,15 +460,15 @@
       <workItem from="1546610379140" duration="7199000" />
       <workItem from="1546654077852" duration="18980000" />
       <workItem from="1546697598424" duration="2053000" />
+      <workItem from="1546741165292" duration="49000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146317000" />
+    <option name="totallyTimeSpent" value="146366000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="979" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2317009" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -798,12 +787,65 @@
     <entry file="file://$PROJECT_DIR$/src/views/video/adminIndex.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/modules/video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4351">
+          <caret line="231" column="14" selection-start-line="231" selection-start-column="2" selection-end-line="231" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/modules/videoUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="33" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/mixin/Data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="53" lean-forward="true" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/video/components/videoList.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1349">
           <caret line="71" column="53" selection-start-line="71" selection-start-column="53" selection-end-line="71" selection-end-column="53" />
           <folding>
             <element signature="n#style#0;n#el-button#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/video/components/uploadVideo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1786">
+          <caret line="136" selection-start-line="136" selection-end-line="136" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-select#0;n#el-form-item#1;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-upload#0;n#el-form-item#2;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#video#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-progress#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#el-button#0;n#el-form-item#4;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#style#0;n#el-table#0;n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -842,62 +884,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
           <caret line="61" column="22" lean-forward="true" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/components/uploadVideo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="136" selection-start-line="136" selection-end-line="136" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#el-menu-item#2;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-submenu#1;n#el-menu#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-select#0;n#el-form-item#1;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-upload#0;n#el-form-item#2;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#video#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-progress#0;n#el-upload#0;n#el-form-item#3;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#el-button#0;n#el-form-item#4;n#el-form#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" />
-            <element signature="n#style#0;n#el-table#0;n#el-col#1;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/modules/video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="231" column="14" selection-start-line="231" selection-start-column="2" selection-end-line="231" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/video/mixin/Data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="53" lean-forward="true" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/modules/videoUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

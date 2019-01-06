@@ -11,7 +11,6 @@
 
       <div class="title-container">
         <h3 class="title">注册用户</h3>
-        <!--<lang-select class="set-language"/>-->
       </div>
 
       <el-form-item prop="email">

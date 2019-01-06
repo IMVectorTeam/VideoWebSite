@@ -134,7 +134,7 @@ const mutations = {
     state.videoCommentItem = value
   },
   setVideoCommentListQuery(state, { config, usingKey = false, k, v }) {
-    console.log(config)
+    // console.log(config)
     if (!usingKey) {
       state.videoCommentListQuery = { ...state.videoCommentListQuery, ...config }
     } else {
@@ -151,7 +151,7 @@ const actions = {
   async getVideoList({ commit, state }) {
     await videoOp.list(state.videoListQuery).then((res) => {
       // console.log(res)
-      console.log(res)
+      // console.log(res)
       res = res.data
       commit('setVideoList', {
         list: res.list,
@@ -177,7 +177,7 @@ const actions = {
   async getVideoCommentList({ commit, state }) {
     await videoCommentOp.list(state.videoCommentListQuery).then((res) => {
       // console.log(res)
-      console.log(res)
+      // console.log(res)
       res = res.data
       commit('setVideoCommentList', {
         list: res.list,
@@ -226,15 +226,15 @@ const actions = {
         page: res.pageNum,
         limit: res.pageSize
       })
-      console.log(state.videoList)
+      // console.log(state.videoList)
     })
   },
   getVideoItem({ commit, state }, { uuid, config }) {
-    console.log(uuid)
+    // console.log(uuid)
     return videoOp.retrieve(uuid, config).then(res => {
       res = res.data
       res.is_valid = true
-      console.log(res)
+      // console.log(res)
       commit('setVideoItem', res)
     })
   }

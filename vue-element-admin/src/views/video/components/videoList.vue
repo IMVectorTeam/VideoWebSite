@@ -14,7 +14,7 @@
     <el-row :gutter="10">
       <el-col v-for="item in videoData" :span="4" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="item.image" class="image">
+          <img :src="item.image" class="image" @click="showVideo(item.id)">
           <div style="padding: 14px;">
             <span>{{ item.name }}</span>
             <div class="bottom clearfix">
@@ -70,6 +70,9 @@ export default {
   methods: {
     handleMore() {
       this.$router.push({ path: `/classified-video/${this.title}` })
+    },
+    showVideo(id) {
+      this.$router.push({ path: `/video-show/${id}` })
     }
   }
 }

@@ -56,21 +56,21 @@ export const constantRouterMap = [
     path: '/index',
     component: () => import('@/views/video/index'),
     name: 'index',
-    meta: { title: '账户管理', icon: 'people', roles: ['admin', 'editor'] }
+    meta: { title: '账户管理', icon: 'people', roles: ['admin', 'user'] }
   },
   {
     path: '/video-show/:id',
-    component: () => import('@/views/video/components/videoShow'),
+    component: () => import('@/views/video/videoShow'),
     name: 'videoShow',
     meta: {
-      title: '视频播放', icon: 'videoShow', roles: ['admin', 'editor'] }
+      title: '视频播放', icon: 'videoShow', roles: ['admin', 'user'] }
   },
   {
     path: '/classified-video/:title',
-    component: () => import('@/views/video/components/classifiedVideo'),
+    component: () => import('@/views/video/classifiedVideo'),
     name: 'classifiedVideo',
     meta: {
-      title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'editor'] }
+      title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'user'] }
   },
   {
     path: '/auth-redirect',
@@ -143,23 +143,23 @@ export const asyncRouterMap = [
   // },
   {
     path: '/video-upload',
-    component: () => import('@/views/video/components/uploadVideo'),
+    component: () => import('@/views/video/uploadVideo'),
     name: 'uploadVideo',
     meta: {
-      title: '视频上传', icon: 'uploadVideo', roles: ['admin', 'editor'] }
+      title: '视频上传', icon: 'uploadVideo', roles: ['admin', 'user'] }
   },
   {
     path: '/personal-center',
-    component: () => import('@/views/video/components/personalCenter'),
+    component: () => import('@/views/video/personalCenter'),
     name: 'personnelCenter',
     meta: {
-      title: '个人中心', icon: 'uploadVideo', roles: ['admin', 'editor'] }
+      title: '个人中心', icon: 'uploadVideo', roles: ['admin', 'user'] }
   },
   {
     path: '/admin',
     component: Layout,
     redirect: 'index',
-    meta: { title: '资源管理', icon: 'manage', roles: ['admin', 'editor'] },
+    meta: { title: '资源管理', icon: 'manage', roles: ['admin', 'user'] },
     children: [
       {
         path: 'index',
@@ -191,7 +191,7 @@ export const asyncRouterMap = [
     path: '/admin-role-manage',
     component: Layout,
     redirect: 'index',
-    meta: { title: '权限管理', icon: 'manage', roles: ['admin', 'editor'] },
+    meta: { title: '权限管理', icon: 'manage', roles: ['admin', 'user'] },
     children: [
       {
         path: 'index',

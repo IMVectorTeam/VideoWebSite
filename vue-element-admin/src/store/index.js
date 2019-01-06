@@ -8,10 +8,16 @@ import user from './modules/user'
 import getters from './getters'
 import videoUser from './modules/videoUser'
 import video from './modules/video'
-
+// import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  // 使用sessionStorge 加密路刷新会出现问题
+  // plugins: [createPersistedState({
+  //   storage: window.sessionStorage
+  // })],
+  // 默认使用localStorge 加密路刷新会出现问题
+  // plugins: [createPersistedState()],
   modules: {
     app,
     errorLog,

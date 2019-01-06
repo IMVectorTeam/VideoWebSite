@@ -24,6 +24,19 @@ public class UserController {
 	@Autowired
 	UserService service;
 
+	
+	
+	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
+	@ResponseBody
+	public ModelMap getUserById(@RequestBody String token) {
+		ModelMap map = new ModelMap();
+		User userLocal = service.getUser(token);
+		map.addAttribute("data", userLocal);
+		map.addAttribute("token", userLocal.getId());
+		map.addAttribute("roles", "user");
+		return map;
+	}
+	
 	@RequestMapping(value = "/user/valid", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap getUserByemail(@RequestBody User user) {
@@ -43,8 +56,8 @@ public class UserController {
 			map.addAttribute("flag", false);
 		}
 //		String token = UUID.randomUUID().toString().substring(0, 16);
-		String token ="admin";
-		map.addAttribute("token", token);
+		map.addAttribute("token", userLocal.getId());
+		map.addAttribute("roles", "user");
 		return map;
 	}
 	

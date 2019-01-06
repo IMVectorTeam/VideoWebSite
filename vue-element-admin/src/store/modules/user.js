@@ -76,7 +76,8 @@ const user = {
           console.log(map)
           console.log('++++++++++++++++++用户信息+++++++++++++++++')
           if (map.flag === true) {
-            commit('SET_TOKEN', map.token)
+            // commit('SET_TOKEN', map.token)
+            commit('SET_TOKEN', 'admin')
             setToken(response.data.token)
             commit('SET_ID', map.data.id)
             commit('SET_NAME', map.data.name)

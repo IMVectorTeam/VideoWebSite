@@ -1,6 +1,7 @@
 <template>
   <div v-loading="pageLoading">
-    <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
+    <nav-menu :active-index="'3'"/>
+    <!-- <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
@@ -19,7 +20,7 @@
         <el-menu-item index="5-1" @click="handlePersonalCenter">个人中心</el-menu-item>
         <el-menu-item index="5-2" @click="logout">退出登录</el-menu-item>
       </el-submenu>
-    </el-menu>
+    </el-menu> -->
     <div style="height: 160px;width: 100%;background: url('src/assets/videoImage/head.png') no-repeat;background-size: 100% 100%;"/>
     <br>
     <br>
@@ -135,9 +136,11 @@
 <script>
 import Data from '@/views/video/mixin/Data'
 import store from '@/store'
+import navMenu from '@/views/video/components/navMenu'
 import { mapMutations } from 'vuex'
 export default {
   name: 'UploadVideo',
+  components: { navMenu },
   mixins: [Data],
   data() {
     return {

@@ -4,8 +4,8 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">{{ $t('login.title') }}</h3>
-        <lang-select class="set-language"/>
+        <h3 class="title">用户登录</h3>
+        <!-- <lang-select class="set-language"/> -->
       </div>
 
       <el-form-item prop="username">
@@ -128,7 +128,6 @@ export default {
     },
     handleRegister() {
       this.$router.push({ path: '/register' })
-      console.log('++++++++')
     }
   }
 }
