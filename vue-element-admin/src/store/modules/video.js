@@ -1,5 +1,5 @@
 import { Message, Notification } from 'element-ui'
-import { videoOp, videoTypeOp, videoCommentOp, videoByTypeOp } from '@/api/video'
+import { videoOp, videoTypeOp, videoCommentOp, videoByTypeOp, videoUserIdOP } from '@/api/video'
 import Vue from 'vue'
 
 export const defaultVideoForm = {
@@ -226,16 +226,23 @@ const actions = {
         page: res.pageNum,
         limit: res.pageSize
       })
-      // console.log(state.videoList)
     })
   },
   getVideoItem({ commit, state }, { uuid, config }) {
-    // console.log(uuid)
     return videoOp.retrieve(uuid, config).then(res => {
       res = res.data
       res.is_valid = true
-      // console.log(res)
       commit('setVideoItem', res)
+    })
+  },
+  async getVideoByUserId({ commit, state }, { userId, page, limit }) {
+    await videoUserIdOP.list({ userId, page, limit }).then((res) => {
+      res = res.data
+      commit('setVideoList', {
+        list: res.list,
+        page: res.pageNum,
+        limit: res.pageSize
+      })
     })
   }
 }

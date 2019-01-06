@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" >
+<style rel="stylesheet/scss" lang="scss" scoped>
 .box-card-component{
   .el-card__header {
     padding: 0px!important;

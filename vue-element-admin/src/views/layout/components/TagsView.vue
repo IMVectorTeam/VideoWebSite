@@ -212,7 +212,7 @@ export default {
 }
 </style>
 
-<style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss" scoped>
 //reset element css of el-icon-close
 .tags-view-wrapper {
   .tags-view-item {

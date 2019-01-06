@@ -13,8 +13,11 @@ export default {
       getVideoTypeList: 'video/getVideoTypeList',
       getVideoListByType: 'video/getVideoListByType',
       getVideoCommentList: 'video/getVideoCommentList',
-      getUserByVideoId: 'videoUser/getUserByVideoId'
+      getUserByVideoId: 'videoUser/getUserByVideoId',
+      updateVideoUser: 'videoUser/updateVideoUser',
+      getVideoByUserId: 'video/getVideoByUserId'
     }),
-    ...mapMutations('video', ['setVideoList', 'setVideoListQuery', 'setVideoCommentListQuery'])
+    ...mapMutations('video', ['setVideoList', 'setVideoListQuery', 'setVideoCommentListQuery']),
+    ...mapMutations('videoUser', ['setVideoUserForm'])
   }
 }

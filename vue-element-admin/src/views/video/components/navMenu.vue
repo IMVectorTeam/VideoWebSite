@@ -51,8 +51,10 @@ export default {
     if (this.avatar && this.userName) {
       sessionStorage.setItem('avatar', store.getters.userInfo.image)
       sessionStorage.setItem('userName', store.getters.userInfo.name)
+      sessionStorage.setItem('userId', store.getters.userInfo.id)
+      sessionStorage.setItem('userEmail', store.getters.userInfo.email)
+      sessionStorage.setItem('userInfo', JSON.stringify(store.getters.userInfo))
     }
-
     this.avatar = sessionStorage.getItem('avatar')
     this.userName = sessionStorage.getItem('userName')
     // this.pageLoading = true
@@ -80,6 +82,8 @@ export default {
     },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
+        sessionStorage.setItem('avatar', '')
+        sessionStorage.setItem('userName', '')
         location.reload()// In order to re-instantiate the vue-router object to avoid bugs
         this.$router.push({ path: '/login' })
       })

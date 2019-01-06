@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -170,9 +171,13 @@ public class TestVideoController {
 	}
 
 	//pky根据用户id查询该用户的所有的上传的视频
-	@RequestMapping("/getVideoListByUserId")
-	public List<Video> getVideoListByUserId(String id) {
-		return videoService.getVideoListByUserId(id);
+	@RequestMapping("/video/userId/")
+	@ResponseBody
+	public PageInfo getVideoListByUserId(String userId,int page,int limit) {
+		PageHelper.startPage(page, limit);
+		List<Video> list=videoService.getVideoListByUserId(userId);
+		PageInfo info=new PageInfo(list);
+		return info;
 	}
 
 

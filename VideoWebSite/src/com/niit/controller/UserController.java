@@ -144,19 +144,22 @@ public class UserController {
 		}
 		return flag;
 	}
-	
-	@RequestMapping("/updateUser")
+//	http://127.0.0.1:9080/api/VideoWebSite/user/20154070/
+	@RequestMapping(value="/user/{id}",method=RequestMethod.PATCH)
 	@ResponseBody
-	public void updateUser(User user) {
-		User user2 = new User();
-		user2.setId("20154076");
-		user2.setName("老张32");
-		user2.setPassword("123456");
-		user2.setSex("男");
-		user2.setEmail("1234@qq.com");
-		user2.setImage("");
-		user2.setIntroduce("bbb");
-		service.updateUser(user2);
+	public ModelMap updateUser(@RequestBody User user,@PathVariable String id) {
+		Boolean flag=false;
+		try {
+			user.setPassword(MD5Utils.md5(user.getPassword()));
+			service.updateUser(user);
+			flag=true;
+		} catch (Exception e) {
+			flag=false;
+			System.out.println(e);
+		}
+		ModelMap map=new ModelMap();
+		map.addAttribute("flag", flag);
+		return map;
 	}
 
 	@RequestMapping(value="/user/videoId/{videoId}",method=RequestMethod.GET)

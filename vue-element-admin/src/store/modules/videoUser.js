@@ -94,10 +94,21 @@ const actions = {
       } else {
         Notification({
           title: '失败',
-          message: '供应商创建失败',
+          message: '注册失败',
           type: 'warning'
         })
       }
+    })
+  },
+  updateVideoUser({ commit, dispatch, state, rootState }, uuid) {
+    // if (uuid === undefined) uuid = state.videoUser.uuid
+    return videoUserOp.update(state.videoUserForm, uuid).then(res => {
+      Notification({
+        title: '成功！',
+        message: '信息修改成功',
+        type: 'success'
+      })
+      commit('setVideoUserForm', { reset: true })
     })
   },
   getUserByVideoId({ commit, state }, { videoId, config }) {
