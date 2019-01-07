@@ -17,8 +17,10 @@
     <el-submenu style="float: right" index="5">
       <template slot="title">{{ userName }}</template>
       <el-menu-item index="5-1" @click="handlePersonalCenter">个人中心</el-menu-item>
-      <el-menu-item v-if="userName===''" index="5-1" @click="handleLogin">登录</el-menu-item>
+      <el-menu-item v-if="adminFlag" index="5-4" @click="handleAdminManage">后台管理</el-menu-item>
+      <el-menu-item v-if="userName===''" index="5-2" @click="handleLogin">登录</el-menu-item>
       <el-menu-item v-else index="5-3" @click="logout">退出登录</el-menu-item>
+
     </el-submenu>
   </el-menu>
 </template>
@@ -42,7 +44,8 @@ export default {
       pageLoading: false,
       //   activeIndex: '1',
       avatar: store.getters.userInfo.image,
-      userName: store.getters.userInfo.name
+      userName: store.getters.userInfo.name,
+      adminFlag: false
     }
   },
   created() {
@@ -57,6 +60,13 @@ export default {
     }
     this.avatar = sessionStorage.getItem('avatar')
     this.userName = sessionStorage.getItem('userName')
+    var roles = sessionStorage.getItem('roles')
+    roles = roles.split(',')
+    roles.forEach(element => {
+      if (element === 'admin') {
+        this.adminFlag = true
+      }
+    })
     // this.pageLoading = true
     // this.pageLoading = false
     // console.log(this.videoList)
@@ -77,6 +87,9 @@ export default {
     // })
   },
   methods: {
+    handleAdminManage() {
+      this.$router.push({ path: '/admin/index' })
+    },
     handleLogin() {
       this.$router.push({ path: '/login' })
     },
@@ -84,6 +97,7 @@ export default {
       this.$store.dispatch('LogOut').then(() => {
         sessionStorage.setItem('avatar', '')
         sessionStorage.setItem('userName', '')
+        sessionStorage.clear()
         location.reload()// In order to re-instantiate the vue-router object to avoid bugs
         this.$router.push({ path: '/login' })
       })

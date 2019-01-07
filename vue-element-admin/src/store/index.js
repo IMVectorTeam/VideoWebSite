@@ -8,6 +8,7 @@ import user from './modules/user'
 import getters from './getters'
 import videoUser from './modules/videoUser'
 import video from './modules/video'
+import comment from './modules/comment'
 // import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
@@ -25,7 +26,8 @@ const store = new Vuex.Store({
     tagsView,
     user,
     videoUser,
-    video
+    video,
+    comment
   },
   getters
 })

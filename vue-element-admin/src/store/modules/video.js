@@ -150,8 +150,6 @@ const actions = {
 
   async getVideoList({ commit, state }) {
     await videoOp.list(state.videoListQuery).then((res) => {
-      // console.log(res)
-      // console.log(res)
       res = res.data
       commit('setVideoList', {
         list: res.list,

@@ -48,6 +48,11 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/adminLogin',
+    component: () => import('@/views/login/adminLogin'),
+    hidden: true
+  },
+  {
     path: '/register',
     component: () => import('@/views/login/register'),
     hidden: true
@@ -171,19 +176,33 @@ export const asyncRouterMap = [
         path: 'user-manage',
         component: () => import('@/views/video/user/userManage'),
         name: 'userManage',
-        meta: { title: '用户管理', icon: 'manage', noCache: true }
+        meta: { title: '用户管理', icon: 'peoples', noCache: true }
+      },
+      {
+        path: 'user-info/:id',
+        component: () => import('@/views/video/user/userInfo'),
+        hidden: true,
+        name: 'userInfo',
+        meta: { title: '用户管理', icon: 'peoples', noCache: true }
       },
       {
         path: 'video-manage',
         component: () => import('@/views/video/video/videoManage'),
         name: 'videoManage',
-        meta: { title: '视频管理', icon: 'manage', noCache: true }
+        meta: { title: '视频管理', icon: 'video_', noCache: true }
+      },
+      {
+        path: 'video-info/:id',
+        component: () => import('@/views/video/video/videoInfo'),
+        hidden: true,
+        name: 'videoInfo',
+        meta: { title: '视频详情', icon: 'video_', noCache: true }
       },
       {
         path: 'comment-manage',
         component: () => import('@/views/video/comment/commentManage'),
         name: 'commentManage',
-        meta: { title: '评论管理', icon: 'manage', noCache: true }
+        meta: { title: '评论管理', icon: 'comment', noCache: true }
       }
     ]
   },

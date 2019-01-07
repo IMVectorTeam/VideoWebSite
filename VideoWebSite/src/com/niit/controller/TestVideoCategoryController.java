@@ -37,7 +37,8 @@ public class TestVideoCategoryController {
 		videoCategoryService.insertVideoCategory(videoCategory2);		
 	}
 	
-	@RequestMapping(value="/videoType",method=RequestMethod.GET)
+	// 查询所有视频类别
+	@RequestMapping(value="/videoType/list",method=RequestMethod.GET)
 	@ResponseBody
 	public List<VideoCategory> getVideoCategoryList(){	
 		return videoCategoryService.getVideoCategoryList();		

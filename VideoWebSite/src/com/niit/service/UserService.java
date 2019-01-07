@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.niit.mapper.AdministratorMapper;
 import com.niit.mapper.UserMapper;
+import com.niit.entity.Administrator;
 import com.niit.entity.User;
 
 
@@ -48,5 +49,12 @@ public class UserService {
 	//根据用户名模糊查询用户
 	public List<User> getUserByLikeName(String name){
 		return userDao.getUserByLikeName(name);
+	}
+	public void updateAdministrator(User administrator) {		
+		userDao.insertAdmin(administrator);
+	}
+	
+	public User getAdministratorByEmail(String email) {		
+		return userDao.getAdminByEmail(email);
 	}
 }

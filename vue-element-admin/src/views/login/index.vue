@@ -4,7 +4,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title" @click="handleAdminLogin">用户登录</h3>
         <!-- <lang-select class="set-language"/> -->
       </div>
 
@@ -103,6 +103,9 @@ export default {
     // window.removeEventListener('hashchange', this.afterQRScan)
   },
   methods: {
+    handleAdminLogin() {
+      this.$router.push({ path: '/adminLogin' })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''

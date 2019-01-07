@@ -13,6 +13,8 @@ public class Video {
 	private String state;
 	private String userId;
 	private Date   date;
+	private String userName;
+	private String categoryContent;
 	
 
 	public String getId() {
@@ -69,6 +71,18 @@ public class Video {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getCategoryContent() {
+		return categoryContent;
+	}
+	public void setCategoryContent(String categoryContent) {
+		this.categoryContent = categoryContent;
 	}
 	
 	

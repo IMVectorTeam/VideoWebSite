@@ -3,7 +3,8 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapGetters('video', ['videoList', 'videoItem', 'videoListQuery', 'videoForm', 'videoTypeList', 'videoCommentList', 'videoCommentListQuery']),
-    ...mapGetters('videoUser', ['videoUserItem'])
+    ...mapGetters('videoUser', ['videoUserItem']),
+    ...mapGetters('comment', ['commentList', 'commentItem'])
   },
   methods: {
     ...mapActions({
@@ -15,9 +16,16 @@ export default {
       getVideoCommentList: 'video/getVideoCommentList',
       getUserByVideoId: 'videoUser/getUserByVideoId',
       updateVideoUser: 'videoUser/updateVideoUser',
-      getVideoByUserId: 'video/getVideoByUserId'
+      getVideoByUserId: 'video/getVideoByUserId',
+      deleteVideo: 'video/deleteVideo',
+      getCommentList: 'comment/getCommentList',
+      getCommentByUserId: 'comment/getCommentByUserId',
+      createComment: 'comment/createComment',
+      deleteComment: 'comment/deleteComment',
+      getUserById: 'videoUser/getUserById'
     }),
     ...mapMutations('video', ['setVideoList', 'setVideoListQuery', 'setVideoCommentListQuery']),
-    ...mapMutations('videoUser', ['setVideoUserForm'])
+    ...mapMutations('videoUser', ['setVideoUserForm']),
+    ...mapMutations('comment', ['setCommentForm'])
   }
 }

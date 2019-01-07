@@ -119,6 +119,15 @@ const actions = {
       console.log(res)
       commit('setVideoUserItem', res)
     })
+  },
+  getUserById({ commit, state }, { userId, config }) {
+    console.log(userId)
+    return videoUserOp.retrieve(userId, config).then(res => {
+      res = res.data
+      res.is_valid = true
+      console.log(res)
+      commit('setVideoUserItem', res)
+    })
   }
 
 }

@@ -16,27 +16,32 @@
 	<select id="getMessageByVideoId"
 		parameterType="java.lang.String" resultMap="messageMap"
 		resultType="com.niit.entity.Message">
-		SELECT MID,VName as MVideoID,UName as MUserID, MContent,Mdate
+		select MID,MVideoID,MUserID,MContent,Mdate,UName as userName, VName as
+		videoName, UImage as image,UIntroduce as introduce 
 		FROM messages m,videos v,users u
-		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID AND m.MVideoID = #{id}
+		WHERE u.UID = m.MUserID
+		AND m.MVideoID = v.VID AND m.MVideoID = #{id}
 	</select>
-	
+
 	<!-- 根据关键字模糊查询所有评论内容 -->
 	<select id="getMessageByLikeContent"
 		parameterType="java.lang.String" resultMap="messageMap"
 		resultType="com.niit.entity.Message">
-		SELECT MID,VName as MVideoID,UName as MUserID, MContent,Mdate
+		select MID,MVideoID,MUserID,MContent,Mdate,UName as userName, VName as
+		videoName, UImage as image,UIntroduce as introduce 
 		FROM messages m,videos v,users u
-		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID AND m.MContent LIKE "%"#{content}"%"
+		WHERE u.UID = m.MUserID
+		AND m.MVideoID = v.VID AND m.MContent LIKE "%"#{content}"%"
 	</select>
-	
+
 	<!-- 查询所有评论 -->
-	<select id="getAllMessage"
-		parameterType="java.lang.String" resultMap="messageMap"
-		resultType="com.niit.entity.Message">
-		SELECT MID,VName as MVideoID,UName as MUserID, MContent,Mdate
-		FROM messages m,videos v,users u
-		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID 
+	<select id="getAllMessage" parameterType="java.lang.String"
+		resultMap="messageMap" resultType="com.niit.entity.Message">
+		select MID,MVideoID,MUserID,MContent,Mdate,UName as userName, VName as
+		videoName, UImage as image,UIntroduce as introduce 
+		FROM messages
+		m,videos v,users u
+		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID
 	</select>
 
 	<!-- 插入评论 -->
@@ -52,5 +57,16 @@
 		DELETE FROM messages
 		WHERE MID = #{id}
 	</delete>
+	 <!-- 根据用户id查询评论内容 -->
+	<select id="getMessageByUserId" parameterType="java.lang.String"
+		resultMap="messageMap" resultType="com.niit.entity.Message">
+		select MID,MVideoID,MUserID,MContent,Mdate,UName as userName, VName as
+		videoName, UImage as image,UIntroduce as introduce 
+		from messages m,videos v,users u 
+		where
+		m.MVideoID = v.Vid
+		and m.MUserID = u.UID
+		and u.UID= #{userId}
+	</select>
 
 </mapper>

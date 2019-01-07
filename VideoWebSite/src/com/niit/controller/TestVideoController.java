@@ -23,7 +23,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.niit.entity.User;
 import com.niit.entity.Video;
-import com.niit.entity.VideoC;
 import com.niit.entity.VideoCategory;
 import com.niit.mapper.VideoCategoryMapper;
 import com.niit.mapper.VideoMapper;
@@ -37,16 +36,15 @@ public class TestVideoController {
 
 	@Autowired
 	private VideoService videoService;
-	
 
-	@RequestMapping(value ="/video/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/video/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public Video getVideoByID(@PathVariable String id) {
 		System.out.println(id);
 		return videoService.getVideo(id);
 	}
 
-	@RequestMapping(value = "/video/", method = RequestMethod.GET)
+	@RequestMapping(value = "/video/list/", method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo getVideoList(int page, int limit) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
@@ -78,7 +76,7 @@ public class TestVideoController {
 		return videoService.getVideoList();
 	}
 
-	//根据视频名模糊查询视频
+	// 根据视频名模糊查询视频
 	@RequestMapping("/getVideoListByLikeName")
 	public List<Video> getVideoListByLikeName(String name) {
 		return (List<Video>) videoService.getVideoListByLikeName(name);
@@ -100,12 +98,12 @@ public class TestVideoController {
 		map.addAttribute("flag", true);
 		return map;
 	}
-
+	// 添加视频
 	@RequestMapping(value = "/video/", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap insertVideo(@RequestBody Video video) {
 		video.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		video.setDate(new Date());
 
 		ModelMap map = new ModelMap();
@@ -137,11 +135,21 @@ public class TestVideoController {
 		video2.setDate(new Date());
 		videoService.updateVideo(video2);
 	}
-
-	@RequestMapping("/deleteVideo")
+	// 删除视频
+	@RequestMapping(value = "/video/", method = RequestMethod.DELETE)
 	@ResponseBody
-	public void deleteVideo(String id) {
-		videoService.deleteVideo(id);
+	public ModelMap deleteVideo(String id) {
+		Boolean flag = false;
+		try {
+			videoService.deleteVideo(id);
+			flag = true;
+		} catch (Exception e) {
+			flag = false;
+			System.out.println(e);
+		}
+		ModelMap map = new ModelMap();
+		map.addAttribute("flag", flag);
+		return map;
 	}
 
 	@RequestMapping("/getVideoListByCategory")
@@ -160,25 +168,24 @@ public class TestVideoController {
 	}
 
 	// 根据视频类别名称模糊查询视频
-	@RequestMapping(value="/video/type/", method=RequestMethod.GET)
+	@RequestMapping(value = "/video/type/list/", method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo getVideoListByCategoryName(int page,int limit, String videoType) {
+	public PageInfo getVideoListByCategoryName(int page, int limit, String videoType) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
-		List<Video> list=videoService.getVideoListByCategoryName(videoType);
+		List<Video> list = videoService.getVideoListByCategoryName(videoType);
 		PageInfo pageInfo = new PageInfo(list);
-		System.out.println(videoType+" " +page+" "+ limit);
+		System.out.println(videoType + " " + page + " " + limit);
 		return pageInfo;
 	}
 
-	//pky根据用户id查询该用户的所有的上传的视频
-	@RequestMapping("/video/userId/")
+	// pky根据用户id查询该用户的所有的上传的视频
+	@RequestMapping("/video/userId/list/")
 	@ResponseBody
-	public PageInfo getVideoListByUserId(String userId,int page,int limit) {
+	public PageInfo getVideoListByUserId(String userId, int page, int limit) {
 		PageHelper.startPage(page, limit);
-		List<Video> list=videoService.getVideoListByUserId(userId);
-		PageInfo info=new PageInfo(list);
+		List<Video> list = videoService.getVideoListByUserId(userId);
+		PageInfo info = new PageInfo(list);
 		return info;
 	}
-
 
 }

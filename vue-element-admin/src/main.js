@@ -32,6 +32,24 @@ Object.keys(filters).forEach(key => {
 })
 // console.log('main' + new Date().getUTCDate().toString())
 Vue.config.productionTip = false
+
+Vue.mixin({
+  data() {
+    const convertNullToBlack = (obj) => {
+      return obj === undefined || obj === null ? {} : obj
+    }
+    return {
+      convertNullToBlack
+    }
+  },
+  methods: {
+    changeTagsTitle(title) {
+      const idx = this.$store.state.tagsView.visitedViews.findIndex(v => v.fullPath === document.location.hash.replace('#', ''))
+      this.$set(this.$store.state.tagsView.visitedViews[idx].meta, 'title', title)
+      this.$set(this.$store.state.tagsView.visitedViews[idx], 'title', title)
+    }
+  }
+})
 // 在这里注册router
 new Vue({
   el: '#app',

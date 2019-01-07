@@ -1,10 +1,10 @@
 <template>
   <div class="login-container">
 
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form ref="adminLoginForm" :model="adminLoginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title" @click="handleUserLogin">管理员登录</h3>
         <!-- <lang-select class="set-language"/> -->
       </div>
 
@@ -13,7 +13,7 @@
           <svg-icon icon-class="user" />
         </span>
         <el-input
-          v-model="loginForm.username"
+          v-model="adminLoginForm.username"
           :placeholder="$t('login.username')"
           name="username"
           type="text"
@@ -27,7 +27,7 @@
         </span>
         <el-input
           :type="passwordType"
-          v-model="loginForm.password"
+          v-model="adminLoginForm.password"
           :placeholder="$t('login.password')"
           name="password"
           auto-complete="on"
@@ -39,11 +39,6 @@
       <el-form-item>
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">登录</el-button>
       </el-form-item>
-
-      <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click="handleRegister">注册</el-button>
-      </el-form-item>
-
     </el-form>
   </div>
 </template>
@@ -52,9 +47,9 @@
 // import { isvalidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './socialsignin'
-import store from '@/store'
+// import store from '@/store'
 export default {
-  name: 'AdminLogin',
+  name: 'Login',
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -72,8 +67,8 @@ export default {
       }
     }
     return {
-      loginForm: {
-        username: 'tajkun@163.com',
+      adminLoginForm: {
+        username: 'zhuzhu@163.com',
         password: '123456'
       },
       loginRules: {
@@ -86,14 +81,10 @@ export default {
       redirect: undefined
     }
   },
-  created() {
-    console.log(store.getters.userInfo)
-    // window.addEventListener('hashchange', this.afterQRScan)
-  },
-  destroyed() {
-    // window.removeEventListener('hashchange', this.afterQRScan)
-  },
   methods: {
+    handleUserLogin() {
+      this.$router.push({ path: '/login' })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -102,10 +93,10 @@ export default {
       }
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.adminLoginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+          this.$store.dispatch('LoginByAdminEmail', this.adminLoginForm).then(() => {
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(() => {
@@ -116,15 +107,12 @@ export default {
           return false
         }
       })
-    },
-    handleRegister() {
-      this.$router.push({ path: '/register' })
     }
   }
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
   /* 修复input 背景不协调 和光标变色 */
   /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 

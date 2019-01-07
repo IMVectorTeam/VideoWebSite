@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String image;
     private String introduce;
+    private String roles;
     
 	public String getId() {
 		return id;
@@ -50,6 +51,12 @@ public class User {
 	}
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
+	}
+	public String getRoles() {
+		return roles;
+	}
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	

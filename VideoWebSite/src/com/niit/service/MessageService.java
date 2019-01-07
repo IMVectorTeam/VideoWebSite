@@ -16,8 +16,12 @@ public class MessageService {
 	@Autowired
 	private MessageMapper messageDao;
 	
-	public List<Message> getMessageByVideoId(String id){		
-		return messageDao.getMessageByVideoId(id);	
+	public List<Message> getMessageByVideoId(String videoId){		
+		return messageDao.getMessageByVideoId(videoId);	
+	}
+	
+	public List<Message> getMessageByUserId(String userId){		
+		return messageDao.getMessageByUserId(userId);	
 	}
 	
 	//根据关键字模糊查询所有评论内容

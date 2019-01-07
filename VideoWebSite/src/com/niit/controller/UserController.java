@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.niit.entity.Administrator;
 import com.niit.entity.User;
+import com.niit.service.AdministratorService;
 import com.niit.service.UserService;
 import com.niit.utils.MD5Utils;
 
@@ -25,21 +27,38 @@ public class UserController {
 	@Autowired
 	UserService service;
 
-	
-	
 	@RequestMapping(value = "/user/infomation", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getUserById(String token) {
-		ModelMap map = new ModelMap();
 		User userLocal = service.getUser(token);
-		map.addAttribute("data", userLocal);
-		map.addAttribute("token", userLocal.getId());
-		List<String> list=new ArrayList();
-		list.add("user");
-		map.addAttribute("roles", list);
-		return map;
+//		Administrator adminLocal= service.getAdmin(token);
+		if (null != userLocal) {
+			ModelMap map = new ModelMap();
+			map.addAttribute("data", userLocal);
+			map.addAttribute("token", userLocal.getId());
+			if (userLocal.getRoles().equals("admin")) {
+				List<String> list = new ArrayList();
+				list.add("admin");
+				list.add("user");
+				map.addAttribute("roles", list);
+				return map;
+			} else {
+				List<String> list = new ArrayList();
+				list.add("user");
+				map.addAttribute("roles", list);
+				return map;
+			}
+
+		} else {
+			ModelMap map = new ModelMap();
+			map.addAttribute("token", token);
+			List<String> list = new ArrayList();
+			list.add("user");
+			map.addAttribute("roles", list);
+			return map;
+		}
 	}
-	
+
 	@RequestMapping(value = "/user/valid", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap getUserByemail(@RequestBody User user) {
@@ -60,50 +79,21 @@ public class UserController {
 		}
 //		String token = UUID.randomUUID().toString().substring(0, 16);
 		map.addAttribute("token", userLocal.getId());
-		List<String> list=new ArrayList();
+		List<String> list = new ArrayList();
 		list.add("user");
 		map.addAttribute("roles", list);
 		return map;
 	}
-	
-	//通过邮箱查询用户
-	@RequestMapping("/getUserByEmail")
-	public String getUserByEmail(String email) {
-		System.out.println(service.getUserByEmail(email).getName());
-		return "homePage";
-	}
-	
-	//通过用户ID查询用户
-	@RequestMapping("/getUser")
-	@ResponseBody
-	public String getUser(String id) {
-		System.out.println(service.getUser(id).getName());
-		return "homePage";
 
-	}
-	
-	//根据用户名模糊查询用户
+	// 根据用户名模糊查询用户
 	@RequestMapping("/getUserByLikeName")
 	@ResponseBody
-	public List<User> getUserByLikeName(String name){
+	public List<User> getUserByLikeName(String name) {
 		System.out.println(service.getUserByLikeName(name).get(0).getName());
 		return service.getUserByLikeName(name);
 	}
-	
 
-	@RequestMapping("/insertUser")
-	public void insertUser(User user) throws Exception {
-		User user2 = new User();
-		user2.setId("20154072");
-		user2.setName("小陈");
-		user2.setPassword("123456");
-		user2.setSex("男");
-		user2.setEmail("ttt@163.com");
-		user2.setImage("");
-		user2.setIntroduce("aaa");
-		service.insertUser(user2);
-	}
-	
+	// 添加用户
 	@RequestMapping(value = "/user/", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean addUser(@RequestBody User user) {
@@ -120,18 +110,18 @@ public class UserController {
 		}
 		return flag;
 	}
-	@RequestMapping(value="/user/",method=RequestMethod.GET)
+
+	// 获取用户列表
+	@RequestMapping(value = "/user/list/", method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo getUserList(int limit, int page) {
 		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
 		List<User> uList = service.getUserList();
 		PageInfo pageInfo = new PageInfo(uList);
-//		ModelMap m= new ModelMap();
-//		m.addAttribute("data", uList);
-//		m.addAttribute("pageInfo", pageInfo);
-//		return m;
 		return pageInfo;
 	}
+
+	// 删除用户
 	@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
 	@ResponseBody
 	public boolean deleteUser(String id) {
@@ -144,25 +134,34 @@ public class UserController {
 		}
 		return flag;
 	}
+
+	// 更新用户
 //	http://127.0.0.1:9080/api/VideoWebSite/user/20154070/
-	@RequestMapping(value="/user/{id}",method=RequestMethod.PATCH)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.PATCH)
 	@ResponseBody
-	public ModelMap updateUser(@RequestBody User user,@PathVariable String id) {
-		Boolean flag=false;
+	public ModelMap updateUser(@RequestBody User user, @PathVariable String id) {
+		Boolean flag = false;
 		try {
 			user.setPassword(MD5Utils.md5(user.getPassword()));
+			user.setRoles(service.getUser(id).getRoles());
 			service.updateUser(user);
-			flag=true;
+			flag = true;
 		} catch (Exception e) {
-			flag=false;
+			flag = false;
 			System.out.println(e);
 		}
-		ModelMap map=new ModelMap();
+		ModelMap map = new ModelMap();
 		map.addAttribute("flag", flag);
 		return map;
 	}
-
-	@RequestMapping(value="/user/videoId/{videoId}",method=RequestMethod.GET)
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public User updateUser(@PathVariable String id) {
+		User user=service.getUser(id);
+		return user;
+	}
+	// 根据videoId获取用户信息
+	@RequestMapping(value = "/user/videoId/{videoId}", method = RequestMethod.GET)
 	@ResponseBody
 	public User getUserByVideoId(@PathVariable String videoId) {
 		return service.getUserByVideoId(videoId);

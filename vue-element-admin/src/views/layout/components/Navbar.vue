@@ -12,35 +12,30 @@
           <screenfull class="screenfull right-menu-item"/>
         </el-tooltip>
 
-        <el-tooltip :content="$t('navbar.size')" effect="dark" placement="bottom">
+        <!-- <el-tooltip :content="$t('navbar.size')" effect="dark" placement="bottom">
           <size-select class="international right-menu-item"/>
-        </el-tooltip>
+        </el-tooltip> -->
 
         <lang-select class="international right-menu-item"/>
 
-        <el-tooltip :content="$t('navbar.theme')" effect="dark" placement="bottom">
+        <!-- <el-tooltip :content="$t('navbar.theme')" effect="dark" placement="bottom">
           <theme-picker class="theme-switch right-menu-item"/>
-        </el-tooltip>
+        </el-tooltip> -->
       </template>
 
       <el-dropdown class="avatar-container right-menu-item" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="avatar" class="user-avatar">
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              {{ $t('navbar.dashboard') }}
+              主页
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
-            <el-dropdown-item>
-              {{ $t('navbar.github') }}
-            </el-dropdown-item>
-          </a>
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">{{ $t('navbar.logOut') }}</span>
+            <span style="display:block;" @click="logout">退出登录</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -68,13 +63,22 @@ export default {
     LangSelect,
     ThemePicker
   },
+  data() {
+    return {
+      avatar: ''
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
       'name',
-      'avatar',
+      // 'avatar',
       'device'
     ])
+  },
+  created() {
+    this.avatar = sessionStorage.getItem('avatar')
+    console.log('avatar', this.avatar)
   },
   methods: {
     toggleSideBar() {

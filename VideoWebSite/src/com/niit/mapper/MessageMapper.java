@@ -8,14 +8,16 @@ import com.niit.entity.Message;
 
 @Repository
 public interface MessageMapper {
-	
-	public List<Message> getMessageByVideoId(String id);
-	
-	//根据关键字模糊查询所有评论内容
+
+	public List<Message> getMessageByVideoId(String videoId);
+
+	// 根据关键字模糊查询所有评论内容
 	public List<Message> getMessageByLikeContent(String content);
-	
+
 	public List<Message> getAllMessage();
-	
+
+	public List<Message> getMessageByUserId(String userId);
+
 	public void insertMessage(Message message);
 
 	public void deleteMessage(String id);

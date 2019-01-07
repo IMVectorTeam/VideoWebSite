@@ -1,30 +1,8 @@
 <template>
   <div v-loading="pageLoading">
-    <!-- <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">主页</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="3" @click="handleTest1">视频上传</el-menu-item>
-      <el-menu-item index="4" style="float: right">
-        <img :src="avatar" style="height: 50px;border-radius: 50%;">
-      </el-menu-item>
-      <el-submenu style="float: right" index="5">
-        <template slot="title">{{ userName }}</template>
-        <el-menu-item index="5-1" @click="handlePersonalCenter">个人中心</el-menu-item>
-        <el-menu-item index="5-2" @click="logout">退出登录</el-menu-item>
-      </el-submenu>
-    </el-menu> -->
     <nav-menu/>
     <div class="app-container">
 
-      <!-- <el-button type="primary" @click="handleTest1">跳转测试上传</el-button> -->
       <el-carousel indicator-position="outside" height="500px">
         <el-carousel-item v-for="(item, index) in carouselImage" :key="index">
           <img :src="item.url" alt="闪剧">
@@ -138,22 +116,6 @@ export default {
     // })
   },
   methods: {
-    logout() {
-      this.$store.dispatch('LogOut').then(() => {
-        location.reload()// In order to re-instantiate the vue-router object to avoid bugs
-        this.$router.push({ path: '/login' })
-      })
-    },
-    handlePersonalCenter() {
-      this.$router.push({ path: '/personal-center' })
-    },
-    handleSelect() {},
-    handleTest() {
-      this.$router.push({ path: '/video-show' })
-    },
-    handleTest1() {
-      this.$router.push({ path: '/video-upload' })
-    }
   }
 }
 </script>

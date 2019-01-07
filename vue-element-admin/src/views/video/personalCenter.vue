@@ -99,22 +99,13 @@
                 </el-col>
               </el-row>
             </el-tab-pane>
-            <el-tab-pane label="我上传的视频">
-              <br>
-              <br>
-              <br>
-              <el-row :gutter="10">
-                <el-col :span="16" :offset="4">
-                  <!-- address: "http://127.0.0.1:8080/VideoWebSite/resources/video/xiaoyuan.mp4"
-                    category: "电影"
-                    date: null
-                    id: "125"
-                    image: "http://127.0.0.1:8080/VideoWebSite/resources/images/test5.png"
-                    name: "是的发生大咖啡"
-                    state: null
-                    time: null
-                    userId: "王小红" -->
-                  <div style="overflow-y: auto">
+            <el-tab-pane label="我上传的视频" >
+              <div style="overflow-y: scroll;height:600px">
+                <br>
+                <br>
+                <br>
+                <el-row :gutter="10">
+                  <el-col :span="16" :offset="4">
                     <el-table :data="videoList" style="width: 100%">
                       <el-table-column type="expand">
                         <template slot-scope="props">
@@ -125,7 +116,7 @@
                             <el-form-item label="视频封面">
                               <!-- <span>{{ props.row.shop }}</span> -->
                               <span>
-                                <img :src="props.row.image" style="width:100px;" alt="">
+                                <img :src="props.row.image" style="width:200px;" alt="">
                               </span>
                             </el-form-item>
                             <el-form-item label="视频">
@@ -134,31 +125,22 @@
                                 <video :src="props.row.address" controls="controls" preload="auto" style="width:400px" alt=""/>
                               </span>
                             </el-form-item>
-                          <!-- <el-form-item label="商品 ID">
-                            <span>{{ props.row.id }}</span>
-                          </el-form-item>
-                          <el-form-item label="店铺 ID">
-                            <span>{{ props.row.shopId }}</span>
-                          </el-form-item>
-                          <el-form-item label="商品分类">
-                            <span>{{ props.row.category }}</span>
-                          </el-form-item>
-                          <el-form-item label="店铺地址">
-                            <span>{{ props.row.address }}</span>
-                          </el-form-item>
-                          <el-form-item label="商品描述">
-                            <span>{{ props.row.desc }}</span>
-                          </el-form-item> -->
                           </el-form>
                         </template>
                       </el-table-column>
-                      <el-table-column label="视频名称" prop="name"/>
-                      <el-table-column label="视频类别" prop="category"/>
-                      <el-table-column label="上传时间" prop="date"/>
+                      <el-table-column label="视频名称" prop="name" align="center"/>
+                      <el-table-column label="视频类别" prop="categoryContent" align="center"/>
+                      <el-table-column label="上传时间" prop="date" align="center"/>
+                      <el-table-column label="操作" align="center">
+                        <template slot-scope="scope">
+                          <el-button type="danger" mini icon="el-icon-delete" @click="handleDeleteVideo(scope.row,scope.row.$index)"/>
+                        </template>
+                      </el-table-column>
+
                     </el-table>
-                  </div>
-                </el-col>
-              </el-row>
+                  </el-col>
+                </el-row>
+              </div>
             </el-tab-pane>
             <el-tab-pane label="我的评论">
               <br>
@@ -166,30 +148,42 @@
               <br>
               <el-row :gutter="10">
                 <el-col :span="16" :offset="4">
-                  <el-row v-for="(item, index) in 10" :key="index" :gutter="10">
-                    <el-col>
-                      <hr style="border: solid 0.5px #EBEEF5">
-                      <el-row :gutter="20">
-                        <el-col :span="2">
-                          <img class="headImage" src="@/assets/videoImage/hamburger.png">
-                        </el-col>
-                        <el-col :span="22">
-                          <el-row :gutter="10">
-                            <span>昵称</span>
-                          </el-row>
-                          <br>
-                          <el-row :gutter="10">
-                            <!--private String id;-->
-                            <!--private String videoId ;-->
-                            <!--private String userId;-->
-                            <!--private String content;-->
-                            <!--private Date date;-->
-                            <span>{{ item.content }}</span>
-                          </el-row>
-                        </el-col>
-                      </el-row>
-                    </el-col>
-                  </el-row>
+                  <div style="overflow-y: scroll;height:600px">
+                    <el-table
+                      :data="commentList"
+                      :row-style="tableRowClassName"
+                      style="width: 100%">
+                      <el-table-column
+                        prop="date"
+                        align="center"
+                        label="评论日期"
+                        width="180"/>
+                      <el-table-column
+                        prop="videoName"
+                        align="center"
+                        label="视频名称"
+                        width="180"/>
+                      <el-table-column
+                        align="center"
+                        prop="content"
+                        label="评论内容"/>
+                      <el-table-column align="center" label="操作">
+                        <template slot-scope="scope">
+                          <el-button type="danger" mini icon="el-icon-delete" @click="handleDeleteComment(scope.row,scope.row.$index)"/>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                  </div>
+                  <!-- private String id;
+                  private String videoId;
+                  private String userId;
+                  private String content;
+                  private Date date;
+                  private String userName;
+                  private String videoName;
+                  private String image;
+                  private String introduce; -->
+
                 </el-col>
               </el-row>
             </el-tab-pane>
@@ -203,6 +197,7 @@
 <script>
 import navMenu from '@/views/video/components/navMenu'
 import Data from '@/views/video/mixin/Data'
+import Vue from 'vue'
 export default {
   name: 'PersonalCenter',
   components: { navMenu },
@@ -257,57 +252,42 @@ export default {
         passwordRepeat: [{ required: true, trigger: 'blur', validator: validatePasswordRepeat }],
         sex: [{ required: true, trigger: 'blur', message: '性别' }],
         name: [{ required: true, trigger: 'blur', message: '用户名不能为空' }]
-      },
-      tableData5: [
-        {
-          id: '12987122',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },
-        {
-          id: '12987123',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },
-        {
-          id: '12987125',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        },
-        {
-          id: '12987126',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333'
-        }
-      ]
+      }
+
     }
   },
   created() {
     this.userForm = JSON.parse(sessionStorage.getItem('userInfo'))
     this.userForm.password = ''
-    this.userForm.passwordRepeat = ''
+    // this.userForm.passwordRepeat = ''
+    Vue.set(this.userForm, 'passwordRepeat', '')
   },
   methods: {
+    handleDeleteVideo(row, index) {
+      this.deleteVideo(row.id).then(() => {
+        this.videoList.splice(index, 1)
+      })
+    },
+    handleDeleteComment(row, index) {
+      this.deleteComment(row.id).then(() => {
+        this.commentList.splice(index, 1)
+      })
+    },
+    tableRowClassName({ row, rowIndex }) {
+      if (rowIndex % 4 === 0) {
+        return 'background: oldlace;'
+      } else if (rowIndex % 4 === 2) {
+        return 'background: #f0f9eb;'
+      }
+      return ''
+    },
     handleTabClick(tab, event) {
       // console.log(tab.label, event)
       if (tab.label === '我上传的视频') {
         this.getVideoByUserId({ userId: this.userForm.id, page: 1, limit: 10 })
+      }
+      if (tab.label === '我的评论') {
+        this.getCommentByUserId({ userId: this.userForm.id, page: 1, limit: 10 })
       }
     },
     changImage() { this.uploadShow = false },
@@ -330,41 +310,13 @@ export default {
     handleSubmitUserInfo() {
       this.$refs['userForm'].validate(valid => {
         if (valid) {
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'email',
-            v: this.userForm.email
-          })
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'password',
-            v: this.userForm.password
-          })
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'sex',
-            v: this.userForm.sex
-          })
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'name',
-            v: this.userForm.name
-          })
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'image',
-            v: this.userForm.image
-          })
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'introduce',
-            v: this.userForm.introduce
-          })
-          this['setVideoUserForm']({
-            usingKey: true,
-            k: 'id',
-            v: this.userForm.id
-          })
+          this['setVideoUserForm']({ usingKey: true, k: 'email', v: this.userForm.email })
+          this['setVideoUserForm']({ usingKey: true, k: 'password', v: this.userForm.password })
+          this['setVideoUserForm']({ usingKey: true, k: 'sex', v: this.userForm.sex })
+          this['setVideoUserForm']({ usingKey: true, k: 'name', v: this.userForm.name })
+          this['setVideoUserForm']({ usingKey: true, k: 'image', v: this.userForm.image })
+          this['setVideoUserForm']({ usingKey: true, k: 'introduce', v: this.userForm.introduce })
+          this['setVideoUserForm']({ usingKey: true, k: 'id', v: this.userForm.id })
           this.getVideoList()
           this.updateVideoUser(this.userForm.id).then(() => {
             sessionStorage.setItem('userInfo', JSON.stringify(this.userForm))
@@ -377,14 +329,18 @@ export default {
 </script>
 
 <style scoped>
-  .container-tab  .el-tabs__content{
+  .headImage{
+    border-radius:50%;
+    width: 50px;
+  }
+  /* .container-tab  .el-tabs__content{
     flex-grow: 1;
     overflow-y: scroll;
   }
  .container-tab >>> .el-tabs__content{
     flex-grow: 1;
     overflow-y: scroll;
-  }
+  } */
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;

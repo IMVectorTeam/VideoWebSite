@@ -135,7 +135,7 @@
 
 <script>
 import Data from '@/views/video/mixin/Data'
-import store from '@/store'
+// import store from '@/store'
 import navMenu from '@/views/video/components/navMenu'
 import { mapMutations } from 'vuex'
 export default {
@@ -212,7 +212,7 @@ export default {
           this.setVideoForm({ k: 'image', v: this.form.image })
           this.setVideoForm({ k: 'address', v: this.form.videoURL })
           this.setVideoForm({ k: 'category', v: this.form.category })
-          this.setVideoForm({ k: 'userId', v: store.getters.id })
+          this.setVideoForm({ k: 'userId', v: sessionStorage.getItem('userId') })
           console.log(this.videoForm)
           this.createVideo().then(() => {
             this.pageLoading = false

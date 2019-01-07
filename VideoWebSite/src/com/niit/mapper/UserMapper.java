@@ -25,4 +25,8 @@ public interface UserMapper {
     
     //根据videoId查询该上传用户的信息
     public User getUserByVideoId(String id);
+    
+    public User getAdminByEmail(String email);
+    
+    public void insertAdmin(User user);
 }

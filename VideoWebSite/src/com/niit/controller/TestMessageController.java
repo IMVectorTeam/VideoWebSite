@@ -21,33 +21,33 @@ public class TestMessageController {
 
 	@Autowired
 	private MessageService messageService;
-	
-	@RequestMapping(value="/videoComment",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/videoComment/list", method = RequestMethod.GET)
 	@ResponseBody
-	public PageInfo getMessageByVideoId(String videoId,int page,int limit){	
+	public PageInfo getMessageByVideoId(String videoId, int page, int limit) {
 		PageHelper.startPage(page, limit);
-		List<Message> list= messageService.getMessageByVideoId(videoId);
-		PageInfo pageInfo= new PageInfo(list);
+		List<Message> list = messageService.getMessageByVideoId(videoId);
+		PageInfo pageInfo = new PageInfo(list);
 		return pageInfo;
 	}
-	
-	//根据关键字模糊查询所有评论内容
+
+	// 根据关键字模糊查询所有评论内容
 	@RequestMapping("/getMessageByLikeContent")
 	@ResponseBody
-	public List<Message> getMessageByLikeContent(String content){
+	public List<Message> getMessageByLikeContent(String content) {
 		System.out.println("aaa");
 		return messageService.getMessageByLikeContent(content);
 	}
-	
+
 	@RequestMapping("/getAllMessage")
 	@ResponseBody
-	public List<Message> getAllMessage(){
+	public List<Message> getAllMessage() {
 		return messageService.getAllMessage();
 	}
-	
+
 	@RequestMapping("/insertMessage")
 	@ResponseBody
-	public void insertMessage(Message message){
+	public void insertMessage(Message message) {
 		Message message2 = new Message();
 		message2.setId("2003");
 		message2.setVideoId("1001");
@@ -56,10 +56,30 @@ public class TestMessageController {
 		message2.setDate(new Date());
 		messageService.insertMessage(message2);
 	}
-	
-	@RequestMapping("/deleteMessage")
+
+	// http://localhost:8081/api/VideoWebSite/videoComment/?id=2002
+	@RequestMapping(value = "/videoComment/", method = RequestMethod.DELETE)
 	@ResponseBody
-	public void deleteMessage(String id) {
-		messageService.deleteMessage(id);
+	public ModelMap deleteMessage(String id) {
+		Boolean flag = false;
+		try {
+			messageService.deleteMessage(id);
+			flag = true;
+		} catch (Exception e) {
+			flag = false;
+			System.out.println(e);
+		}
+		ModelMap map = new ModelMap();
+		map.addAttribute("flag", flag);
+		return map;
+	}
+
+	@RequestMapping(value="/comment/userId/list/",method=RequestMethod.GET)
+	@ResponseBody
+	public PageInfo getMessageByUserId(String userId, int page, int limit) {
+		PageHelper.offsetPage(page, limit);
+		List<Message> list = messageService.getMessageByUserId(userId);
+		PageInfo info = new PageInfo(list);
+		return info;
 	}
 }

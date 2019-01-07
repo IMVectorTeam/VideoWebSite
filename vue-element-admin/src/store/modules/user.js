@@ -1,4 +1,4 @@
-import { loginByUsername, getUserInfo } from '@/api/login' // logout,
+import { loginByUsername, getUserInfo, loginByAdminEmail } from '@/api/login' // logout,
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { Message } from 'element-ui'
 const userForm = {
@@ -76,6 +76,7 @@ const user = {
           console.log(map)
           console.log('++++++++++++++++++用户信息+++++++++++++++++')
           if (map.flag === true) {
+            sessionStorage.setItem('roles', map.roles)
             commit('SET_TOKEN', map.token)
             // commit('SET_TOKEN', 'admin')
             setToken(response.data.token)
@@ -97,7 +98,38 @@ const user = {
         })
       })
     },
-
+    // 用户名登录
+    LoginByAdminEmail({ commit }, userInfo) {
+      const username = userInfo.username.trim()
+      return new Promise((resolve, reject) => {
+        loginByAdminEmail(username, userInfo.password).then(response => {
+          const map = response.data
+          console.log('++++++++++++++++++用户信息+++++++++++++++++')
+          console.log(map)
+          console.log('++++++++++++++++++用户信息+++++++++++++++++')
+          if (map.flag === true) {
+            sessionStorage.setItem('roles', map.roles)
+            commit('SET_TOKEN', map.token)
+            // commit('SET_TOKEN', 'admin')
+            setToken(response.data.token)
+            commit('SET_ID', map.data.id)
+            commit('SET_NAME', map.data.name)
+            commit('SET_AVATAR', map.data.image)
+            commit('SET_INTRODUCTION', map.data.introduction)
+            commit('SET_USER_INFO', JSON.parse(JSON.stringify(map.data)))
+            resolve()
+          } else {
+            Message({
+              message: map.data,
+              type: 'warning'
+            })
+            reject(map.data)
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
     // 获取用户信息
     GetUserInfo({ commit, state }) {
       return new Promise((resolve, reject) => {

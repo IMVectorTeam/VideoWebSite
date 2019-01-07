@@ -1,37 +1,55 @@
 <template>
   <div class="app-container">
-    <el-table
-      :data="videoUserList"
-      style="width: 100%">
-      <el-table-column
-        prop="name"
-        label="姓名"
-        align="center"
-        width="180"/>
-      <el-table-column
-        prop="id"
-        label="id"
-        align="center"
-        width="180"/>
-      <el-table-column
-        prop="sex"
-        label="性别"
-        align="center"
-        width="180"/>
-      <el-table-column
-        prop="email"
-        label="邮箱"
-        align="center"
-        width="180"/>
-      <el-table-column
-        align="center"
-        label="操作">
-        <template slot-scope="scope">
-          <el-button type="danger" @click="handleDelete(scope.row,scope.$index)">删除</el-button>
-        </template>
-      </el-table-column>
+    <el-row>
+      <el-col :span="18" :offset="3">
+        <el-table
+          :data="videoUserList"
+          :header-cell-style="{ background: '#F5F7FA' }"
+          element-loading-text="数据获取中"
+          border
+          fit
+          style="width: 100%">
+          <el-table-column
+            prop="name"
+            label="姓名"
+            align="center"
+            width="180"/>
+          <el-table-column
+            prop="id"
+            label="id"
+            align="center"
+            min-width="180"/>
+          <el-table-column
+            prop="sex"
+            label="性别"
+            align="center"
+            width="180"/>
+          <el-table-column
+            prop="email"
+            label="邮箱"
+            align="center"
+            min-width="180"/>
+          <el-table-column
+            label="用户头像"
+            align="center"
+            width="300">
+            <template slot-scope="scope">
+              <img :src="scope.row.image" style="width:100px;max-height:110px" alt="用户头像">
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            width="200"
+            label="操作">
+            <template slot-scope="scope">
+              <el-button icon="el-icon-info" @click="handleUserInfo(scope.row.id)"/>
+              <el-button type="danger" icon="el-icon-delete" @click="handleDelete(scope.row,scope.$index)"/>
+            </template>
+          </el-table-column>
 
-    </el-table>
+        </el-table>
+      </el-col>
+    </el-row>
 
   </div>
 </template>
@@ -54,6 +72,9 @@ export default {
       this.deleteUser(row.id).then(() => {
         this.videoUserList.splice(index, 1)
       })
+    },
+    handleUserInfo(id) {
+      this.$router.push({ path: `/admin/user-info/${id}` })
     }
   }
 }

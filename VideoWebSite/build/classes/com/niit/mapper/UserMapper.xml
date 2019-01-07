@@ -12,6 +12,7 @@
 		<result property="email" column="UEmail" />
 		<result property="image" column="UImage" />
 		<result property="introduce" column="UIntroduce" />
+		<result property="roles" column="roles" />
 	</resultMap>
 
 	<!-- 查询单个用户信息 -->
@@ -27,7 +28,7 @@
 		resultMap="userMap" resultType="com.niit.entity.User">
 		SELECT *
 		FROM users
-		WHERE UName LIKE "%"#{name}"%"
+		WHERE UName LIKE "%"#{name}"%" and roles = 'user'
 	</select>
 
 	<!-- 通过邮箱查询用户 -->
@@ -36,20 +37,35 @@
 		SELECT *
 		FROM users
 		WHERE UEmail =
-		#{email}
+		#{email} and roles = 'user'
 	</select>
-
+	
+		<!-- 通过邮箱查询用户 -->
+	<select id="getAdminByEmail" parameterType="java.lang.String"
+		resultMap="userMap" resultType="com.niit.entity.User">
+		SELECT *
+		FROM users
+		WHERE UEmail =
+		#{email} and roles = 'admin'
+	</select>
+	<!-- 插入单个用户信息 -->
+	<insert id="insertAdmin" parameterType="com.niit.entity.User">
+		INSERT INTO users(UID,
+		UName, UPwd, USex, UEmail, UImage, UIntroduce,roles)
+		VALUES(#{id}, #{name}, #{password}, #{sex}, #{email}, #{image}, #{introduce},'admin')
+	</insert>
+	
 	<!-- 插入单个用户信息 -->
 	<insert id="insertUser" parameterType="com.niit.entity.User">
 		INSERT INTO users(UID,
-		UName, UPwd, USex, UEmail, UImage, UIntroduce)
-		VALUES(#{id}, #{name}, #{password}, #{sex}, #{email}, #{image}, #{introduce})
+		UName, UPwd, USex, UEmail, UImage, UIntroduce,roles)
+		VALUES(#{id}, #{name}, #{password}, #{sex}, #{email}, #{image}, #{introduce},'user')
 	</insert>
 
 	<!-- 查询所有用户信息 -->
 	<select id="getUserList" resultType="com.niit.entity.User"
 		resultMap="userMap">
-		SELECT * FROM users
+		SELECT * FROM users where roles = 'user'
 	</select>
 
 	<!-- 更新用户信息 -->
@@ -62,7 +78,8 @@
 		USex = #{sex},
 		UEmail = #{email},
 		UImage = #{image},
-		UIntroduce = #{introduce}
+		UIntroduce = #{introduce},
+		roles = #{ roles }
 		WHERE UID = #{id}
 	</update>
 
