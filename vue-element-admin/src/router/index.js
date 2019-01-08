@@ -204,6 +204,12 @@ export const asyncRouterMap = [
         component: () => import('@/views/video/comment/commentManage'),
         name: 'commentManage',
         meta: { title: '评论管理', icon: 'comment', noCache: true }
+      },
+      {
+        path: 'video-type-manage',
+        component: () => import('@/views/video/videoTypeManage/videoTypeManage'),
+        name: 'videoTypeManage',
+        meta: { title: '视频类别', icon: 'type', noCache: true }
       }
     ]
   },

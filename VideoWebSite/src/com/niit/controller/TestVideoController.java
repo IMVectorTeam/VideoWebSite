@@ -85,11 +85,23 @@ public class TestVideoController {
 	@RequestMapping(value = "/image/upload", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap uploadImage(HttpServletRequest request) {
-//		Video video2 = new Video();
-//		videoService.insertVideo();
 		String url = null;
 		try {
 			url = UploadUtils.uploadImage(request);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ModelMap map = new ModelMap();
+		map.addAttribute("url", url);
+		map.addAttribute("flag", true);
+		return map;
+	}
+	@RequestMapping(value = "/image/upload/{num}", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelMap uploadImage(HttpServletRequest request, @PathVariable int num) {
+		String url = null;
+		try {
+			url = UploadUtils.uploadcarouselImage(request,num);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

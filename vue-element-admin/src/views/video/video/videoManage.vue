@@ -44,7 +44,7 @@
         label="操作">
         <template slot-scope="scope">
           <el-button icon="el-icon-info" @click="handleVideoInfo(scope.row.id)"/>
-          <el-button type="danger" icon="el-icon-delete" @click="handleDelete(scope.row,scope.$index)"/>
+          <el-button type="danger" icon="el-icon-delete" @click="handleDeleteVideo(scope.row,scope.$index)"/>
         </template>
       </el-table-column>
 
@@ -74,6 +74,11 @@ export default {
     })
   },
   methods: {
+    handleDeleteVideo(row, index) {
+      this.deleteVideo(row.id).then(() => {
+        this.videoList.splice(index, 1)
+      })
+    },
     handleVideoInfo(id) {
       this.$router.push({ path: `/admin/video-info/${id}` })
     }

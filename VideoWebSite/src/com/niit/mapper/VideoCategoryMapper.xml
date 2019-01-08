@@ -19,6 +19,14 @@
 		FROM videocategory
 		WHERE CID = #{id}
 	</select>
+		<!-- 查询单个视频类型信息 -->
+	<select id="getVideoCategoryByName" parameterType="java.lang.String"
+		resultMap="videoCategoryMap"
+		resultType="com.niit.entity.VideoCategory">
+		SELECT *
+		FROM videocategory
+		WHERE CNAME like "%"#{name}"%"
+	</select>
 
 	<!-- 插入视频类别 -->
 	<insert id="insertVideoCategory"

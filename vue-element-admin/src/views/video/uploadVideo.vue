@@ -47,7 +47,7 @@
                 multiple>
                 <i class="el-icon-upload"/>
                 <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                <!-- <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div> -->
               </el-upload>
             </el-form-item>
 
@@ -192,6 +192,11 @@ export default {
       } else {
         this.$message.error('图片上传失败，请重新上传！')
       }
+    },
+    handleDeleteVideo(row, index) {
+      this.deleteVideo(row.id).then(() => {
+        this.userIdVideoList.splice(index, 1)
+      })
     },
     handleVideoSuccess(res, file) { // 获取上传图片地址
       this.videoFlag = false

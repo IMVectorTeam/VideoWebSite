@@ -85,6 +85,11 @@ const user = {
             commit('SET_AVATAR', map.data.image)
             commit('SET_INTRODUCTION', map.data.introduction)
             commit('SET_USER_INFO', JSON.parse(JSON.stringify(map.data)))
+            sessionStorage.setItem('avatar', map.data.image)
+            sessionStorage.setItem('userName', map.data.name)
+            sessionStorage.setItem('userId', map.data.id)
+            sessionStorage.setItem('userEmail', map.data.email)
+            sessionStorage.setItem('userInfo', JSON.stringify(map.data))
             resolve()
           } else {
             Message({

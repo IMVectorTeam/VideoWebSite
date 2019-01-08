@@ -35,4 +35,7 @@ public class VideoCategoryService {
 	public void deleteVideoCategory(String id) {
 		videoCategoryDao.deleteVideoCategory(id);
 	}
+	public List<VideoCategory> getVideoCategoryByName(String categoryName){
+		return videoCategoryDao.getVideoCategoryByName(categoryName);
+	}
 }

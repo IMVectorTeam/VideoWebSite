@@ -76,6 +76,10 @@ public class UserController {
 		} else {
 			map.addAttribute("data", "用户不存在");
 			map.addAttribute("flag", false);
+			List<String> list = new ArrayList();
+			list.add("user");
+			map.addAttribute("roles", list);
+			return map;
 		}
 //		String token = UUID.randomUUID().toString().substring(0, 16);
 		map.addAttribute("token", userLocal.getId());

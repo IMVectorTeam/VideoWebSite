@@ -82,6 +82,35 @@ public class UploadUtils {
         }
         return showPath;
     }
+    
+    public static String uploadcarouselImage(HttpServletRequest request,int num) throws IOException {
+        String showPath = "";
+        // 将当前上下文初始化给CommonsMultipartResolver 
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        // 检查form中是否有enctype＝"multipart／form－data" 
+        if (resolver.isMultipart(request)) {
+            // 强制转化request 
+            MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+            // 从表单获取input名称 
+            Iterator<String> iterable = req.getFileNames();
+            // 存在文件
+            if (iterable.hasNext()) {
+                String inputName = iterable.next();
+                // 获得文件 
+                MultipartFile mf = req.getFile(inputName);
+                byte[] mfs = mf.getBytes();
+                // 获得后缀名 
+                String oriFileName = mf.getOriginalFilename();
+                // 上传图片到本地 
+                String realPath = req.getServletContext().getRealPath("") + "resources/carouselImage/" + num + ".jpeg";
+                mf.transferTo(new File(realPath));
+                System.out.println(realPath);
+                showPath ="http://"+req.getServerName()+":"+request.getServerPort() +req.getContextPath()+ "/resources/carouselImage/" + num + ".jpeg";//回显路径
+                System.out.println(showPath);
+            }
+        }
+        return showPath;
+    }
 }
 //request.getServletContext().getRealPath("/")  获取项目所在服务器的全路径，如：D:\Program Files\apache-tomcat-7.0.25\webapps\TestSytem\
 //request.getServletPath()    获取客户端请求的路径名，如：/object/delObject
