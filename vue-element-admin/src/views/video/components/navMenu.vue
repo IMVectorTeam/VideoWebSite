@@ -61,12 +61,15 @@ export default {
     this.avatar = sessionStorage.getItem('avatar')
     this.userName = sessionStorage.getItem('userName')
     var roles = sessionStorage.getItem('roles')
-    roles = roles.split(',')
-    roles.forEach(element => {
-      if (element === 'admin') {
-        this.adminFlag = true
-      }
-    })
+    if (roles !== null && roles !== undefined) {
+      roles = roles.split(',')
+      roles.forEach(element => {
+        if (element === 'admin') {
+          this.adminFlag = true
+        }
+      })
+    }
+
     // this.pageLoading = true
     // this.pageLoading = false
     // console.log(this.videoList)

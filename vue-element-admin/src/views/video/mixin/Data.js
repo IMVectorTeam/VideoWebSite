@@ -2,9 +2,10 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('video', ['videoList', 'videoItem', 'videoListQuery', 'videoForm', 'videoTypeList', 'videoCommentList', 'videoCommentListQuery']),
+    ...mapGetters('video', ['videoList', 'videoItem', 'videoListQuery', 'videoForm', 'typeVideoList',
+      'videoTypeList', 'videoCommentList', 'videoCommentListQuery', 'userIdVideoList']),
     ...mapGetters('videoUser', ['videoUserItem']),
-    ...mapGetters('comment', ['commentList', 'commentItem'])
+    ...mapGetters('comment', ['commentList', 'commentItem', 'userIdCommentList', 'commentListQuery'])
   },
   methods: {
     ...mapActions({
@@ -12,20 +13,20 @@ export default {
       createVideo: 'video/createVideo',
       getVideoItem: 'video/getVideoItem',
       getVideoTypeList: 'video/getVideoTypeList',
-      getVideoListByType: 'video/getVideoListByType',
+      getTypeVideoList: 'video/getTypeVideoList',
       getVideoCommentList: 'video/getVideoCommentList',
       getUserByVideoId: 'videoUser/getUserByVideoId',
       updateVideoUser: 'videoUser/updateVideoUser',
-      getVideoByUserId: 'video/getVideoByUserId',
+      getUserIdVideoList: 'video/getUserIdVideoList',
       deleteVideo: 'video/deleteVideo',
       getCommentList: 'comment/getCommentList',
-      getCommentByUserId: 'comment/getCommentByUserId',
+      getUserIdCommentList: 'comment/getUserIdCommentList',
       createComment: 'comment/createComment',
       deleteComment: 'comment/deleteComment',
       getUserById: 'videoUser/getUserById'
     }),
-    ...mapMutations('video', ['setVideoList', 'setVideoListQuery', 'setVideoCommentListQuery']),
+    ...mapMutations('video', ['setVideoList', 'setVideoListQuery', 'setVideoCommentListQuery', 'setUserIdVideoListQuery', 'setTypeVideoListQuery']),
     ...mapMutations('videoUser', ['setVideoUserForm']),
-    ...mapMutations('comment', ['setCommentForm'])
+    ...mapMutations('comment', ['setCommentForm', 'setUserIdCommentListQuery'])
   }
 }

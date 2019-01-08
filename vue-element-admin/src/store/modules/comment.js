@@ -13,30 +13,42 @@ const state = {
   commentList: [],
   commentItem: {},
   commentListQuery: {
-    limit: 20, // 每一页的条数
-    page: 0 // 当前页的页码
-    // offset: 0,
-    // _total: 0,
+    limit: 10, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
   },
-  commentForm: JSON.parse(JSON.stringify(defaultCommentForm))
+  commentForm: JSON.parse(JSON.stringify(defaultCommentForm)),
+
+  userIdCommentList: [],
+  userIdCommentItem: {},
+  userIdCommentListQuery: {
+    limit: 5, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0,
+    userId: ''
+  }
 }
 
 const getters = {
   commentList: state => state.commentList,
   commentItem: state => state.commentItem,
   commentListQuery: state => state.commentListQuery,
-  commentForm: state => state.commentForm
+  commentForm: state => state.commentForm,
+
+  userIdCommentList: state => state.userIdCommentList,
+  userIdCommentItem: state => state.userIdCommentItem,
+  userIdCommentListQuery: state => state.userIdCommentListQuery
 }
 const mutations = {
-  setCommentList: (state, { list, page, limit, needPagination = true, reset = false }) => {
+  setCommentList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
     if (reset === true) {
       state.commentList = []
     } else {
       state.commentList = list
       if (needPagination) {
         Vue.set(state.commentListQuery, 'page', page)
-        Vue.set(state.commentListQuery, 'limit', limit)
-        // state.commentListQuery.limit = limit
+        Vue.set(state.commentListQuery, 'total', total)
+        state.commentListQuery.limit = limit
         // Vue.set(state.commentListQuery, '_total', total)
         // state.commentListQuery.offset = offset
       }
@@ -45,8 +57,12 @@ const mutations = {
   setCommentItem: (state, value) => {
     state.commentItem = value
   },
-  setCommentListQuery: (state, value) => {
-    state.commentListQuery = value
+  setCommentListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.commentListQuery = { ...state.commentListQuery, ...config }
+    } else {
+      state.commentListQuery[k] = v
+    }
   },
   setCommentForm: (state, { k, v, usingKey = false, pF, reset = false }) => {
     if (reset) {
@@ -58,6 +74,29 @@ const mutations = {
     } else {
       state.commentForm = pF
     }
+  },
+
+  setUserIdCommentList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
+    if (reset === true) {
+      state.userIdCommentList = []
+    } else {
+      state.userIdCommentList = list
+      if (needPagination) {
+        Vue.set(state.userIdCommentListQuery, 'page', page)
+        Vue.set(state.userIdCommentListQuery, 'total', total)
+        state.userIdCommentListQuery.limit = limit
+      }
+    }
+  },
+  setUserIdCommentItem: (state, value) => {
+    state.userIdCommentItem = value
+  },
+  setUserIdCommentListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.userIdCommentListQuery = { ...state.userIdCommentListQuery, ...config }
+    } else {
+      state.userIdCommentListQuery[k] = v
+    }
   }
 }
 
@@ -65,12 +104,12 @@ const actions = {
 
   async getCommentList({ commit, state }) {
     await videoCommentOp.list(state.commentListQuery).then((res) => {
-      // console.log(res)
       res = res.data
       commit('setCommentList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   },
@@ -87,14 +126,14 @@ const actions = {
       if (res.data === true) {
         Notification({
           title: '成功',
-          message: '注册成功',
+          message: '评论发表成功',
           type: 'success'
         })
         commit('setCommentForm', { reset: true })
       } else {
         Notification({
           title: '失败',
-          message: '注册失败',
+          message: '评论发表失败',
           type: 'warning'
         })
       }
@@ -110,13 +149,14 @@ const actions = {
       commit('setCommentForm', { reset: true })
     })
   },
-  getCommentByUserId({ commit, state }, { userId, page, limit }) {
-    return commentByUserIdOp.list({ userId, page, limit }).then(res => {
+  getUserIdCommentList({ commit, state }) {
+    return commentByUserIdOp.list(state.userIdCommentListQuery).then(res => {
       res = res.data
-      commit('setCommentList', {
+      commit('setUserIdCommentList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   }

@@ -9,10 +9,10 @@ public class Message {
 	private String userId;
 	private String content;
 	private Date date;
-	private String userName;
-	private String videoName;
-	private String image;
-	private String introduce;
+	private String userName;//用户
+	private String videoName;// 视频
+	private String image;//用户
+	private String introduce;//用户
 
 	public String getId() {
 		return id;

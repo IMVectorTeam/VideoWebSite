@@ -15,6 +15,7 @@ public class Video {
 	private Date   date;
 	private String userName;
 	private String categoryContent;
+	private String describe;
 	
 
 	public String getId() {
@@ -83,6 +84,12 @@ public class Video {
 	}
 	public void setCategoryContent(String categoryContent) {
 		this.categoryContent = categoryContent;
+	}
+	public String getDescribe() {
+		return describe;
+	}
+	public void setDescribe(String describe) {
+		this.describe = describe;
 	}
 	
 	

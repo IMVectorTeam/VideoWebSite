@@ -13,8 +13,9 @@ const state = {
   videoUserList: [],
   videoUserItem: {},
   videoUserListQuery: {
-    limit: 20, // 每一页的条数
-    page: 0 // 当前页的页码
+    limit: 10, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
     // offset: 0,
     // _total: 0,
   },
@@ -28,25 +29,27 @@ const getters = {
   videoUserForm: state => state.videoUserForm
 }
 const mutations = {
-  setVideoUserList: (state, { list, page, limit, needPagination = true, reset = false }) => {
+  setVideoUserList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
     if (reset === true) {
       state.videoUserList = []
     } else {
       state.videoUserList = list
       if (needPagination) {
         Vue.set(state.videoUserListQuery, 'page', page)
-        Vue.set(state.videoUserListQuery, 'limit', limit)
-        // state.videoUserListQuery.limit = limit
-        // Vue.set(state.videoUserListQuery, '_total', total)
-        // state.videoUserListQuery.offset = offset
+        Vue.set(state.videoUserListQuery, 'total', total)
+        state.videoUserListQuery.limit = limit
       }
     }
   },
   setVideoUserItem: (state, value) => {
     state.videoUserItem = value
   },
-  setVideoUserListQuery: (state, value) => {
-    state.videoUserListQuery = value
+  setVideoUserListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.videoUserListQuery = { ...state.videoUserListQuery, ...config }
+    } else {
+      state.videoUserListQuery[k] = v
+    }
   },
   setVideoUserForm: (state, { k, v, usingKey = false, pF, reset = false }) => {
     if (reset) {
@@ -70,7 +73,8 @@ const actions = {
       commit('setVideoUserList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   },
@@ -115,8 +119,6 @@ const actions = {
     console.log(videoId)
     return videoUserByVideoIdOp.retrieve(videoId, config).then(res => {
       res = res.data
-      res.is_valid = true
-      console.log(res)
       commit('setVideoUserItem', res)
     })
   },
@@ -124,8 +126,6 @@ const actions = {
     console.log(userId)
     return videoUserOp.retrieve(userId, config).then(res => {
       res = res.data
-      res.is_valid = true
-      console.log(res)
       commit('setVideoUserItem', res)
     })
   }

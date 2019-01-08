@@ -2,13 +2,13 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters('Comment', ['videoCommentList', 'videoCommentItem', 'videoCommentListQuery', 'videoCommentForm'])
+    ...mapGetters('comment', ['commentList', 'commentItem', 'commentListQuery', 'commentForm'])
   },
   methods: {
     ...mapActions({
-      getVideoCommentList: 'video/getVideoCommentList',
-      deleteVideoComment: 'video/deleteVideoComment'
+      getCommentList: 'comment/getCommentList',
+      deleteComment: 'comment/deleteComment'
     }),
-    ...mapMutations('Comment', ['setCommentList'])
+    ...mapMutations('comment', ['setCommentListQuery'])
   }
 }

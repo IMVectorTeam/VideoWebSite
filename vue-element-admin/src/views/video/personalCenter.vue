@@ -106,7 +106,7 @@
                 <br>
                 <el-row :gutter="10">
                   <el-col :span="16" :offset="4">
-                    <el-table :data="videoList" style="width: 100%">
+                    <el-table :data="userIdVideoList" style="width: 100%">
                       <el-table-column type="expand">
                         <template slot-scope="props">
                           <el-form label-position="left" inline class="demo-table-expand">
@@ -130,7 +130,7 @@
                       </el-table-column>
                       <el-table-column label="视频名称" prop="name" align="center"/>
                       <el-table-column label="视频类别" prop="categoryContent" align="center"/>
-                      <el-table-column label="上传时间" prop="date" align="center"/>
+                      <el-table-column :formatter="dateFormat" label="上传时间" prop="date" align="center"/>
                       <el-table-column label="操作" align="center">
                         <template slot-scope="scope">
                           <el-button type="danger" mini icon="el-icon-delete" @click="handleDeleteVideo(scope.row,scope.row.$index)"/>
@@ -138,6 +138,7 @@
                       </el-table-column>
 
                     </el-table>
+                    <mypagination type="userIdVideo" base-type="video" style="float:right"/>
                   </el-col>
                 </el-row>
               </div>
@@ -150,10 +151,11 @@
                 <el-col :span="16" :offset="4">
                   <div style="overflow-y: scroll;height:600px">
                     <el-table
-                      :data="commentList"
+                      :data="userIdCommentList"
                       :row-style="tableRowClassName"
                       style="width: 100%">
                       <el-table-column
+                        :formatter="dateFormat"
                         prop="date"
                         align="center"
                         label="评论日期"
@@ -173,6 +175,16 @@
                         </template>
                       </el-table-column>
                     </el-table>
+                    <mypagination type="userIdComment" base-type="comment" style="float:right"/>
+                    <br>
+                    <br>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
                   </div>
                   <!-- private String id;
                   private String videoId;
@@ -195,12 +207,13 @@
 </template>
 
 <script>
+import Mypagination from '@/components/Mypagination/index'
 import navMenu from '@/views/video/components/navMenu'
 import Data from '@/views/video/mixin/Data'
 import Vue from 'vue'
 export default {
   name: 'PersonalCenter',
-  components: { navMenu },
+  components: { navMenu, Mypagination },
   mixins: [Data],
   data() {
     const validateEmail = (rule, value, callback) => {
@@ -257,20 +270,29 @@ export default {
     }
   },
   created() {
+    if (JSON.parse(sessionStorage.getItem('userInfo')) === null || JSON.parse(sessionStorage.getItem('userInfo')) === undefined) {
+      this.$store.dispatch('LogOut').then(() => {
+        sessionStorage.setItem('avatar', '')
+        sessionStorage.setItem('userName', '')
+        sessionStorage.clear()
+        location.reload()// In order to re-instantiate the vue-router object to avoid bugs
+        this.$router.push({ path: '/login' })
+      })
+    }
     this.userForm = JSON.parse(sessionStorage.getItem('userInfo'))
     this.userForm.password = ''
-    // this.userForm.passwordRepeat = ''
     Vue.set(this.userForm, 'passwordRepeat', '')
   },
   methods: {
+
     handleDeleteVideo(row, index) {
       this.deleteVideo(row.id).then(() => {
-        this.videoList.splice(index, 1)
+        this.userIdVideoList.splice(index, 1)
       })
     },
     handleDeleteComment(row, index) {
       this.deleteComment(row.id).then(() => {
-        this.commentList.splice(index, 1)
+        this.userIdCommentList.splice(index, 1)
       })
     },
     tableRowClassName({ row, rowIndex }) {
@@ -282,12 +304,13 @@ export default {
       return ''
     },
     handleTabClick(tab, event) {
-      // console.log(tab.label, event)
       if (tab.label === '我上传的视频') {
-        this.getVideoByUserId({ userId: this.userForm.id, page: 1, limit: 10 })
+        this.setUserIdVideoListQuery({ usingKey: true, k: 'userId', v: this.userForm.id })
+        this.getUserIdVideoList()
       }
       if (tab.label === '我的评论') {
-        this.getCommentByUserId({ userId: this.userForm.id, page: 1, limit: 10 })
+        this.setUserIdCommentListQuery({ usingKey: true, k: 'userId', v: this.userForm.id })
+        this.getUserIdCommentList()
       }
     },
     changImage() { this.uploadShow = false },

@@ -2,10 +2,12 @@ package com.niit.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +24,8 @@ public class TestMessageController {
 	@Autowired
 	private MessageService messageService;
 
-	@RequestMapping(value = "/videoComment/list", method = RequestMethod.GET)
+	// 根据videoId查询视频
+	@RequestMapping(value = "/videoIdComment/list", method = RequestMethod.GET)
 	@ResponseBody
 	public PageInfo getMessageByVideoId(String videoId, int page, int limit) {
 		PageHelper.startPage(page, limit);
@@ -35,30 +38,36 @@ public class TestMessageController {
 	@RequestMapping("/getMessageByLikeContent")
 	@ResponseBody
 	public List<Message> getMessageByLikeContent(String content) {
-		System.out.println("aaa");
 		return messageService.getMessageByLikeContent(content);
 	}
-
-	@RequestMapping("/getAllMessage")
+	
+	@RequestMapping(value="/videoCommentlist",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Message> getAllMessage() {
-		return messageService.getAllMessage();
+	public PageInfo getAllMessage( int page, int limit) {
+		PageHelper.startPage(page, limit);
+		List<Message> list=messageService.getAllMessage();
+		PageInfo pageInfo = new PageInfo(list);
+		return pageInfo;
 	}
 
-	@RequestMapping("/insertMessage")
+	@RequestMapping(value = "/videoComment/", method = RequestMethod.POST)
 	@ResponseBody
-	public void insertMessage(Message message) {
-		Message message2 = new Message();
-		message2.setId("2003");
-		message2.setVideoId("1001");
-		message2.setUserId("20154071");
-		message2.setContent("真好看！");
-		message2.setDate(new Date());
-		messageService.insertMessage(message2);
+	public Boolean insertMessage(@RequestBody Message message) {
+		message.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		message.setDate(new Date());
+		boolean flag = false;
+		try {
+			messageService.insertMessage(message);
+			flag = true;
+		} catch (Exception e) {
+			System.out.println(e);
+			flag = false;
+		}
+		return flag;
 	}
 
 	// http://localhost:8081/api/VideoWebSite/videoComment/?id=2002
-	@RequestMapping(value = "/videoComment/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/videoComment", method = RequestMethod.DELETE)
 	@ResponseBody
 	public ModelMap deleteMessage(String id) {
 		Boolean flag = false;
@@ -73,11 +82,11 @@ public class TestMessageController {
 		map.addAttribute("flag", flag);
 		return map;
 	}
-
+	// 根据用户id查询所有该用户的评论
 	@RequestMapping(value="/comment/userId/list/",method=RequestMethod.GET)
 	@ResponseBody
 	public PageInfo getMessageByUserId(String userId, int page, int limit) {
-		PageHelper.offsetPage(page, limit);
+		PageHelper.startPage(page, limit);// 第一个参数是第几页，第二个参数是每一页的数量
 		List<Message> list = messageService.getMessageByUserId(userId);
 		PageInfo info = new PageInfo(list);
 		return info;

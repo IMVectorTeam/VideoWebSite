@@ -13,6 +13,7 @@
         align="center"
         width="180"/>
       <el-table-column
+        :formatter="dateFormat"
         prop="date"
         label="上传时间"
         align="center"
@@ -49,13 +50,17 @@
 
     </el-table>
 
+    <mypagination type="video" base-type="video" style="float:right"/>
+
   </div>
 </template>
 
 <script>
 import Data from '@/views/video/video/mixin/Data'
+import Mypagination from '@/components/Mypagination/index'
 export default {
   name: 'VideoManage',
+  components: { Mypagination },
   mixins: [Data],
   data() {
     return {

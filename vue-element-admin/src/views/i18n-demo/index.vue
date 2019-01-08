@@ -88,8 +88,8 @@ export default {
         return this.$store.state.app.language
       },
       set(lang) {
-        this.$i18n.locale = lang
-        this.$store.dispatch('setLanguage', lang)
+        this.$i18n.locale = 'zh'
+        this.$store.dispatch('setLanguage', 'zh')
       }
     }
   },

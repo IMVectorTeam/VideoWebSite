@@ -2,31 +2,6 @@
   <div>
     <nav-menu :active-index = "'2'"/>
     <div class="app-container">
-      <!-- <el-menu :default-active="activeIndex" style="margin-top: -20px;" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1">处理中心</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">我的工作台</template>
-        <el-menu-item index="2-1">选项1</el-menu-item>
-        <el-menu-item index="2-2">选项2</el-menu-item>
-        <el-menu-item index="2-3">选项3</el-menu-item>
-        <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="3" disabled>消息中心</el-menu-item>
-      <el-menu-item index="4" style="float: right">
-        <img src="@/assets/videoImage/hamburger.png" style="height: 50px;border-radius: 50%;">
-      </el-menu-item>
-      <el-submenu style="float: right" index="5">
-        <template slot="title">昵称</template>
-        <el-menu-item index="5-1">个人中心</el-menu-item>
-        <el-menu-item index="5-2">退出登录</el-menu-item>
-      </el-submenu>
-    </el-menu> -->
-
       <el-row :gutter="10">
         <el-col :offset="4">
           <el-breadcrumb separator="/">
@@ -69,11 +44,11 @@
                           <span @click="showVideo(children.id)">视频名称:{{ children.name }}</span>
                         </div>
                         <div style="padding: 14px;">
-                          <span>视频介绍: {{ children.status }}</span>
+                          <span>视频介绍: {{ children.describe }}</span>
                         </div>
                         <div style="padding: 14px;color: #909399;">
-                          <span>视频作者昵称{{ children.userId }}</span>
-                          <span>视频作者昵称{{ index +'-'+ cIndex }}</span>
+                          <span>上传时间：{{ textDateFormat(children.date) }}</span>
+                          <!-- <span>视频作者昵称{{ index +'-'+ cIndex }}</span> -->
                         <!--private String id;-->
                         <!--private String name;-->
                         <!--private String image;-->
@@ -97,31 +72,14 @@
             <!-- ------------------------------更多信息列表------------------------------ -->
             <el-col :span="8">
               <ul class="list-group">
-                <li v-for="i in 10" :key="i" class="list-group-item">HTML</li>
-                <li class="list-group-item">CSS</li>
-                <li class="list-group-item">javascript</li>
-                <li class="list-group-item">bootstrap</li>
-                <li class="list-group-item">jquery</li>
+                <li v-for="(item,index) in videoList" :key="index" class="list-group-item" @click="showVideo(item.id)">{{ item.name }}</li>
               </ul>
             </el-col>
           <!-- ------------------------------更多信息列表结束------------------------------ -->
           </el-row>
           <br>
           <br>
-          <el-row :gutter="10">
-            <el-col :span="16">
-              <el-pagination
-                :current-page="4"
-                :page-sizes="[100, 200, 300, 400]"
-                :page-size="100"
-                :total="400"
-                layout="total, sizes, prev, pager, next, jumper"
-                style="float: right"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
-            </el-col>
-          </el-row>
+          <mypagination type="typeVideo" base-type="video"/>
         </el-col>
       </el-row>
     </div>
@@ -132,35 +90,40 @@
 <script>
 import Data from '@/views/video/mixin/Data'
 import navMenu from '@/views/video/components/navMenu'
+import Mypagination from '@/components/Mypagination/index'
 export default {
   name: 'ClassifiedVideo',
-  components: { navMenu },
+  components: { navMenu, Mypagination },
   mixins: [Data],
   data() {
     return {
-      activeIndex: '1',
-      list: [[]]
 
     }
   },
-  created() {
-    this.getVideoListByType({ page: 1, limit: 10, videoType: this.$route.params.title }).then(() => {
-      // console.log(this.videoList)
+  computed: {
+    list: function() {
       var i = 0
-
-      this.videoList.forEach((item, index) => {
+      var list = [[]]
+      this.typeVideoList.forEach((item, index) => {
         if (index % 2 === 0 && index !== 0) {
           i++
         }
-        if (this.list[i]) {
-          this.list[i].push(item)
+        if (list[i]) {
+          list[i].push(item)
         } else {
-          this.list[i] = []
-          this.list[i].push(item)
+          list[i] = []
+          list[i].push(item)
         }
       })
-      // console.log(this.list)
-    })
+      return list
+    }
+  },
+  created() {
+    this.getVideoList()
+    this.setTypeVideoListQuery({ usingKey: true, k: 'videoType', v: this.$route.params.title })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'limit', v: 10 })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'page', v: 1 })
+    this.getTypeVideoList()
   },
   methods: {
     showVideo(id) {

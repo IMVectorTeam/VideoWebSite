@@ -43,6 +43,33 @@ Vue.mixin({
     }
   },
   methods: {
+    dateFormat(row, column, cellValue, index) {
+      const daterc = row[column.property]
+      if (daterc != null) {
+        const dateMat = new Date(parseInt(daterc, 10))
+        const year = dateMat.getFullYear()
+        const month = dateMat.getMonth() + 1
+        const day = dateMat.getDate()
+        const hh = dateMat.getHours()
+        const mm = dateMat.getMinutes()
+        const ss = dateMat.getSeconds()
+        const timeFormat = year + '/' + month + '/' + day + ' ' + hh + ':' + mm + ':' + ss
+        return timeFormat
+      }
+    },
+    textDateFormat(val) {
+      if (val != null) {
+        const dateMat = new Date(parseInt(val, 10))
+        const year = dateMat.getFullYear()
+        const month = dateMat.getMonth() + 1
+        const day = dateMat.getDate()
+        const hh = dateMat.getHours()
+        const mm = dateMat.getMinutes()
+        const ss = dateMat.getSeconds()
+        const timeFormat = year + '/' + month + '/' + day + ' ' + hh + ':' + mm + ':' + ss
+        return timeFormat
+      }
+    },
     changeTagsTitle(title) {
       const idx = this.$store.state.tagsView.visitedViews.findIndex(v => v.fullPath === document.location.hash.replace('#', ''))
       this.$set(this.$store.state.tagsView.visitedViews[idx].meta, 'title', title)

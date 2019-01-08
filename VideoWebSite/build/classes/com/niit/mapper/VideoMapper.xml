@@ -15,6 +15,7 @@
 		<result property="state" column="VState" />
 		<result property="userId" column="VUserID" />
 		<result property="date" column="VDate" />
+		<result property="describe" column="VDescribe" />
 	</resultMap>
 
 
@@ -22,28 +23,33 @@
 	<select id="getVideo" parameterType="java.lang.String"
 		resultMap="videoMap" resultType="com.niit.entity.Video">
 		SELECT
-		VID,VName,VImage,Vaddress,Vtime,CName as categoryContent, VCategory,Vstate,UName as userName,
-		VUserID,VDate
-		FROM videos v,videocategory c,users u
+		VID,VName,VImage,Vaddress,Vtime,CName as categoryContent,
+		VCategory,Vstate,UName as userName,
+		VUserID,VDate,VDescribe
+		FROM videos
+		v,videocategory c,users u
 		WHERE c.CID = v.VCategory AND
-		v.VUserID = u.UID AND v.VID = #{id}
+		v.VUserID =
+		u.UID AND v.VID = #{id}
 	</select>
 
 	<!-- 插入单个视频 -->
 	<insert id="insertVideo" parameterType="com.niit.entity.Video">
 		INSERT INTO videos(VID,
-		VName, VImage, VAddress, VTime, VCategory, VState,VUserID,VDate)
+		VName, VImage, VAddress, VTime, VCategory, VState,VUserID,VDate,VDescribe)
 		VALUES(#{id}, #{name}, #{image}, #{address}, #{time},
-		#{category},#{state},#{userId},#{date})
+		#{category},#{state},#{userId},#{date},#{describe})
 	</insert>
 
 	<!-- 根据视频类别名称模糊查询视频 -->
 	<select id="getVideoByCategoryName"
 		parameterType="java.lang.String" resultMap="videoMap"
 		resultType="com.niit.entity.Video">
-		SELECT VID,VName,VImage,Vaddress,Vtime,CName as categoryContent,
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as
+		categoryContent,VDescribe,
 		VCategory,Vstate,UName as userName, VUserID,VDate
-		FROM videos v,videocategory c,users u
+		FROM
+		videos v,videocategory c,users u
 		WHERE c.CID = v.VCategory AND
 		v.VUserID = u.UID AND c.CName LIKE "%"#{name}"%"
 	</select>
@@ -51,9 +57,11 @@
 	<!-- 查询所有视频 -->
 	<select id="getVideoList" resultType="com.niit.entity.Video"
 		resultMap="videoMap">
-		SELECT VID,VName,VImage,Vaddress,Vtime,CName as categoryContent,
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as
+		categoryContent,VDescribe,
 		VCategory,Vstate,UName as userName, VUserID,VDate
-		FROM videos v,videocategory c,users u
+		FROM
+		videos v,videocategory c,users u
 		WHERE c.CID = v.VCategory AND
 		v.VUserID = u.UID
 	</select>
@@ -62,9 +70,11 @@
 	<select id="getVideoListByLikeName"
 		parameterType="java.lang.String" resultType="com.niit.entity.Video"
 		resultMap="videoMap">
-		SELECT VID,VName,VImage,Vaddress,Vtime,CName as categoryContent,
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as
+		categoryContent,VDescribe,
 		VCategory,Vstate,UName as userName, VUserID,VDate
-		FROM videos v,videocategory c,users u
+		FROM
+		videos v,videocategory c,users u
 		WHERE c.CID = v.VCategory AND
 		v.VUserID = u.UID AND v.VName LIKE "%"#{name}"%"
 	</select>
@@ -74,9 +84,11 @@
 	<select id="getVideoListByCategory"
 		parameterType="java.lang.String" resultType="com.niit.entity.Video"
 		resultMap="videoMap">
-		SELECT VID,VName,VImage,Vaddress,Vtime,CName as categoryContent,
+		SELECT VID,VName,VImage,Vaddress,Vtime,CName as
+		categoryContent,VDescribe,
 		VCategory,Vstate,UName as userName, VUserID,VDate
-		FROM videos v,videocategory c,users u
+		FROM
+		videos v,videocategory c,users u
 		WHERE c.CID = v.VCategory AND
 		v.VUserID = u.UID AND v.VCategory = #{category}
 	</select>
@@ -93,8 +105,8 @@
 		VCategory = #{category},
 		VState = #{state},
 		VUserID = #{userId},
-		VDate =
-		#{date}
+		VDate =#{date},
+		VDescribe=#{describe}
 		WHERE VID = #{id}
 	</update>
 
@@ -114,10 +126,14 @@
 	<!-- pky根据用户id查询该用户的发布的所有的视频 -->
 	<select id="getVideoListByUserId"
 		resultType="com.niit.entity.Video" resultMap="videoMap">
-		SELECT VID,VName,VImage,Vaddress,Vtime,CName as categoryContent, VCategory,Vstate,UName as userName,
+		SELECT
+		VID,VName,VImage,Vaddress,Vtime,CName as categoryContent,
+		VCategory,Vstate,UName as userName,VDescribe,
 		VUserID,VDate
-		FROM videos v,videocategory c,users u WHERE c.CID = v.VCategory AND
-		v.VUserID = u.UID AND u.UID = #{id}
+		FROM videos
+		v,videocategory c,users u WHERE c.CID = v.VCategory AND
+		v.VUserID =
+		u.UID AND u.UID = #{id}
 	</select>
 
 </mapper>

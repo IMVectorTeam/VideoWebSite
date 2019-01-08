@@ -10,25 +10,21 @@
         <el-col :span="8">
           <el-form-item label="视频名称：">
             <span>{{ convertNullToBlack(videoItem).name }}</span>
-            <!-- <span> {{ convertNullToBlack(hiddenDangersItem.work_shop).name }}</span> -->
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="视频类别：">
-            <span>{{ convertNullToBlack(videoItem).sex }}</span>
-            <!-- <span> {{ convertNullToBlack(hiddenDangersItem.team).name }}</span> -->
+            <span>{{ convertNullToBlack(videoItem).categoryContent }}</span>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="上传用户：">
-            <span>{{ convertNullToBlack(videoItem).email }}</span>
-            <!-- <span> {{ convertNullToBlack(hiddenDangersItem.shift) }}</span> -->
+            <span>{{ convertNullToBlack(videoItem).userName }}</span>
           </el-form-item>
         </el-col>
         <el-col :span="8">
           <el-form-item label="上传时间">
-            <span style="height:30px;">{{ convertNullToBlack(videoItem).introduce }}</span>
-            <!-- <span> {{ convertNullToBlack(hiddenDangersItem.date) }}</span> -->
+            <span style="height:30px;">{{ textDateFormat(convertNullToBlack(videoItem).date) }}</span>
           </el-form-item>
         </el-col>
         <el-col :span="8">
@@ -37,11 +33,6 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <!--<el-form-item label="车间:"><span v-if="hiddenDangersItem.work_shop" style="color:#606266">{{ hiddenDangersItem.work_shop.name }}</span></el-form-item>-->
-      <!--<el-form-item label="班组:"><span v-if="hiddenDangersItem.team" style="color:#606266">{{ hiddenDangersItem.team.name }}</span></el-form-item>-->
-      <!--<el-form-item label="班次:"><span style="color:#606266">{{ hiddenDangersItem.shift }}</span></el-form-item>-->
-      <!--<el-form-item label="时间:"><span style="color:#606266">{{ hiddenDangersItem.date }}</span></el-form-item>-->
-      <!--<el-form-item label="隐患类型:"><span v-if="hiddenDangersItem.hazard_classification" style="color:#606266">{{ hiddenDangersItem.hazard_classification.name }}</span></el-form-item>-->
     </el-form>
 
     <el-row class="el-title">
@@ -66,13 +57,14 @@
             <br>
             <br>
             <br>
-            <span style="font-size: 20px;font-weight: bold;color: #606266;">2532评论</span>
-            <el-pagination
+            <span style="font-size: 20px;font-weight: bold;color: #606266;">{{ videoCommentListQuery.total }}评论</span>
+            <mypagination :appearance="2" type="videoComment" base-type="video" style="float:right"/>
+            <!-- <el-pagination
               :page-size="20"
               :pager-count="11"
               :total="1000"
               style="float: right"
-              layout="prev, pager, next"/>
+              layout="prev, pager, next"/> -->
           </el-col>
         </el-row>
 
@@ -89,11 +81,11 @@
         <hr style="border: solid 0.5px #EBEEF5">
         <el-row :gutter="20">
           <el-col :span="2">
-            <img class="headImage" src="@/assets/videoImage/hamburger.png">
+            <img :src="item.image" class="headImage">
           </el-col>
           <el-col :span="22">
             <el-row :gutter="10">
-              <span>昵称</span>
+              <span>{{ item.userName }}</span>
             </el-row>
             <br>
             <el-row :gutter="10">
@@ -110,7 +102,11 @@
       </el-col>
     </el-row>
     <el-row :gutter="10">
-      <el-col :span="16" :offset="4">
+      <el-col :span="21">
+        <mypagination type="videoComment" base-type="video" style="float:right"/>
+
+      </el-col>
+      <!-- <el-col :span="16" :offset="4">
         <div class="block">
           <el-pagination
             :current-page= "1"
@@ -122,8 +118,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"/>
         </div>
-
-      </el-col>
+      </el-col> -->
     </el-row>
 
   </div>
@@ -131,8 +126,10 @@
 
 <script>
 import Data from '@/views/video/mixin/Data'
+import Mypagination from '@/components/Mypagination/index'
 export default {
   name: 'Info',
+  components: { Mypagination },
   mixins: [Data],
   data() {
     return {

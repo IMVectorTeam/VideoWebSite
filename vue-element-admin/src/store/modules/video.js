@@ -1,5 +1,5 @@
 import { Message, Notification } from 'element-ui'
-import { videoOp, videoTypeOp, videoCommentOp, videoByTypeOp, videoUserIdOP } from '@/api/video'
+import { videoOp, videoTypeOp, videoIdCommentOp, videoByTypeOp, videoUserIdOP } from '@/api/video'
 import Vue from 'vue'
 
 export const defaultVideoForm = {
@@ -18,18 +18,18 @@ const state = {
   videoList: [],
   videoItem: {},
   videoListQuery: {
-    limit: 20, // 每一页的条数
-    page: 0 // 当前页的页码
-    // offset: 0,
-    // _total: 0,
+    limit: 10, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
   },
   videoForm: JSON.parse(JSON.stringify(defaultVideoForm)),
 
   videoTypeList: [],
   videoTypeItem: {},
   videoTypeListQuery: {
-    limit: 20, // 每一页的条数
-    page: 0 // 当前页的页码
+    limit: 10, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
     // offset: 0,
     // _total: 0,
   },
@@ -38,17 +38,34 @@ const state = {
   videoCommentList: [],
   videoCommentItem: {},
   videoCommentListQuery: {
-    limit: 20, // 每一页的条数
-    page: 0 // 当前页的页码
+    limit: 10, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
     // offset: 0,
     // _total: 0,
   },
   videoCommentForm: {},
   videoListByTypeQuery: {
-    limit: 20, // 每一页的条数
+    limit: 10, // 每一页的条数
     page: 0, // 当前页的页码
     videoType: ''
     // _total: 0,
+  },
+  userIdVideoList: [],
+  userIdVideoItem: {},
+  userIdVideoListQuery: {
+    userId: '',
+    limit: 5, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
+  },
+  typeVideoList: [],
+  typeVideoItem: {},
+  typeVideoListQuery: {
+    videoType: '',
+    limit: 10, // 每一页的条数
+    page: 0, // 当前页的页码
+    total: 0
   }
 }
 
@@ -66,25 +83,38 @@ const getters = {
   videoCommentList: state => state.videoCommentList,
   videoCommentItem: state => state.videoCommentItem,
   videoCommentListQuery: state => state.videoCommentListQuery,
-  videoCommentForm: state => state.videoCommentForm
+  videoCommentForm: state => state.videoCommentForm,
+
+  userIdVideoList: state => state.userIdVideoList,
+  userIdVideoItem: state => state.userIdVideoItem,
+  userIdVideoListQuery: state => state.userIdVideoListQuery,
+
+  typeVideoList: state => state.typeVideoList,
+  typeVideoItem: state => state.typeVideoItem,
+  typeVideoListQuery: state => state.typeVideoListQuery
 }
 const mutations = {
-  setVideoList: (state, { list, page, limit, needPagination = true, reset = false }) => {
+  setVideoList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
     if (reset === true) {
       state.videoList = []
     } else {
       state.videoList = list
       if (needPagination) {
         Vue.set(state.videoListQuery, 'page', page)
-        Vue.set(state.videoListQuery, 'limit', limit)
+        Vue.set(state.videoListQuery, 'total', total)
+        state.videoListQuery.limit = limit
       }
     }
   },
   setVideoItem: (state, value) => {
     state.videoItem = value
   },
-  setVideoListQuery: (state, value) => {
-    state.videoListQuery = value
+  setVideoListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.videoListQuery = { ...state.videoListQuery, ...config }
+    } else {
+      state.videoListQuery[k] = v
+    }
   },
   setVideoForm: (state, { k, v, isEdit = false, pF, reset = false }) => {
     if (reset) {
@@ -98,35 +128,41 @@ const mutations = {
     }
   },
 
-  setVideoTypeList: (state, { list, page, limit, needPagination = true, reset = false }) => {
+  setVideoTypeList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
     if (reset === true) {
       state.videoTypeList = []
     } else {
       state.videoTypeList = list
       if (needPagination) {
         Vue.set(state.videoTypeListQuery, 'page', page)
-        Vue.set(state.videoTypeListQuery, 'limit', limit)
+        Vue.set(state.videoTypeListQuery, 'total', total)
+        state.videoTypeListQuery.limit = limit
       }
     }
   },
   setVideoTypeItem: (state, value) => {
     state.videoTypeItem = value
   },
-  setVideoTypeListQuery: (state, value) => {
-    state.videoTypeListQuery = value
+  setVideoTypeListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.videoTypeListQuery = { ...state.videoTypeListQuery, ...config }
+    } else {
+      state.videoTypeListQuery[k] = v
+    }
   },
   setVideoTypeForm: (state, value) => {
     state.videoTypeFrom = value
   },
 
-  setVideoCommentList: (state, { list, page, limit, needPagination = true, reset = false }) => {
+  setVideoCommentList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
     if (reset === true) {
       state.videoCommentList = []
     } else {
       state.videoCommentList = list
       if (needPagination) {
         Vue.set(state.videoCommentListQuery, 'page', page)
-        Vue.set(state.videoCommentListQuery, 'limit', limit)
+        Vue.set(state.videoCommentListQuery, 'total', total)
+        state.videoCommentListQuery.limit = limit
       }
     }
   },
@@ -134,7 +170,6 @@ const mutations = {
     state.videoCommentItem = value
   },
   setVideoCommentListQuery(state, { config, usingKey = false, k, v }) {
-    // console.log(config)
     if (!usingKey) {
       state.videoCommentListQuery = { ...state.videoCommentListQuery, ...config }
     } else {
@@ -143,7 +178,54 @@ const mutations = {
   },
   setVideoCommentForm: (state, value) => {
     state.videoCommentFrom = value
+  },
+
+  setUserIdVideoList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
+    if (reset === true) {
+      state.userIdVideoList = []
+    } else {
+      state.userIdVideoList = list
+      if (needPagination) {
+        Vue.set(state.userIdVideoListQuery, 'page', page)
+        Vue.set(state.userIdVideoListQuery, 'total', total)
+        state.userIdVideoListQuery.limit = limit
+      }
+    }
+  },
+  setUserIdVideoItem: (state, value) => {
+    state.userIdVideoItem = value
+  },
+  setUserIdVideoListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.userIdVideoListQuery = { ...state.userIdVideoListQuery, ...config }
+    } else {
+      state.userIdVideoListQuery[k] = v
+    }
+  },
+
+  setTypeVideoList: (state, { list, page, limit, total, needPagination = true, reset = false }) => {
+    if (reset === true) {
+      state.typeVideoList = []
+    } else {
+      state.typeVideoList = list
+      if (needPagination) {
+        Vue.set(state.typeVideoListQuery, 'page', page)
+        Vue.set(state.typeVideoListQuery, 'total', total)
+        state.typeVideoListQuery.limit = limit
+      }
+    }
+  },
+  setTypeVideoItem: (state, value) => {
+    state.typeVideoItem = value
+  },
+  setTypeVideoListQuery: (state, { config, usingKey = false, k, v }) => {
+    if (!usingKey) {
+      state.typeVideoListQuery = { ...state.typeVideoListQuery, ...config }
+    } else {
+      state.typeVideoListQuery[k] = v
+    }
   }
+
 }
 
 const actions = {
@@ -154,7 +236,8 @@ const actions = {
       commit('setVideoList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   },
@@ -168,24 +251,26 @@ const actions = {
   async getVideoTypeList({ commit, state }) {
     await videoTypeOp.list(state.videoTypeListQuery).then((res) => {
       commit('setVideoTypeList', {
-        list: res.data
+        list: res.data,
+        page: res.pageNum,
+        limit: res.pageSize,
+        total: res.total
       })
     })
   },
   async getVideoCommentList({ commit, state }) {
-    await videoCommentOp.list(state.videoCommentListQuery).then((res) => {
-      // console.log(res)
-      // console.log(res)
+    await videoIdCommentOp.list(state.videoCommentListQuery).then((res) => {
       res = res.data
       commit('setVideoCommentList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   },
   async deleteVideoComment({ commit, dispatch, state, rootState }, uuid) {
-    await videoCommentOp.delete({ id: uuid })
+    await videoIdCommentOp.delete({ id: uuid })
     Message({
       message: '视频删除成功',
       type: 'success'
@@ -207,39 +292,39 @@ const actions = {
           type: 'warning'
         })
       }
-
       commit('setVideoForm', { reset: true })
     })
   },
-  async getVideoListByType({ commit, state }, { page, limit, videoType }) {
-    Vue.set(state.videoListByTypeQuery, 'page', page)
-    Vue.set(state.videoListByTypeQuery, 'limit', limit)
-    Vue.set(state.videoListByTypeQuery, 'videoType', videoType)
-    const query = JSON.parse(JSON.stringify(state.videoListByTypeQuery))
-
+  async getTypeVideoList({ commit, state }) {
+    // { page, limit, videoType }
+    // Vue.set(state.typeVideoListQuery, 'page', page)
+    // Vue.set(state.typeVideoListQuery, 'limit', limit)
+    // Vue.set(state.typeVideoListQuery, 'videoType', videoType)
+    const query = JSON.parse(JSON.stringify(state.typeVideoListQuery))
     await videoByTypeOp.list(query).then((res) => {
       res = res.data
-      commit('setVideoList', {
+      commit('setTypeVideoList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   },
   getVideoItem({ commit, state }, { uuid, config }) {
     return videoOp.retrieve(uuid, config).then(res => {
       res = res.data
-      res.is_valid = true
       commit('setVideoItem', res)
     })
   },
-  async getVideoByUserId({ commit, state }, { userId, page, limit }) {
-    await videoUserIdOP.list({ userId, page, limit }).then((res) => {
+  async getUserIdVideoList({ commit, state }) {
+    await videoUserIdOP.list(state.userIdVideoListQuery).then((res) => {
       res = res.data
-      commit('setVideoList', {
+      commit('setUserIdVideoList', {
         list: res.list,
         page: res.pageNum,
-        limit: res.pageSize
+        limit: res.pageSize,
+        total: res.total
       })
     })
   }

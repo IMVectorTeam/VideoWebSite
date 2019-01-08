@@ -74,30 +74,52 @@ export default {
     }
   },
   created() {
-    console.log(store.getters.userInfo)
+    // console.log(store.getters.userInfo)
     // this.pageLoading = true
-    // this.pageLoading = false
-    this.getVideoListByType({ page: 1, limit: 6, videoType: '今日焦点' }).then(() => {
+
+    // Promise.all([
+    this.setTypeVideoListQuery({ usingKey: true, k: 'videoType', v: '今日焦点' })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'limit', v: 6 })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'page', v: 1 })
+    // this.getVideoListByType({ page: 1, limit: 6, videoType: '今日焦点' }).then(() => {
+    //   console.log(this.videoList)
+    //   this.videoList.forEach(item => {
+    //     this.hotSpotList.push(item)
+    //   })
+    // })
+    this.getTypeVideoList().then(() => {
       console.log(this.videoList)
-      this.videoList.forEach(item => {
+      this.typeVideoList.forEach(item => {
         this.hotSpotList.push(item)
       })
     })
-    this.getVideoListByType({ page: 1, limit: 6, videoType: '综艺娱乐' }).then(() => {
-      this.videoList.forEach(item => {
+    this.setTypeVideoListQuery({ usingKey: true, k: 'videoType', v: '综艺娱乐' })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'limit', v: 6 })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'page', v: 1 })
+    this.getTypeVideoList().then(() => {
+      this.typeVideoList.forEach(item => {
         this.entertainmentList.push(item)
       })
     })
-    this.getVideoListByType({ page: 1, limit: 6, videoType: '电视剧' }).then(() => {
-      this.videoList.forEach(item => {
+    this.setTypeVideoListQuery({ usingKey: true, k: 'videoType', v: '电视剧' })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'limit', v: 6 })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'page', v: 1 })
+    this.getTypeVideoList().then(() => {
+      this.typeVideoList.forEach(item => {
         this.TVSeriesList.push(item)
       })
     })
-    this.getVideoListByType({ page: 1, limit: 6, videoType: '电影' }).then(() => {
-      this.videoList.forEach(item => {
+    this.setTypeVideoListQuery({ usingKey: true, k: 'videoType', v: '电影' })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'limit', v: 6 })
+    this.setTypeVideoListQuery({ usingKey: true, k: 'page', v: 1 })
+    this.getTypeVideoList().then(() => {
+      this.typeVideoList.forEach(item => {
         this.moviesList.push(item)
       })
     })
+    // ]).then(() => {
+    //   this.pageLoading = false
+    // })
     // console.log(this.videoList)
     // Promise.all([])
     // this.getVideoList().then(() => {

@@ -86,44 +86,37 @@
       </el-col>
       <el-col :span="9">
         <el-table
-          :data="tableData5"
+          :data="userIdVideoList"
+          :header-cell-style="{ background: '#F5F7FA' }"
+          element-loading-text="数据获取中"
+          border
+          fit
           style="width: 100%">
           <el-table-column type="expand">
             <template slot-scope="props">
-              <el-form label-position="left" inline class="demo-table-expand">
-                <el-form-item label="商品名称">
-                  <span>{{ props.row.name }}</span>
+              <el-form label-position="left" class="demo-table-expand">
+                <el-form-item label="视频封面">
+                  <span>
+                    <img :src="props.row.image" style="width:200px;" alt="">
+                  </span>
                 </el-form-item>
-                <el-form-item label="所属店铺">
-                  <span>{{ props.row.shop }}</span>
+                <el-form-item label="视频">
+                  <span>
+                    <video :src="props.row.address" controls="controls" preload="auto" style="width:500px" alt=""/>
+                  </span>
                 </el-form-item>
-                <el-form-item label="商品 ID">
-                  <span>{{ props.row.id }}</span>
-                </el-form-item>
-                <el-form-item label="店铺 ID">
-                  <span>{{ props.row.shopId }}</span>
-                </el-form-item>
-                <el-form-item label="商品分类">
-                  <span>{{ props.row.category }}</span>
-                </el-form-item>
-                <el-form-item label="店铺地址">
-                  <span>{{ props.row.address }}</span>
-                </el-form-item>
-                <el-form-item label="商品描述">
-                  <span>{{ props.row.desc }}</span>
-                </el-form-item>
+
               </el-form>
             </template>
           </el-table-column>
-          <el-table-column
-            label="商品 ID"
-            prop="id"/>
-          <el-table-column
-            label="商品名称"
-            prop="name"/>
-          <el-table-column
-            label="描述"
-            prop="desc"/>
+          <el-table-column label="视频名称" prop="name" align="center"/>
+          <el-table-column label="视频类别" prop="categoryContent" align="center"/>
+          <el-table-column label="上传时间" prop="date" align="center"/>
+          <el-table-column label="操作" align="center">
+            <template slot-scope="scope">
+              <el-button type="danger" mini icon="el-icon-delete" @click="handleDeleteVideo(scope.row,scope.$index)"/>
+            </template>
+          </el-table-column>
         </el-table>
 
       </el-col>
@@ -160,44 +153,14 @@ export default {
         name: [{ required: true, trigger: 'blur', message: '视频名称不能为空' }]
       },
       pageLoading: false,
-      activeIndex: '1',
-      tableData5: [{
-        id: '12987122',
-        name: '好滋好味鸡蛋仔',
-        category: '江浙小吃、小吃零食',
-        desc: '荷兰优质淡奶，奶香浓而不腻',
-        address: '上海市普陀区真北路',
-        shop: '王小虎夫妻店',
-        shopId: '10333'
-      }, {
-        id: '12987123',
-        name: '好滋好味鸡蛋仔',
-        category: '江浙小吃、小吃零食',
-        desc: '荷兰优质淡奶，奶香浓而不腻',
-        address: '上海市普陀区真北路',
-        shop: '王小虎夫妻店',
-        shopId: '10333'
-      }, {
-        id: '12987125',
-        name: '好滋好味鸡蛋仔',
-        category: '江浙小吃、小吃零食',
-        desc: '荷兰优质淡奶，奶香浓而不腻',
-        address: '上海市普陀区真北路',
-        shop: '王小虎夫妻店',
-        shopId: '10333'
-      }, {
-        id: '12987126',
-        name: '好滋好味鸡蛋仔',
-        category: '江浙小吃、小吃零食',
-        desc: '荷兰优质淡奶，奶香浓而不腻',
-        address: '上海市普陀区真北路',
-        shop: '王小虎夫妻店',
-        shopId: '10333'
-      }]
+      activeIndex: '1'
     }
   },
   created() {
     this.loading = true
+
+    this.setUserIdVideoListQuery({ usingKey: true, k: 'userId', v: sessionStorage.getItem('userId') })
+    this.getUserIdVideoList()
     this.getVideoTypeList().then(() => {
       this.loading = false
     })
@@ -215,17 +178,10 @@ export default {
           this.setVideoForm({ k: 'userId', v: sessionStorage.getItem('userId') })
           console.log(this.videoForm)
           this.createVideo().then(() => {
+            this.$refs['form'].resetFields()
+            this.getUserIdVideoList()
             this.pageLoading = false
           })
-          // id: '',
-          //   name: '',
-          //   image: '',
-          //   address: '',
-          //   time: '',
-          //   category: '',
-          //   state: '',
-          //   userId: '',
-          //   date: ''
         }
       })
     },

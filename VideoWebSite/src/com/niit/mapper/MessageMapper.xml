@@ -20,7 +20,7 @@
 		videoName, UImage as image,UIntroduce as introduce 
 		FROM messages m,videos v,users u
 		WHERE u.UID = m.MUserID
-		AND m.MVideoID = v.VID AND m.MVideoID = #{id}
+		AND m.MVideoID = v.VID AND m.MVideoID = #{id} ORDER BY Mdate DESC
 	</select>
 
 	<!-- 根据关键字模糊查询所有评论内容 -->
@@ -31,7 +31,7 @@
 		videoName, UImage as image,UIntroduce as introduce 
 		FROM messages m,videos v,users u
 		WHERE u.UID = m.MUserID
-		AND m.MVideoID = v.VID AND m.MContent LIKE "%"#{content}"%"
+		AND m.MVideoID = v.VID AND m.MContent LIKE "%"#{content}"%" ORDER BY Mdate DESC
 	</select>
 
 	<!-- 查询所有评论 -->
@@ -41,7 +41,7 @@
 		videoName, UImage as image,UIntroduce as introduce 
 		FROM messages
 		m,videos v,users u
-		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID
+		WHERE u.UID = m.MUserID AND m.MVideoID = v.VID ORDER BY Mdate DESC
 	</select>
 
 	<!-- 插入评论 -->
@@ -60,13 +60,13 @@
 	 <!-- 根据用户id查询评论内容 -->
 	<select id="getMessageByUserId" parameterType="java.lang.String"
 		resultMap="messageMap" resultType="com.niit.entity.Message">
-		select MID,MVideoID,MUserID,MContent,Mdate,UName as userName, VName as
+		select MID,MVideoID,MUserID,MContent, Mdate,UName as userName,VName as
 		videoName, UImage as image,UIntroduce as introduce 
 		from messages m,videos v,users u 
 		where
 		m.MVideoID = v.Vid
 		and m.MUserID = u.UID
-		and u.UID= #{userId}
+		and u.UID= #{userId} ORDER BY Mdate DESC
 	</select>
 
 </mapper>

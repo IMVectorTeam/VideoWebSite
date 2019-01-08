@@ -18,11 +18,7 @@
               </el-col>
               <el-col :span="4">
                 <ul class="list-group">
-                  <li class="list-group-item">HTML</li>
-                  <li class="list-group-item">CSS</li>
-                  <li class="list-group-item">javascript</li>
-                  <li class="list-group-item">bootstrap</li>
-                  <li class="list-group-item">jquery</li>
+                  <li v-for="(item,index) in videoList" :key="index" class="list-group-item" @click="showVideo(item.id)">{{ item.name }}</li>
                 </ul>
               </el-col>
             </el-row>
@@ -34,7 +30,7 @@
       </el-row>
       <el-row :gutter="10">
         <el-col :span="13" :offset="4">
-          <span style="font-size: 30px;font-weight: bold">这里是视频名称{{ videoItem.name }}</span>
+          <span style="font-size: 30px;font-weight: bold"><span style="color:#606266">视频名称:</span> {{ videoItem.name }}</span>
           <el-rate
             v-model="value"
             style="float: right"
@@ -55,14 +51,15 @@
             </el-col>
             <el-col :span="22">
               <el-row :gutter="10">
-                <span>作者昵称:{{ videoUserItem.name }}</span>
+                <span><span style="color:#909399">作者昵称:</span>    {{ videoUserItem.name }}</span>
               </el-row>
               <br>
               <el-row :gutter="10">
-                <span>自我介绍哦: {{ videoUserItem.introduce }}</span>
+                <span><span style="color:#909399">自我介绍: </span> {{ videoUserItem.introduce }}</span>
               </el-row>
             </el-col>
             <el-row :gutter="10"/>
+            <br>
             <el-row :gutter="10">
               <el-col :span="16" :offset="2">
                 <el-tag>标签一</el-tag>
@@ -76,7 +73,7 @@
           </el-row>
         </el-col>
       </el-row>
-      <!----------------------------------------以下内容是用户信息以及评论分页----------------------------------------->
+      <!-- --------------------------------------以下内容是用户信息以及评论分页--------------------------------------- -->
       <!--<el-row :gutter="10">-->
       <!--<el-col :span="16" :offset="4">-->
 
@@ -105,13 +102,8 @@
           <br>
           <br>
           <br>
-          <span style="font-size: 20px;font-weight: bold;color: #606266;">2532评论</span>
-          <el-pagination
-            :page-size="20"
-            :pager-count="11"
-            :total="1000"
-            style="float: right"
-            layout="prev, pager, next"/>
+          <span style="font-size: 20px;font-weight: bold;color: #606266;">{{ videoCommentListQuery.total }}评论</span>
+          <mypagination :appearance="2" type="videoComment" base-type="video" style="float:right"/>
         </el-col>
       </el-row>
 
@@ -121,19 +113,24 @@
         </el-col>
       </el-row>
 
-      <!----------------------------------------以下内容是评论信息----------------------------------------->
+      <!-- --------------------------------------以下内容是评论信息--------------------------------------- -->
       <el-row :gutter="20">
         <el-col :span="16" :offset="4">
           <el-row :gutter="10">
             <el-col :span="2">
-              <img class="headImage" src="@/assets/videoImage/hamburger.png">
+              <img :src="loginAvatar" class="headImage">
             </el-col>
             <el-col :span="20">
-              <div contenteditable="true" class="textArea" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"/>
-            <!--<el-input type="textarea" style="background-color: #f4f5f7;border: #e5e9ef;height: 200px" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。" />-->
+              <el-form ref="commentForm" :model="commentForm" :rules="rules">
+                <!-- <div v-model="commentForm" contenteditable="true" class="textArea" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"/> -->
+                <el-form-item prop="content">
+                  <text-area v-model="commentForm.content" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"/>
+                  <!-- <el-input v-model="commentForm.content" class="textArea" type="textarea" placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"/> -->
+                </el-form-item>
+              </el-form>
             </el-col>
             <el-col :span="2">
-              <el-button style="height: 65px" type="primary">发表评论</el-button>
+              <el-button style="height: 65px" type="primary" @click="handleCommentSubmit">发表评论</el-button>
               <br>
               <br>
             </el-col>
@@ -147,20 +144,15 @@
           <hr style="border: solid 0.5px #EBEEF5">
           <el-row :gutter="20">
             <el-col :span="2">
-              <img class="headImage" src="@/assets/videoImage/hamburger.png">
+              <img :src="item.image" class="headImage">
             </el-col>
             <el-col :span="22">
               <el-row :gutter="10">
-                <span>昵称</span>
+                <span><span style="color:#606266">昵称:</span>{{ item.userName }}</span>
               </el-row>
               <br>
               <el-row :gutter="10">
-                <!--private String id;-->
-                <!--private String videoId ;-->
-                <!--private String userId;-->
-                <!--private String content;-->
-                <!--private Date date;-->
-                <span>{{ item.content }}</span>
+                <span><span style="color:#606266">内容:</span>{{ item.content }}</span>
               </el-row>
             </el-col>
           </el-row>
@@ -170,15 +162,7 @@
       <el-row :gutter="10">
         <el-col :span="16" :offset="4">
           <div class="block">
-            <el-pagination
-              :current-page= "currentPage4"
-              :page-sizes="[100, 200, 300, 400]"
-              :page-size="100"
-              :total="400"
-              background
-              layout="total, sizes, prev, pager, next, jumper"
-              @size-change="handleSizeChange"
-              @current-change="handleCurrentChange"/>
+            <mypagination type="videoComment" base-type="video"/>
           </div>
 
         </el-col>
@@ -189,33 +173,51 @@
 </template>
 
 <script>
+import Mypagination from '@/components/Mypagination/index'
 import navMenu from '@/views/video/components/navMenu'
+import TextArea from '@/components/TextArea/index'
 import Data from '@/views/video/mixin/Data'
-import store from '@/store'
+// import store from '@/store'
 export default {
   name: 'VideoShow',
-  components: { navMenu },
+  components: { navMenu, Mypagination, TextArea },
   mixins: [Data],
   data() {
     return {
       value: 3.7,
-      currentPage4: 4,
-      activeIndex: '4',
       pageLoading: false,
-      listQuery: {
-        videoId: '',
-        page: 1,
-        limit: 5
+      comment: '',
+      commentForm: {
+        videoId: this.$route.params.id,
+        userId: sessionStorage.getItem('userId'),
+        content: ''
+      },
+      rules: {
+        content: [{ required: true, trigger: 'blur', message: '请输入评论内容' }]
       }
+      // private String id;
+      // private String videoId;
+      // private String userId;
+      // private String content;
+      // private Date date;
+      // private String userName;//用户
+      // private String videoName;// 视频
+      // private String image;//用户
+      // private String introduce;//用户
+
+    }
+  },
+  computed: {
+    loginAvatar: function() {
+      return sessionStorage.getItem('avatar')
     }
   },
   async created() {
-    console.log(store.getters.userInfo)
     this.pageLoading = true
+    this.getVideoList()
     await this.getVideoItem({ uuid: this.$route.params.id }).then(() => {
       // 查询作者信息
       this.getUserByVideoId({ videoId: this.videoItem.id })
-      // console.log(this.videoItem)
       // 查询评论信息
       this['setVideoCommentListQuery']({ usingKey: true, k: 'page', v: 1 })
       this['setVideoCommentListQuery']({ usingKey: true, k: 'limit', v: 10 })
@@ -223,15 +225,32 @@ export default {
       this.getVideoCommentList()
       this.pageLoading = false
     })
-    // this['setVideoCommentListQuery']({ config: this.listQuery })
   },
   methods: {
-    handleSelect() {},
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+    async showVideo(id) {
+      this.$router.push({ path: `/video-show/${id}` })
+      await this.getVideoItem({ uuid: this.$route.params.id }).then(() => {
+      // 查询作者信息
+        this.getUserByVideoId({ videoId: this.videoItem.id })
+        // 查询评论信息
+        this['setVideoCommentListQuery']({ usingKey: true, k: 'page', v: 1 })
+        this['setVideoCommentListQuery']({ usingKey: true, k: 'limit', v: 10 })
+        this['setVideoCommentListQuery']({ usingKey: true, k: 'videoId', v: this.videoItem.id })
+        this.getVideoCommentList()
+        this.pageLoading = false
+      })
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+    handleCommentSubmit() {
+      this.$refs['commentForm'].validate(valid => {
+        if (valid) {
+          console.log('content', this.commentForm)
+          this.setCommentForm({ pF: JSON.parse(JSON.stringify(this.commentForm)) })
+          this.createComment().then(() => {
+            this.getVideoCommentList()
+            this.$refs['commentForm'].resetFields()
+          })
+        }
+      })
     }
   }
 }

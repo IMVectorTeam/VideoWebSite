@@ -60,22 +60,23 @@ export const constantRouterMap = [
   {
     path: '/index',
     component: () => import('@/views/video/index'),
-    name: 'index',
-    meta: { title: '账户管理', icon: 'people', roles: ['admin', 'user'] }
+    name: 'index'
+    // ,
+    // meta: { title: '主页', icon: 'people', roles: ['admin', 'user'] }
   },
   {
     path: '/video-show/:id',
     component: () => import('@/views/video/videoShow'),
-    name: 'videoShow',
-    meta: {
-      title: '视频播放', icon: 'videoShow', roles: ['admin', 'user'] }
+    name: 'videoShow'
+    // ,
+    // meta: {title: '视频播放', icon: 'videoShow', roles: ['admin', 'user'] }
   },
   {
     path: '/classified-video/:title',
     component: () => import('@/views/video/classifiedVideo'),
-    name: 'classifiedVideo',
-    meta: {
-      title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'user'] }
+    name: 'classifiedVideo'
+    // ,
+    // meta: {title: '分类视频列表', icon: 'classifiedVideo', roles: ['admin', 'user'] }
   },
   {
     path: '/auth-redirect',

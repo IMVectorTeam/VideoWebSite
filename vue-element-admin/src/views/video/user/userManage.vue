@@ -48,6 +48,7 @@
           </el-table-column>
 
         </el-table>
+        <mypagination type="videoUser" base-type="videoUser" style="float:right"/>
       </el-col>
     </el-row>
 
@@ -55,9 +56,11 @@
 </template>
 
 <script>
+import Mypagination from '@/components/Mypagination/index'
 import Data from '@/views/video/user/mixin/Data'
 export default {
   name: 'UserManage',
+  components: { Mypagination },
   mixins: [Data],
   data() {
     return {
